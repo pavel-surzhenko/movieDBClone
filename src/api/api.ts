@@ -1,7 +1,8 @@
 import axios from "axios";
 import { MovieProps } from "../types/MovieProps";
+import { baseUrl } from "../lib/const";
 
-export const baseUrl = 'https://api.themoviedb.org/3/'
+
 
 export const apiOptions = {
     method: 'GET',
