@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import MainPage from './pages/MainPage';
 
-const router = createBrowserRouter([{ path: '/', element: <App /> }]);
+const router = createBrowserRouter([{ path: '/', element: <MainPage /> }]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
