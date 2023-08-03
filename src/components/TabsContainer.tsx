@@ -1,4 +1,4 @@
-import { TabProps } from '../types/tabProps';
+import { TabProps } from '../types/TabProps';
 
 const TabsContainer: React.FC<TabProps> = ({ openTab }) => {
     return (

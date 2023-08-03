@@ -1,4 +1,4 @@
-import { TabProps } from '../types/tabProps';
+import { TabProps } from '../types/TabProps';
 
 export const Tab: React.FC<TabProps> = ({ openTab, onTabChange, tabs }) => {
     return (
@@ -14,7 +14,10 @@ export const Tab: React.FC<TabProps> = ({ openTab, onTabChange, tabs }) => {
                             }`}
                             onClick={(e) => {
                                 e.preventDefault();
-                                onTabChange(index);
+                                onTabChange(
+                                    index,
+                                    label === 'Today' ? 'day' : 'week'
+                                );
                             }}
                             data-toggle='tab'
                         >

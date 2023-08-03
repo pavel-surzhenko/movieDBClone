@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/api';
-import { MovieProps } from '../types/movieProps';
+import { MovieProps } from '../types/MovieProps';
 import { baseUrlImg } from '../lib/links';
 
 export const Welcome = () => {
@@ -16,7 +16,7 @@ export const Welcome = () => {
 
     useEffect(() => {
         api.movies
-            .getTrending()
+            .getTrendingAll()
             .then((data) => {
                 setDataMovie(data);
             })
@@ -34,7 +34,9 @@ export const Welcome = () => {
         <section
             className='min-h-[300px] lg:min-h-[400px] flex flex-col justify-center h-full'
             style={{
-                background: ` center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%), url(${baseUrlImg}w1280${image}) center / cover  no-repeat`,
+                background: image
+                    ? `center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%), url(${baseUrlImg}w1280${image}) center / cover  no-repeat `
+                    : `center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%)`,
             }}
         >
             <div className='flex flex-col px-5 justify-center h-full'>

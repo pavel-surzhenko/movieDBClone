@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MovieProps } from '../types/movieProps';
+import { MovieProps } from '../types/MovieProps';
 import { baseUrl } from '../lib/links';
 
 export const apiOptions = {
@@ -12,11 +12,21 @@ export const apiOptions = {
 
 export const api = {
     movies: {
-        async getTrending(): Promise<MovieProps[]> {
+        async getTrendingAll(): Promise<MovieProps[]> {
             const {
                 data: { results },
             } = await axios.get<TrendingResponse>(
                 `${baseUrl}trending/all/day`,
+                apiOptions
+            );
+
+            return results;
+        },
+        async getTrendingMovies(time: string): Promise<MovieProps[]> {
+            const {
+                data: { results },
+            } = await axios.get<TrendingResponse>(
+                `${baseUrl}trending/movie/${time}`,
                 apiOptions
             );
 
