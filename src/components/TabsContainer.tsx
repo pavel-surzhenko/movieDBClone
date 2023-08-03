@@ -6,7 +6,7 @@ const TabsContainer: React.FC<TabContainerProps> = ({ trendingMovies }) => {
             <div className='relative flex flex-col min-w-0 break-words w-full py-5'>
                 <div className=''>
                     {trendingMovies?.map((movie) => (
-                        <p>{movie.title}</p>
+                        <p key={movie.id}>{movie.title}</p>
                     ))}
                 </div>
             </div>

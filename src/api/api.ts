@@ -26,7 +26,7 @@ export const api = {
             const {
                 data: { results },
             } = await axios.get<TrendingResponse>(
-                `${baseUrl}trending/movie/${time}`,
+                `${baseUrl}trending/movie/${time}?language=uk-UA`,
                 apiOptions
             );
 

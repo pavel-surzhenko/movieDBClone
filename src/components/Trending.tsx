@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Tab from './Tab';
 import TabsContainer from './TabsContainer';
 import { api } from '../api/api';
 import { MovieProps } from '../types/MovieProps';
+import { LanguageContext } from '../lib/context';
 
 export const Trending = () => {
     const [openTab, setOpenTab] = useState(0);
     const [trendingMovies, setTrendingMovies] = useState<MovieProps[]>([]);
     const [trendingInterval, setTrendingInterval] = useState<string>('day');
-
-    console.log(trendingMovies);
-
+    const { language, setLanguage } = useContext(LanguageContext);
     const handleTabChange = (tabIndex: number, tabLabel: string): void => {
         setOpenTab(tabIndex);
         setTrendingInterval(tabLabel);
