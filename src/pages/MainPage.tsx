@@ -1,5 +1,6 @@
 import Container from '../components/Container';
 import Header from '../components/Header';
+import Trending from '../components/Trending';
 import Welcome from '../components/Welcome';
 
 export const MainPage = () => {
@@ -8,6 +9,7 @@ export const MainPage = () => {
             <Header />
             <Container>
                 <Welcome />
+                <Trending />
             </Container>
         </>
     );

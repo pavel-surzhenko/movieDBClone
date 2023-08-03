@@ -8,7 +8,9 @@ export const Welcome = () => {
     const [image, setImage] = useState<string>('');
 
     const getRandomImg = () => {
-        const randomIndex = Math.floor(Math.random() * dataMovie.length);
+        const randomIndex: number = Math.floor(
+            Math.random() * dataMovie.length
+        );
         setImage(dataMovie[randomIndex].backdrop_path);
     };
 
@@ -25,6 +27,7 @@ export const Welcome = () => {
         if (dataMovie.length > 0) {
             getRandomImg();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataMovie]);
 
     return (
@@ -35,7 +38,7 @@ export const Welcome = () => {
             }}
         >
             <div className='flex flex-col px-5 justify-center h-full'>
-                <div className='flex-grow  mb-5'>
+                <div className='flex-grow  mb-5 text-white'>
                     <h2 className='text-2xl lg:text-5xl font-bold pb-4 md:pb-0'>
                         Welcome
                     </h2>

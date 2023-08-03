@@ -7,6 +7,7 @@ export default {
             lightBlue: '#01B4E4',
             lightGreen: '#1ed5a9',
             black: '#000',
+            white: '#fff',
         },
         extend: {
             fontFamily: {
