@@ -39,7 +39,7 @@ export const Trending = () => {
                     />
                 </div>
             </div>
-            <TabsContainer openTab={openTab} />
+            <TabsContainer trendingMovies={trendingMovies} />
         </section>
     );
 };
