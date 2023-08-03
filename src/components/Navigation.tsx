@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-const Navigation = () => {
+const Navigation = ({ isMobile }: { isMobile?: boolean }) => {
     return (
-        <nav className='flex gap-10 '>
+        <nav className={`gap-10 flex ${isMobile && 'flex-col'}`}>
             <Link to={'/films'}>Movies</Link>
             <Link to={'/tw-shows'}>TW Shows</Link>
             <Link to={'/people'}>People</Link>

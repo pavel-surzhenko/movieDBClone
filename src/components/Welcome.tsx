@@ -29,7 +29,7 @@ export const Welcome = () => {
 
     return (
         <section
-            className='min-h-[300px] max-h-[350px] flex flex-col justify-center'
+            className='min-h-[300px] xl:min-h-[400px] flex flex-col justify-center h-full'
             style={{
                 background: ` center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%), url(${baseUrlImg}w1280${image}) center / cover no-repeat`,
             }}

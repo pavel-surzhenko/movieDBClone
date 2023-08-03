@@ -4,10 +4,12 @@ import Welcome from '../components/Welcome';
 
 export const MainPage = () => {
     return (
-        <Container>
+        <>
             <Header />
-            <Welcome />
-        </Container>
+            <Container>
+                <Welcome />
+            </Container>
+        </>
     );
 };
 
