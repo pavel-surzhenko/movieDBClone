@@ -6,7 +6,7 @@ const TabsContainer: React.FC<TabProps> = ({ openTab }) => {
             <div className='relative flex flex-col min-w-0 break-words w-full py-5'>
                 <div className=''>
                     <div className=''>
-                        <div className={openTab === 1 ? 'block' : 'hidden'}>
+                        <div className={openTab === 0 ? 'block' : 'hidden'}>
                             <p>
                                 Collaboratively administrate empowered markets
                                 via plug-and-play networks. Dynamically
@@ -17,7 +17,7 @@ const TabsContainer: React.FC<TabProps> = ({ openTab }) => {
                                 convergence without revolutionary ROI.
                             </p>
                         </div>
-                        <div className={openTab === 2 ? 'block' : 'hidden'}>
+                        <div className={openTab === 1 ? 'block' : 'hidden'}>
                             <p>
                                 Completely synergize resource taxing
                                 relationships via premier niche markets.

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/api';
-import { MovieProps } from '../types/MovieProps';
-import { baseUrlImg } from '../lib/const';
+import { MovieProps } from '../types/movieProps';
+import { baseUrlImg } from '../lib/links';
 
 export const Welcome = () => {
     const [dataMovie, setDataMovie] = useState<MovieProps[]>([]);

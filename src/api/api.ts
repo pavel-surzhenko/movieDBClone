@@ -1,8 +1,6 @@
-import axios from "axios";
-import { MovieProps } from "../types/MovieProps";
-import { baseUrl } from "../lib/const";
-
-
+import axios from 'axios';
+import { MovieProps } from '../types/movieProps';
+import { baseUrl } from '../lib/links';
 
 export const apiOptions = {
     method: 'GET',
@@ -15,12 +13,17 @@ export const apiOptions = {
 export const api = {
     movies: {
         async getTrending(): Promise<MovieProps[]> {
-            const { data: { results } } = await axios.get<TrendingResponse>(`${baseUrl}trending/all/day`, apiOptions)
+            const {
+                data: { results },
+            } = await axios.get<TrendingResponse>(
+                `${baseUrl}trending/all/day`,
+                apiOptions
+            );
 
-            return results
-        }
-    }
-}
+            return results;
+        },
+    },
+};
 
 interface TrendingResponse {
     results: MovieProps[];

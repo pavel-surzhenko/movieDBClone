@@ -3,11 +3,14 @@ import Tab from './Tab';
 import TabsContainer from './TabsContainer';
 
 export const Trending = () => {
-    const [openTab, setOpenTab] = useState(1);
+    const [openTab, setOpenTab] = useState(0);
 
     const handleTabChange = (tabIndex: number): void => {
         setOpenTab(tabIndex);
     };
+
+    const tabs = ['Today', 'This week'];
+
     return (
         <section className='pt-[30px] px-5'>
             <div className='flex'>
@@ -16,6 +19,7 @@ export const Trending = () => {
                     <Tab
                         openTab={openTab}
                         onTabChange={handleTabChange}
+                        tabs={tabs}
                     />
                 </div>
             </div>
