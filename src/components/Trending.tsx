@@ -31,7 +31,7 @@ export const Trending = () => {
     }, [trendingInterval, language]);
 
     return (
-        <section className='pt-[30px] px-5'>
+        <section className='pt-[30px] pl-5'>
             <div className='flex'>
                 <h3 className='title-black'>
                     {language === 'en-US' ? 'Trending' : 'Популярні'}

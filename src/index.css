@@ -12,7 +12,12 @@
 .title-black {
     @apply mr-5 whitespace-nowrap text-2xl font-semibold;
 }
-
+.movies-title {
+    @apply font-bold;
+}
 .language-btn {
     @apply border px-1 rounded-[4px];
+}
+.white-shadow {
+    @apply after:content-[''] after:w-10 after:h-full after:absolute after:top-0 after:right-0 after:bg-gradient-to-r from-white/0 to-white;
 }
