@@ -16,6 +16,7 @@ export const MovieCard: React.FC<MovieProps | TVProps> = (props) => {
 
     const release_date =
         'release_date' in props ? props.release_date : props.first_air_date;
+
     const localDate = new Date(release_date).toLocaleDateString(
         language,
         dateOptions

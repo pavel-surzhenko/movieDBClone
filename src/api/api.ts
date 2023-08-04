@@ -46,7 +46,6 @@ export const api = {
                 `${baseUrl}trending/tv/${time}?language=${language}`,
                 apiOptions
             );
-            console.log(results);
 
             return results;
         },

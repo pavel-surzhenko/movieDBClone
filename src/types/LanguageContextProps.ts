@@ -1,6 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
-
 export interface LanguageContextProps {
     language: string;
-    setLanguage: Dispatch<SetStateAction<string>>;
+    setLanguage: (newLanguage: string) => void;
 }
