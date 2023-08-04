@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../lib/context';
 import Tab from './Tab';
 import TabsContainer from './TabsContainer';
-import { api } from '../api/api';
 import { MovieProps } from '../types/MovieProps';
-import { LanguageContext } from '../lib/context';
+import { api } from '../api/api';
 
-export const Trending = () => {
+export const TrendingTV = () => {
     const [openTab, setOpenTab] = useState(0);
-    const [trendingMovies, setTrendingMovies] = useState<MovieProps[]>([]);
+    const [trendingTV, setTrendingTV] = useState<MovieProps[]>([]);
     const [trendingInterval, setTrendingInterval] = useState<string>('day');
     const { language } = useContext(LanguageContext);
 
@@ -23,9 +23,9 @@ export const Trending = () => {
 
     useEffect(() => {
         api.movies
-            .getTrendingMovies(trendingInterval, language)
+            .getTrendingTV(trendingInterval, language)
             .then((data) => {
-                setTrendingMovies(data);
+                setTrendingTV(data);
             })
             .catch((error) => console.log(error));
     }, [trendingInterval, language]);
@@ -36,7 +36,7 @@ export const Trending = () => {
         >
             <div className='flex'>
                 <h3 className='title-black'>
-                    {language === 'en-US' ? 'Trending' : 'Популярні'}
+                    {language === 'en-US' ? 'Trending TV' : 'Серіали у тренді'}
                 </h3>
                 <div>
                     <Tab
@@ -46,9 +46,9 @@ export const Trending = () => {
                     />
                 </div>
             </div>
-            <TabsContainer trendingMovies={trendingMovies} />
+            <TabsContainer trendingMovies={trendingTV} />
         </section>
     );
 };
 
-export default Trending;
+export default TrendingTV;

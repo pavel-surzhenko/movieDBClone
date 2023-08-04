@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MovieProps } from '../types/MovieProps';
+import { MovieProps, MovieResponse } from '../types/MovieProps';
 import { baseUrl } from '../lib/links';
 
 export const apiOptions = {
@@ -15,7 +15,7 @@ export const api = {
         async getTrendingAll(): Promise<MovieProps[]> {
             const {
                 data: { results },
-            } = await axios.get<TrendingResponse>(
+            } = await axios.get<MovieResponse>(
                 `${baseUrl}trending/all/day`,
                 apiOptions
             );
@@ -28,8 +28,21 @@ export const api = {
         ): Promise<MovieProps[]> {
             const {
                 data: { results },
-            } = await axios.get<TrendingResponse>(
+            } = await axios.get<MovieResponse>(
                 `${baseUrl}trending/movie/${time}?language=${language}`,
+                apiOptions
+            );
+
+            return results;
+        },
+        async getTrendingTV(
+            time: string,
+            language: string
+        ): Promise<MovieProps[]> {
+            const {
+                data: { results },
+            } = await axios.get<MovieResponse>(
+                `${baseUrl}trending/tv/${time}?language=${language}`,
                 apiOptions
             );
 
@@ -37,7 +50,3 @@ export const api = {
         },
     },
 };
-
-interface TrendingResponse {
-    results: MovieProps[];
-}

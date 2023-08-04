@@ -1,6 +1,7 @@
 import Container from '../components/Container';
 import Header from '../components/Header';
-import Trending from '../components/Trending';
+import TrendingMovies from '../components/TrendingMovies';
+import TrendingTV from '../components/TrendingTV';
 import Welcome from '../components/Welcome';
 
 export const MainPage = () => {
@@ -9,7 +10,8 @@ export const MainPage = () => {
             <Header />
             <Container>
                 <Welcome />
-                <Trending />
+                <TrendingMovies />
+                <TrendingTV />
             </Container>
         </>
     );
