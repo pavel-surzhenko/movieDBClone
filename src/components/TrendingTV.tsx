@@ -46,7 +46,7 @@ export const TrendingTV = () => {
                     />
                 </div>
             </div>
-            <TabsContainer trendingMovies={trendingTV} />
+            <TabsContainer movies={trendingTV} />
         </section>
     );
 };

@@ -11,7 +11,7 @@ export const Tab: React.FC<TabProps> = ({ openTab, onTabChange, tabs }) => {
                 {tabs?.map((obj, index) => (
                     <li
                         key={index}
-                        className='animate-fade-right animate-once animate-duration-500'
+                        className='animate-fade-right animate-once animate-duration-500 cursor-pointer'
                     >
                         <a
                             className={`px-5 py-1 block leading-normal rounded-[30px] ${

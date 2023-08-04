@@ -8,7 +8,7 @@ export interface TabProps {
 }
 
 export interface TabContainerProps {
-    trendingMovies: MovieProps[] | TVProps[];
+    movies: MovieProps[] | TVProps[];
 }
 
 export type TabObj = { key: string; labelEN: string; labelUA: string };
