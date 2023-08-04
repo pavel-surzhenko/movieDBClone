@@ -22,11 +22,14 @@ export const api = {
 
             return results;
         },
-        async getTrendingMovies(time: string): Promise<MovieProps[]> {
+        async getTrendingMovies(
+            time: string,
+            language: string
+        ): Promise<MovieProps[]> {
             const {
                 data: { results },
             } = await axios.get<TrendingResponse>(
-                `${baseUrl}trending/movie/${time}?language=uk-UA`,
+                `${baseUrl}trending/movie/${time}?language=${language}`,
                 apiOptions
             );
 

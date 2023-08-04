@@ -12,3 +12,7 @@
 .title-black {
     @apply mr-5 whitespace-nowrap text-2xl font-semibold;
 }
+
+.language-btn {
+    @apply border px-1 rounded-[4px];
+}
