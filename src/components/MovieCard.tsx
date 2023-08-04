@@ -28,7 +28,7 @@ export const MovieCard: React.FC<MovieProps> = ({
         vote_average < 5 ? '#571435' : vote_average < 7 ? '#423d0f' : '#204529';
 
     return (
-        <div className='min-w-[150px] animate-fade animate-duration-700 animate-ease-linear'>
+        <div className='min-w-[150px] animate-fade animate-duration-500 animate-ease-linear'>
             <div className='drop-shadow-custom relative'>
                 <div className='overflow-hidden rounded-lg'>
                     <img

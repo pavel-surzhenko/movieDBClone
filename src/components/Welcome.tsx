@@ -42,7 +42,7 @@ export const Welcome = () => {
             }}
         >
             <div className='flex flex-col px-5 justify-center h-full'>
-                <div className='flex-grow  mb-5 text-white'>
+                <div className='flex-grow  mb-5 text-white animate-fade-right animate-once animate-duration-500'>
                     <h2 className='text-2xl lg:text-5xl font-bold pb-4 md:pb-0'>
                         {language === 'en-US' ? 'Welcome.' : 'Ласкаво просимо.'}
                     </h2>
