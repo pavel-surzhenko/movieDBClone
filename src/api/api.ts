@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { MovieProps, MovieResponse } from '../types/MovieProps';
 import { baseUrl } from '../lib/links';
+import { TVProps, TVResponse } from '../types/TVProps';
 
 export const apiOptions = {
     method: 'GET',
@@ -38,13 +39,14 @@ export const api = {
         async getTrendingTV(
             time: string,
             language: string
-        ): Promise<MovieProps[]> {
+        ): Promise<TVProps[]> {
             const {
                 data: { results },
-            } = await axios.get<MovieResponse>(
+            } = await axios.get<TVResponse>(
                 `${baseUrl}trending/tv/${time}?language=${language}`,
                 apiOptions
             );
+            console.log(results);
 
             return results;
         },

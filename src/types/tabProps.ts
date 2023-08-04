@@ -1,4 +1,5 @@
 import { MovieProps } from './MovieProps';
+import { TVProps } from './TVProps';
 
 export interface TabProps {
     openTab: number;
@@ -7,7 +8,7 @@ export interface TabProps {
 }
 
 export interface TabContainerProps {
-    trendingMovies: MovieProps[];
+    trendingMovies: MovieProps[] | TVProps[];
 }
 
 export type TabObj = { key: string; labelEN: string; labelUA: string };

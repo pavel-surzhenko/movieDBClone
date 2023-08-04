@@ -2,12 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import { LanguageContext } from '../lib/context';
 import Tab from './Tab';
 import TabsContainer from './TabsContainer';
-import { MovieProps } from '../types/MovieProps';
 import { api } from '../api/api';
+import { TVProps } from '../types/TVProps';
 
 export const TrendingTV = () => {
     const [openTab, setOpenTab] = useState(0);
-    const [trendingTV, setTrendingTV] = useState<MovieProps[]>([]);
+    const [trendingTV, setTrendingTV] = useState<TVProps[]>([]);
     const [trendingInterval, setTrendingInterval] = useState<string>('day');
     const { language } = useContext(LanguageContext);
 
