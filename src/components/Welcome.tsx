@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { api } from '../api/api';
 import { MovieProps } from '../types/MovieProps';
 import { baseUrlImg } from '../lib/links';
+import { LanguageContext } from '../lib/context';
 
 export const Welcome = () => {
     const [dataMovie, setDataMovie] = useState<MovieProps[]>([]);
     const [image, setImage] = useState<string>('');
+    const { language } = useContext(LanguageContext);
 
     const getRandomImg = () => {
         const randomIndex: number = Math.floor(
@@ -42,11 +44,12 @@ export const Welcome = () => {
             <div className='flex flex-col px-5 justify-center h-full'>
                 <div className='flex-grow  mb-5 text-white'>
                     <h2 className='text-2xl lg:text-5xl font-bold pb-4 md:pb-0'>
-                        Welcome
+                        {language === 'en-US' ? 'Welcome.' : 'Ласкаво просимо.'}
                     </h2>
                     <h3 className='text-lg lg:text-[32px] font-semibold'>
-                        Millions of movies, TV shows and people to discover.
-                        Explore now.
+                        {language === 'en-US'
+                            ? 'Millions of movies, TV shows and people to discover. Explore now.'
+                            : 'Мільйони фільмів, серіалів і персон. Досліджуйте зараз.'}
                     </h3>
                 </div>
                 <div>
@@ -59,15 +62,19 @@ export const Welcome = () => {
                             type='text'
                             placeholder={`${
                                 window?.innerWidth >= 1024
-                                    ? 'Search for a movie, tv show, person....'
-                                    : 'Search'
+                                    ? language === 'en-US'
+                                        ? 'Search for a movie, tv show, person....'
+                                        : 'Пошук фільму, серіалу, персони....'
+                                    : language === 'en-US'
+                                    ? 'Search'
+                                    : 'Пошук'
                             }`}
                         />
                         <button
                             className='px-[26px] py-[12px] bg-gradient-to-r from-lightGreen to-lightBlue rounded-[30px] absolute right-0'
                             type='submit'
                         >
-                            Search
+                            {language === 'en-US' ? 'Search' : 'Пошук'}
                         </button>
                     </form>
                 </div>

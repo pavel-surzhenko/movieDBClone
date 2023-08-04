@@ -16,7 +16,10 @@ export const Trending = () => {
         setTrendingInterval(tabLabel);
     };
 
-    const tabs = ['Today', 'This week'];
+    const tabs = [
+        { key: 'day', labelEN: 'Today', labelUA: 'Сьогодні' },
+        { key: 'week', labelEN: 'This week', labelUA: 'Цього тижня' },
+    ];
 
     useEffect(() => {
         api.movies

@@ -1,10 +1,14 @@
+import { useContext } from 'react';
+import { LanguageContext } from '../lib/context';
 import { TabProps } from '../types/TabProps';
 
 export const Tab: React.FC<TabProps> = ({ openTab, onTabChange, tabs }) => {
+    const { language } = useContext(LanguageContext);
+
     return (
         <ul className='flex'>
             <div className='flex border rounded-[30px]'>
-                {tabs?.map((label, index) => (
+                {tabs?.map((obj, index) => (
                     <li key={index}>
                         <a
                             className={`px-5 py-1 block leading-normal rounded-[30px] ${
@@ -14,14 +18,11 @@ export const Tab: React.FC<TabProps> = ({ openTab, onTabChange, tabs }) => {
                             }`}
                             onClick={(e) => {
                                 e.preventDefault();
-                                onTabChange(
-                                    index,
-                                    label === 'Today' ? 'day' : 'week'
-                                );
+                                onTabChange(index, obj.key);
                             }}
                             data-toggle='tab'
                         >
-                            {label}
+                            {language === 'en-US' ? obj.labelEN : obj.labelUA}
                         </a>
                     </li>
                 ))}
