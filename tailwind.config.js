@@ -16,6 +16,9 @@ export default {
             dropShadow: {
                 custom: '0 2px 8px rgba(0, 0, 0, 0.1)',
             },
+            backgroundImage: {
+                'trending-bg': 'url(/trendingBg.svg)',
+            },
         },
     },
     plugins: [],

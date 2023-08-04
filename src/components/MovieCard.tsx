@@ -37,7 +37,7 @@ export const MovieCard: React.FC<MovieProps> = ({
                         className='w-full h-auto object-contain '
                     />
                 </div>
-                <div className='w-9 h-9 absolute -bottom-4 left-4'>
+                <div className='w-9 h-9 absolute -bottom-4 left-4 font-semibold'>
                     <CircularProgressbar
                         value={vote_average}
                         minValue={1}
@@ -49,7 +49,7 @@ export const MovieCard: React.FC<MovieProps> = ({
                             textColor: '#fff',
                             trailColor: `${trailColor}`,
                             backgroundColor: '#001C22',
-                            textSize: '30px',
+                            textSize: '35px',
                         })}
                     />
                 </div>
