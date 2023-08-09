@@ -5,7 +5,7 @@ export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         colors: {
-            darkBlue: '#032541',
+            darkBlue: '#0d253f',
             lightBlue: '#01B4E4',
             lightGreen: '#1ed5a9',
             black: '#000',
