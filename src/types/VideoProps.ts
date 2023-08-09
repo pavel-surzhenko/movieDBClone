@@ -14,7 +14,7 @@ export interface VideoPropsResponse {
     results: VideoProps[];
     id: number;
 }
-export type TrailerProps = {
+export type SuccessVideoProps = {
     id: number;
-    key: string;
+    link: string;
 };

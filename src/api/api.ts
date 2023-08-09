@@ -2,7 +2,7 @@ import axios from 'axios';
 import { MovieProps, MovieResponse } from '../types/MovieProps';
 import { baseUrl } from '../lib/links';
 import { TVProps, TVResponse } from '../types/TVProps';
-import { VideoProps, VideoPropsResponse } from '../types/VieoProps';
+import { VideoPropsResponse } from '../types/VideoProps';
 
 export const apiOptions = {
     method: 'GET',

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/api';
-import { TrailerProps, VideoPropsResponse } from '../types/VieoProps';
+import { VideoPropsResponse, SuccessVideoProps } from '../types/VideoProps';
 import { MovieProps } from '../types/MovieProps';
 
-export function useFetchVideos(movies: MovieProps[]) {
-    const [videos, setVideos] = useState<TrailerProps[]>([]);
+export function useFetchVideos(movies: MovieProps[]): SuccessVideoProps[] {
+    const [videos, setVideos] = useState<SuccessVideoProps[]>([]);
 
     useEffect(() => {
         if (movies.length > 0) {
@@ -16,7 +16,7 @@ export function useFetchVideos(movies: MovieProps[]) {
 
             Promise.allSettled(videoPromises)
                 .then((data) => {
-                    const successfulResults: TrailerProps[] = data
+                    const successfulResults: SuccessVideoProps[] = data
                         .filter(
                             (
                                 result
@@ -25,12 +25,12 @@ export function useFetchVideos(movies: MovieProps[]) {
                         )
                         .map((result) => ({
                             id: result.value.id,
-                            key:
+                            link:
                                 result.value.results.find(
                                     (video) => video.name === 'Official Trailer'
                                 )?.key || '',
                         }))
-                        .filter((result) => result.key !== '');
+                        .filter((result) => result.link !== '');
 
                     setVideos(successfulResults);
                 })
