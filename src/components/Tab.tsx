@@ -14,7 +14,7 @@ export const Tab: React.FC<TabProps> = ({ openTab, onTabChange, tabs }) => {
                         className='animate-fade-right animate-once animate-duration-500 cursor-pointer'
                     >
                         <a
-                            className={`px-5 py-1 block leading-normal rounded-[30px] ${
+                            className={`px-3 lg:px-5 py-1 block leading-normal rounded-[30px] ${
                                 openTab === index
                                     ? 'text-lightGreen bg-darkBlue'
                                     : 'bg-white'

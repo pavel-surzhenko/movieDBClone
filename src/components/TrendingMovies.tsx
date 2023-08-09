@@ -34,7 +34,7 @@ export const TrendingMovies = () => {
         <section
             className={`pt-[30px] pl-5 relative bg-trending-bg bg-no-repeat bg-[50%_200px]`}
         >
-            <div className='flex'>
+            <div className='flex items-center'>
                 <h3 className='title-black'>
                     {language === 'en-US'
                         ? 'Trending Movies'
