@@ -1,9 +1,13 @@
 import { useContext } from 'react';
-import { LanguageContext } from '../lib/context';
+import { Context } from '../lib/context';
+import { useFetchVideos } from '../hooks/useFetchTrailers';
+
 // import TabsContainer from './TabsContainer';
 
 export const PopularTrailers = () => {
-    const { language } = useContext(LanguageContext);
+    const { language, movies } = useContext(Context);
+    const trailerLinks = useFetchVideos(movies);
+    console.log(trailerLinks);
 
     return (
         <section

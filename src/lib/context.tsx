@@ -1,12 +1,15 @@
 import { createContext, useEffect, useState } from 'react';
-import { LanguageContextProps } from '../types/LanguageContextProps';
+import { ContextProps } from '../types/ContextProps';
+import { MovieProps } from '../types/MovieProps';
+import { api } from '../api/api';
 
-export const LanguageContext = createContext<LanguageContextProps>({
+export const Context = createContext<ContextProps>({
     language: 'en-US',
     setLanguage: () => {},
+    movies: [],
 });
 
-export const LanguageProvider = ({
+export const ContextProvider = ({
     children,
 }: {
     children: React.ReactNode;
@@ -15,6 +18,7 @@ export const LanguageProvider = ({
         typeof window !== 'undefined' ? window.localStorage : null;
 
     const [language, setLanguage] = useState<string>('en-US');
+    const [movies, setMovies] = useState<MovieProps[]>([]);
 
     useEffect(() => {
         const storageLanguage = ls?.getItem('language');
@@ -28,11 +32,20 @@ export const LanguageProvider = ({
         ls?.setItem('language', JSON.stringify(newLanguage));
     };
 
+    useEffect(() => {
+        api.movies
+            .getTrendingAll()
+            .then((data) => {
+                setMovies(data);
+            })
+            .catch((error) => console.log(error));
+    }, []);
+
     return (
-        <LanguageContext.Provider
-            value={{ language, setLanguage: handleLanguageChange }}
+        <Context.Provider
+            value={{ language, setLanguage: handleLanguageChange, movies }}
         >
             {children}
-        </LanguageContext.Provider>
+        </Context.Provider>
     );
 };

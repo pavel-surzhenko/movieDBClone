@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LanguageContext } from '../lib/context';
+import { Context } from '../lib/context';
 import { MovieProps } from '../types/MovieProps';
 import { baseUrlImg } from '../lib/links';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
@@ -7,7 +7,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { TVProps } from '../types/TVProps';
 
 export const MovieCard: React.FC<MovieProps | TVProps> = (props) => {
-    const { language } = useContext(LanguageContext);
+    const { language } = useContext(Context);
     const dateOptions: Intl.DateTimeFormatOptions = {
         day: 'numeric',
         month: 'short',

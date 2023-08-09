@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { LanguageContext } from '../lib/context';
+import { Context } from '../lib/context';
 import { TabProps } from '../types/TabProps';
 
 export const Tab: React.FC<TabProps> = ({ openTab, onTabChange, tabs }) => {
-    const { language } = useContext(LanguageContext);
+    const { language } = useContext(Context);
 
     return (
         <ul className='flex'>

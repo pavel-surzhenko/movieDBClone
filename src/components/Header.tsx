@@ -4,11 +4,11 @@ import MenuIcon from '../assets/MenuIcon';
 import { useContext, useState } from 'react';
 import CloseIcon from '../assets/CloseIcon';
 import { Link } from 'react-router-dom';
-import { LanguageContext } from '../lib/context';
+import { Context } from '../lib/context';
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
-    const { language, setLanguage } = useContext(LanguageContext);
+    const { language, setLanguage } = useContext(Context);
 
     return (
         <div className='bg-darkBlue'>

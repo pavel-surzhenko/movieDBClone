@@ -1,36 +1,22 @@
 import { useContext, useEffect, useState } from 'react';
-import { api } from '../api/api';
-import { MovieProps } from '../types/MovieProps';
 import { baseUrlImg } from '../lib/links';
-import { LanguageContext } from '../lib/context';
+import { Context } from '../lib/context';
 
 export const Welcome = () => {
-    const [dataMovie, setDataMovie] = useState<MovieProps[]>([]);
     const [image, setImage] = useState<string>('');
-    const { language } = useContext(LanguageContext);
+    const { language, movies } = useContext(Context);
 
     const getRandomImg = () => {
-        const randomIndex: number = Math.floor(
-            Math.random() * dataMovie.length
-        );
-        setImage(dataMovie[randomIndex].backdrop_path);
+        const randomIndex: number = Math.floor(Math.random() * movies.length);
+        setImage(movies[randomIndex].backdrop_path);
     };
 
     useEffect(() => {
-        api.movies
-            .getTrendingAll()
-            .then((data) => {
-                setDataMovie(data);
-            })
-            .catch((error) => console.log(error));
-    }, []);
-
-    useEffect(() => {
-        if (dataMovie.length > 0) {
+        if (movies.length > 0) {
             getRandomImg();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dataMovie]);
+    }, [movies]);
 
     return (
         <section

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { LanguageContext } from '../lib/context';
+import { Context } from '../lib/context';
 import Tab from './Tab';
 import TabsContainer from './TabsContainer';
 import { api } from '../api/api';
@@ -9,7 +9,7 @@ export const TrendingTV = () => {
     const [openTab, setOpenTab] = useState(0);
     const [trendingTV, setTrendingTV] = useState<TVProps[]>([]);
     const [trendingInterval, setTrendingInterval] = useState<string>('day');
-    const { language } = useContext(LanguageContext);
+    const { language } = useContext(Context);
 
     const handleTabChange = (tabIndex: number, tabLabel: string): void => {
         setOpenTab(tabIndex);

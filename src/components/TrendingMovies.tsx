@@ -3,13 +3,13 @@ import Tab from './Tab';
 import TabsContainer from './TabsContainer';
 import { api } from '../api/api';
 import { MovieProps } from '../types/MovieProps';
-import { LanguageContext } from '../lib/context';
+import { Context } from '../lib/context';
 
 export const TrendingMovies = () => {
     const [openTab, setOpenTab] = useState(0);
     const [trendingMovies, setTrendingMovies] = useState<MovieProps[]>([]);
     const [trendingInterval, setTrendingInterval] = useState<string>('day');
-    const { language } = useContext(LanguageContext);
+    const { language } = useContext(Context);
 
     const handleTabChange = (tabIndex: number, tabLabel: string): void => {
         setOpenTab(tabIndex);

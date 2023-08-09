@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { LanguageContext } from '../lib/context';
+import { Context } from '../lib/context';
 
 const Navigation = ({ isMobile }: { isMobile?: boolean }) => {
-    const { language } = useContext(LanguageContext);
+    const { language } = useContext(Context);
 
     return (
         <nav className={`gap-10 flex text-white ${isMobile && 'flex-col'}`}>

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { MovieProps, MovieResponse } from '../types/MovieProps';
 import { baseUrl } from '../lib/links';
 import { TVProps, TVResponse } from '../types/TVProps';
+import { VideoProps, VideoPropsResponse } from '../types/VieoProps';
 
 export const apiOptions = {
     method: 'GET',
@@ -48,6 +49,14 @@ export const api = {
             );
 
             return results;
+        },
+        async getVideos(id: number): Promise<VideoPropsResponse> {
+            const { data } = await axios.get<VideoPropsResponse>(
+                `${baseUrl}movie/${id}/videos`,
+                apiOptions
+            );
+
+            return data;
         },
     },
 };
