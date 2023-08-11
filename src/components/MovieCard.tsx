@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Context } from '../lib/context';
-import { movieProps } from '../types/movieProps';
 import { baseUrlImg } from '../lib/links';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { tvProps } from '../types/tvProps';
+import { movieProps } from 'types/movieProps';
+import { tvProps } from 'types/tvProps';
 
 export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);

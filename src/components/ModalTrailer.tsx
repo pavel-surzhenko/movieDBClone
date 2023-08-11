@@ -1,7 +1,7 @@
-import { modalTrailerProps } from '../types/modalTrailerProps';
 import { YOUTUBE_BASE } from '../lib/links';
 import { useRef, useEffect, useState } from 'react';
 import Spinner from './Spinner';
+import { modalTrailerProps } from 'types/modalTrailerProps';
 
 export const ModalTrailer: React.FC<modalTrailerProps> = (props) => {
     const [loading, setLoading] = useState(true);
