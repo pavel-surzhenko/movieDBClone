@@ -4,8 +4,6 @@ import { useFetchVideos } from '../hooks/useFetchTrailers';
 import TrailerCard from './TrailerCard';
 import { baseUrlImg } from '../lib/links';
 
-// import TabsContainer from './TabsContainer';
-
 export const PopularTrailers = () => {
     const { language, movies } = useContext(Context);
     const [backImg, setBackImg] = useState<string>('');
@@ -21,11 +19,9 @@ export const PopularTrailers = () => {
         }
     }, [movies]);
 
-    console.log(backImg);
-
     return (
         <section
-            className={`pt-[30px] pl-5 relative`}
+            className={`pt-[30px] pl-5 relative white-shadow`}
             style={{
                 background: backImg
                     ? `center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%), url(${baseUrlImg}/w1280${backImg}) center / cover  no-repeat `
@@ -33,14 +29,14 @@ export const PopularTrailers = () => {
             }}
         >
             <div className='flex'>
-                <h3 className='title-black'>
+                <h3 className='title-white'>
                     {language === 'en-US'
                         ? 'Popular trailers'
                         : 'Популярні трейлери'}
                 </h3>
             </div>
-            <div className='relative flex flex-col min-w-0 break-words w-full pt-5 mb-5 white-shadow'>
-                <div className='flex flex-nowrap overflow-x-auto gap-5 snap-x'>
+            <div className='relative flex flex-col min-w-0 break-words w-full pt-5 mb-5 '>
+                <div className='flex flex-nowrap overflow-x-auto gap-5 snap-x -mb-4'>
                     {trailers.map((trailer) => (
                         <TrailerCard
                             key={trailer.id}

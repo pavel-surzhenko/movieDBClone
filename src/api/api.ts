@@ -14,11 +14,11 @@ export const apiOptions = {
 
 export const api = {
     movies: {
-        async getTrendingAll(): Promise<MovieProps[]> {
+        async getTrendingAll(language: string): Promise<MovieProps[]> {
             const {
                 data: { results },
             } = await axios.get<MovieResponse>(
-                `${baseUrl}trending/all/day`,
+                `${baseUrl}trending/all/day?language=${language}`,
                 apiOptions
             );
 
@@ -52,7 +52,7 @@ export const api = {
         },
         async getVideos(id: number): Promise<VideoPropsResponse> {
             const { data } = await axios.get<VideoPropsResponse>(
-                `${baseUrl}movie/${id}/videos`,
+                `${baseUrl}movie/${id}/videos?append_to_response=videos`,
                 apiOptions
             );
 

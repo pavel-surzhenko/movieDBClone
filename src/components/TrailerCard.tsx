@@ -8,10 +8,10 @@ export const TrailerCard: React.FC<TrailerProps> = ({
     handleHover,
 }) => {
     return (
-        <div className='min-w-[300px] animate-fade animate-duration-500 animate-ease-linear'>
-            <div className='drop-shadow-custom relative'>
+        <div className='min-w-[300px] animate-fade animate-duration-500 animate-ease-linear cursor-pointer relative'>
+            <div className='drop-shadow-custom relative mb-2'>
                 <div
-                    className='overflow-hidden rounded-lg min-h-[168px]'
+                    className='overflow-hidden rounded-lg min-h-[168px] relative'
                     onMouseEnter={() =>
                         handleHover(movieDetails!.backdrop_path)
                     }
@@ -26,6 +26,15 @@ export const TrailerCard: React.FC<TrailerProps> = ({
                         alt={movieDetails?.title}
                         className='w-full h-auto object-contain '
                     />
+                    <div className='absolute inset-0 flex items-center justify-center'>
+                        <div className='w-16 h-16 flex items-center justify-center '>
+                            {/* Ваш плей айкон */}
+                            <img
+                                src='/playIcon.svg'
+                                className='invert'
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div>

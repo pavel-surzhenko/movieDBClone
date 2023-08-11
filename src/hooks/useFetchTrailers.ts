@@ -26,7 +26,7 @@ export function useFetchVideos(movies: MovieProps[]): SuccessVideoProps[] {
                         .map((result) => ({
                             id: result.value.id,
                             link:
-                                result.value.results.find(
+                                result.value.results?.find(
                                     (video) => video.name === 'Official Trailer'
                                 )?.key || '',
                         }))

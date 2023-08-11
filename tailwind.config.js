@@ -20,6 +20,7 @@ export default {
             },
             backgroundImage: {
                 'trending-bg': 'url(/trendingBg.svg)',
+                'play-icon': 'url(/playIcon.sv)',
             },
         },
     },

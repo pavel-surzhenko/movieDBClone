@@ -34,12 +34,12 @@ export const ContextProvider = ({
 
     useEffect(() => {
         api.movies
-            .getTrendingAll()
+            .getTrendingAll(language)
             .then((data) => {
                 setMovies(data);
             })
             .catch((error) => console.log(error));
-    }, []);
+    }, [language]);
 
     return (
         <Context.Provider

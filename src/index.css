@@ -12,6 +12,9 @@
 .title-black {
     @apply mr-5 whitespace-nowrap text-lg font-semibold lg:text-2xl;
 }
+.title-white {
+    @apply mr-5 whitespace-nowrap text-lg font-semibold lg:text-2xl text-white;
+}
 .movies-title {
     @apply font-bold;
 }
