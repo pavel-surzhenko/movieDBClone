@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Context } from '../lib/context';
-import { TabProps } from '../types/TabProps';
+import { TabObj, TabProps } from '../types/TabProps';
 
 export const Tab: React.FC<TabProps> = ({ openTab, onTabChange, tabs }) => {
     const { language } = useContext(Context);
@@ -8,7 +8,7 @@ export const Tab: React.FC<TabProps> = ({ openTab, onTabChange, tabs }) => {
     return (
         <ul className='flex'>
             <div className='flex border rounded-[30px]'>
-                {tabs?.map((obj, index) => (
+                {tabs?.map((obj: TabObj, index: number) => (
                     <li
                         key={index}
                         className='animate-fade-right animate-once animate-duration-500 cursor-pointer'
