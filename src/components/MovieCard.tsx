@@ -38,7 +38,7 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
             : '#204529';
 
     return (
-        <div className='min-w-[150px] animate-fade animate-duration-500 animate-ease-linear'>
+        <div className='min-w-[150px] animate-fade animate-duration-500 animate-ease-linear mr-5'>
             <div className='drop-shadow-custom relative'>
                 <div className='overflow-hidden rounded-lg'>
                     <img

@@ -6,14 +6,23 @@ const Navigation = ({ isMobile }: { isMobile?: boolean }) => {
     const { language } = useContext(Context);
 
     return (
-        <nav className={`gap-10 flex text-white ${isMobile && 'flex-col'}`}>
-            <Link to={'/films'}>
+        <nav className={`flex text-white ${isMobile && 'flex-col'}`}>
+            <Link
+                to={'/films'}
+                className={`${isMobile && 'mb-7'} mr-10`}
+            >
                 {language === 'en-US' ? 'Movies' : 'Фільми'}
             </Link>
-            <Link to={'/tw-shows'}>
+            <Link
+                to={'/tw-shows'}
+                className={`${isMobile && 'mb-7'} mr-10`}
+            >
                 {language === 'en-US' ? 'TW Shows' : 'Серіали'}
             </Link>
-            <Link to={'/people'}>
+            <Link
+                to={'/people'}
+                className={`${isMobile && 'mb-7'} mr-10`}
+            >
                 {language === 'en-US' ? 'People' : 'Персони'}
             </Link>
         </nav>

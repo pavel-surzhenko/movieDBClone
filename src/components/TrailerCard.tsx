@@ -8,7 +8,7 @@ export const TrailerCard: React.FC<trailerProps> = ({
     handleClick,
 }) => {
     return (
-        <div className='min-w-[300px] animate-fade animate-duration-500 animate-ease-linear cursor-pointer relative'>
+        <div className='mr-5 min-w-[300px] animate-fade animate-duration-500 animate-ease-linear cursor-pointer relative'>
             <div className='drop-shadow-custom relative mb-2'>
                 <div
                     className={`overflow-hidden rounded-lg min-h-[168px] relative hover:scale-105 transition-transform duration-300`}

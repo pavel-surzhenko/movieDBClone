@@ -50,7 +50,7 @@ export const PopularTrailers = () => {
                 </h3>
             </div>
             <div className='relative flex flex-col min-w-0 break-words w-full pt-5 mb-5 '>
-                <div className='flex flex-nowrap overflow-x-auto gap-5 snap-x -mb-4'>
+                <div className='flex flex-nowrap overflow-x-auto snap-x -mb-4'>
                     {trailers.map((trailer) => (
                         <TrailerCard
                             key={trailer.id}

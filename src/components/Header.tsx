@@ -26,13 +26,13 @@ const Header = () => {
                 >
                     {showMenu ? <CloseIcon /> : <MenuIcon />}
                 </div>
-                <div className=' gap-5 items-center hidden lg:flex'>
-                    <div>
+                <div className='items-center hidden lg:flex'>
+                    <div className='mr-5'>
                         <Navigation />
                     </div>
-                    <div className='flex gap-2 text-white'>
+                    <div className='flex text-white'>
                         <button
-                            className={`language-btn ${
+                            className={`language-btn mr-2 ${
                                 language === 'en-US'
                                     ? 'bg-white text-darkBlue '
                                     : ''
@@ -59,9 +59,9 @@ const Header = () => {
                     }  top-0 left-0 right-1/3 bottom-0 bg-darkBlue pl-12 pt-20 text-xl z-10`}
                 >
                     <Navigation isMobile />
-                    <div className='flex gap-2 text-white mt-10'>
+                    <div className='flex text-white mt-10'>
                         <button
-                            className={`language-btn ${
+                            className={`language-btn mr-5 ${
                                 language === 'en-US'
                                     ? 'bg-white text-darkBlue '
                                     : ''
