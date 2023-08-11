@@ -3,11 +3,25 @@ import { Context } from '../lib/context';
 import { useFetchVideos } from '../hooks/useFetchTrailers';
 import TrailerCard from './TrailerCard';
 import { baseUrlImg } from '../lib/links';
+import Modal from 'react-modal';
+import ModalTrailer from './ModalTrailer';
 
 export const PopularTrailers = () => {
     const { language, movies } = useContext(Context);
     const [backImg, setBackImg] = useState<string>('');
     const trailers = useFetchVideos(movies);
+
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showTrailerLink, setShowTrailerLink] = useState<string>('');
+
+    const handleClickOpen = (link: string) => {
+        setShowModal(true);
+        setShowTrailerLink(link);
+    };
+
+    const handleClickClose = () => {
+        setShowModal(false);
+    };
 
     const handleHover = (id: string) => {
         setBackImg(id);
@@ -45,10 +59,20 @@ export const PopularTrailers = () => {
                                 (movie) => movie.id === trailer.id
                             )}
                             handleHover={handleHover}
+                            handleClick={handleClickOpen}
                         />
                     ))}
                 </div>
             </div>
+            <Modal
+                isOpen={showModal}
+                ariaHideApp={false}
+            >
+                <ModalTrailer
+                    showTrailerLink={showTrailerLink}
+                    closeModal={handleClickClose}
+                />
+            </Modal>
         </section>
     );
 };

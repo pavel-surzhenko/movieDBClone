@@ -10,6 +10,7 @@ export default {
             lightGreen: '#1ed5a9',
             black: '#000',
             white: '#fff',
+            lightBlack: 'rgba(0,0,0, 0.4)',
         },
         extend: {
             fontFamily: {
