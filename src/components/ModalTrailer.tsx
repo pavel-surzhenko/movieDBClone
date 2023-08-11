@@ -1,8 +1,10 @@
 import { ModalTrailerProps } from '../types/ModalTrailerProps';
 import { YOUTUBE_BASE } from '../lib/links';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import Spinner from './Spinner';
 
 export const ModalTrailer: React.FC<ModalTrailerProps> = (props) => {
+    const [loading, setLoading] = useState(true);
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const checkIfClickedOutside = (e: MouseEvent) => {
@@ -18,13 +20,18 @@ export const ModalTrailer: React.FC<ModalTrailerProps> = (props) => {
     }, [props]);
 
     return (
-        <div ref={ref}>
-            <iframe
+        <div
+            ref={ref}
+            className='h-full'
+        >
+            {loading && <Spinner />}
+            {/* <iframe
                 src={`${YOUTUBE_BASE}embed/${props.showTrailerLink}`}
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
                 aria-controls='false'
                 className='absolute top-0 bottom-0 left-0 right-0 w-full h-full'
-            ></iframe>
+                onLoad={() => setLoading(false)}
+            ></iframe> */}
         </div>
     );
 };
