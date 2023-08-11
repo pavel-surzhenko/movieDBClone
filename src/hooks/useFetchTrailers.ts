@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { api } from '../api/api';
-import { videoPropsResponse, successVideoProps } from '../types/videoProps1';
-import { movieProps } from '../types/movieProps1';
+import { videoPropsResponse, successVideoProps } from '../types/videoProps';
+import { movieProps } from '../types/movieProps';
 import { Context } from '../lib/context';
 
 export function useFetchVideos(movies: movieProps[]): successVideoProps[] {

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
-import { contextProps } from '../types/contextProps1';
-import { movieProps } from '../types/movieProps1';
+import { contextProps } from '../types/contextProps';
+import { movieProps } from '../types/movieProps';
 import { api } from '../api/api';
 
 export const Context = createContext<contextProps>({

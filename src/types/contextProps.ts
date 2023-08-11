@@ -1,4 +1,4 @@
-import { movieProps } from './movieProps1';
+import { movieProps } from './movieProps';
 
 export interface contextProps {
     language: string;

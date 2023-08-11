@@ -1,6 +1,6 @@
-import { movieProps } from '../types/movieProps1';
-import { tvProps } from '../types/tvProps1';
-import { tabContainerProps } from '../types/tabProps1';
+import { movieProps } from '../types/movieProps';
+import { tvProps } from '../types/tvProps';
+import { tabContainerProps } from '../types/tabProps';
 import MovieCard from './MovieCard';
 
 const TabsContainer: React.FC<tabContainerProps> = ({ movies }) => {
