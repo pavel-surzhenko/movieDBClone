@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { api } from '../api/api';
 import { VideoPropsResponse, SuccessVideoProps } from '../types/VideoProps';
 import { MovieProps } from '../types/MovieProps';
+import { Context } from '../lib/context';
 
 export function useFetchVideos(movies: MovieProps[]): SuccessVideoProps[] {
     const [videos, setVideos] = useState<SuccessVideoProps[]>([]);
+    const { language } = useContext(Context);
 
     useEffect(() => {
         if (movies.length > 0) {
             const moviesId = movies.map((movie) => movie.id);
 
             const videoPromises = moviesId.map((id: number) =>
-                api.movies.getVideos(id)
+                api.movies.getVideos(id, language)
             );
 
             Promise.allSettled(videoPromises)
@@ -27,7 +29,9 @@ export function useFetchVideos(movies: MovieProps[]): SuccessVideoProps[] {
                             id: result.value.id,
                             link:
                                 result.value.results?.find(
-                                    (video) => video.name === 'Official Trailer'
+                                    (video) =>
+                                        video.name === 'Official Trailer' ||
+                                        'Міжнародний трейлер'
                                 )?.key || '',
                         }))
                         .filter((result) => result.link !== '');
@@ -38,7 +42,7 @@ export function useFetchVideos(movies: MovieProps[]): SuccessVideoProps[] {
                     console.log('Promise.allSettled error:', error)
                 );
         }
-    }, [movies]);
+    }, [movies, language]);
 
     return videos;
 }

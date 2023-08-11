@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { baseUrlImg } from '../lib/links';
 import { TrailerProps } from '../types/TrailerProps';
 
 export const TrailerCard: React.FC<TrailerProps> = ({
-    id,
     link,
     movieDetails,
     handleHover,
@@ -17,7 +15,10 @@ export const TrailerCard: React.FC<TrailerProps> = ({
                     onMouseEnter={() => {
                         handleHover(movieDetails!.backdrop_path);
                     }}
-                    onClick={() => handleClick(link)}
+                    onClick={(e) => {
+                        handleClick(link);
+                        e.stopPropagation();
+                    }}
                 >
                     <img
                         src={`${baseUrlImg}/w500${movieDetails?.backdrop_path}`}
@@ -35,7 +36,7 @@ export const TrailerCard: React.FC<TrailerProps> = ({
                 </div>
             </div>
             <div>
-                <h2 className='text-white text-lg pb-2'>
+                <h2 className='text-white text-lg pb-5'>
                     {movieDetails?.title}
                 </h2>
             </div>

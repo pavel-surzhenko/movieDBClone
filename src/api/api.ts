@@ -50,9 +50,12 @@ export const api = {
 
             return results;
         },
-        async getVideos(id: number): Promise<VideoPropsResponse> {
+        async getVideos(
+            id: number,
+            language: string
+        ): Promise<VideoPropsResponse> {
             const { data } = await axios.get<VideoPropsResponse>(
-                `${baseUrl}movie/${id}/videos?append_to_response=videos`,
+                `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
                 apiOptions
             );
 

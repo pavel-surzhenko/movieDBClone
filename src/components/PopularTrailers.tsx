@@ -67,6 +67,21 @@ export const PopularTrailers = () => {
             <Modal
                 isOpen={showModal}
                 ariaHideApp={false}
+                style={{
+                    overlay: {
+                        backgroundColor: 'rgba(0,0,0, 0.5)',
+                    },
+                    content: {
+                        background: '#0d253f',
+                        position: 'absolute',
+                        top: '10%',
+                        left: '10%',
+                        right: '10%',
+                        bottom: '10%',
+                        border: 'transparent',
+                        padding: '0px',
+                    },
+                }}
             >
                 <ModalTrailer
                     showTrailerLink={showTrailerLink}
