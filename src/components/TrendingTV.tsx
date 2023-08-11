@@ -3,11 +3,11 @@ import { Context } from '../lib/context';
 import Tab from './Tab';
 import TabsContainer from './TabsContainer';
 import { api } from '../api/api';
-import { TVProps } from '../types/TVProps';
+import { tvProps } from '../types/tvProps';
 
 export const TrendingTV = () => {
     const [openTab, setOpenTab] = useState(0);
-    const [trendingTV, setTrendingTV] = useState<TVProps[]>([]);
+    const [trendingTV, setTrendingTV] = useState<tvProps[]>([]);
     const [trendingInterval, setTrendingInterval] = useState<string>('day');
     const { language } = useContext(Context);
 

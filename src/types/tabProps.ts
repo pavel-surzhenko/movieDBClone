@@ -1,14 +1,14 @@
-import { MovieProps } from './MovieProps';
-import { TVProps } from './TVProps';
+import { movieProps } from './movieProps';
+import { tvProps } from './tvProps';
 
-export interface TabProps {
+export interface tabProps {
     openTab: number;
     onTabChange: (tabIndex: number, tabLabel: string) => void;
-    tabs: TabObj[];
+    tabs: tabObj[];
 }
 
-export interface TabContainerProps {
-    movies: MovieProps[] | TVProps[];
+export interface tabContainerProps {
+    movies: movieProps[] | tvProps[];
 }
 
-export type TabObj = { key: string; labelEN: string; labelUA: string };
+export type tabObj = { key: string; labelEN: string; labelUA: string };

@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { Context } from '../lib/context';
-import { MovieProps } from '../types/MovieProps';
+import { movieProps } from '../types/movieProps';
 import { baseUrlImg } from '../lib/links';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { TVProps } from '../types/TVProps';
+import { tvProps } from '../types/tvProps';
 
-export const MovieCard: React.FC<MovieProps | TVProps> = (props) => {
+export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);
     const dateOptions: Intl.DateTimeFormatOptions = {
         day: 'numeric',

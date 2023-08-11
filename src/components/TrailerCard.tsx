@@ -1,7 +1,7 @@
 import { baseUrlImg } from '../lib/links';
-import { TrailerProps } from '../types/TrailerProps';
+import { trailerProps } from '../types/trailerProps';
 
-export const TrailerCard: React.FC<TrailerProps> = ({
+export const TrailerCard: React.FC<trailerProps> = ({
     link,
     movieDetails,
     handleHover,

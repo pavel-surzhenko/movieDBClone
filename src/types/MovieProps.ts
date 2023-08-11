@@ -1,4 +1,4 @@
-export interface MovieProps {
+export interface movieProps {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];
@@ -14,6 +14,6 @@ export interface MovieProps {
     vote_average: number;
     vote_count: number;
 }
-export interface MovieResponse {
-    results: MovieProps[];
+export interface movieResponse {
+    results: movieProps[];
 }

@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { api } from '../api/api';
-import { VideoPropsResponse, SuccessVideoProps } from '../types/VideoProps';
-import { MovieProps } from '../types/MovieProps';
+import { videoPropsResponse, successVideoProps } from '../types/videoProps';
+import { movieProps } from '../types/movieProps';
 import { Context } from '../lib/context';
 
-export function useFetchVideos(movies: MovieProps[]): SuccessVideoProps[] {
-    const [videos, setVideos] = useState<SuccessVideoProps[]>([]);
+export function useFetchVideos(movies: movieProps[]): successVideoProps[] {
+    const [videos, setVideos] = useState<successVideoProps[]>([]);
     const { language } = useContext(Context);
 
     useEffect(() => {
@@ -18,11 +18,11 @@ export function useFetchVideos(movies: MovieProps[]): SuccessVideoProps[] {
 
             Promise.allSettled(videoPromises)
                 .then((data) => {
-                    const successfulResults: SuccessVideoProps[] = data
+                    const successfulResults: successVideoProps[] = data
                         .filter(
                             (
                                 result
-                            ): result is PromiseFulfilledResult<VideoPropsResponse> =>
+                            ): result is PromiseFulfilledResult<videoPropsResponse> =>
                                 result.status === 'fulfilled'
                         )
                         .map((result) => ({

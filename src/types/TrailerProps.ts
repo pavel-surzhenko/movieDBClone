@@ -1,8 +1,8 @@
-import { MovieProps } from './MovieProps';
+import { movieProps } from './movieProps';
 
-export interface TrailerProps {
+export interface trailerProps {
     link: string;
-    movieDetails?: MovieProps;
+    movieDetails?: movieProps;
     handleHover: (id: string) => void;
     handleClick: (link: string) => void;
 }

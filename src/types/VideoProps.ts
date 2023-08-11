@@ -1,4 +1,4 @@
-export interface VideoProps {
+export interface videoProps {
     id: string;
     iso_639_1: string;
     iso_3166_1: string;
@@ -10,11 +10,11 @@ export interface VideoProps {
     size: number;
     type: string;
 }
-export interface VideoPropsResponse {
-    results: VideoProps[];
+export interface videoPropsResponse {
+    results: videoProps[];
     id: number;
 }
-export type SuccessVideoProps = {
+export type successVideoProps = {
     id: number;
     link: string;
 };

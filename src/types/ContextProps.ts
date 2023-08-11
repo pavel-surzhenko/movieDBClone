@@ -1,7 +1,7 @@
-import { MovieProps } from './MovieProps';
+import { movieProps } from './movieProps';
 
-export interface ContextProps {
+export interface contextProps {
     language: string;
     setLanguage: (newLanguage: string) => void;
-    movies: MovieProps[];
+    movies: movieProps[];
 }

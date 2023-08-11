@@ -1,4 +1,4 @@
-export interface TVProps {
+export interface tvProps {
     adult: boolean;
     backdrop_path: string;
     first_air_date: string;
@@ -15,6 +15,6 @@ export interface TVProps {
     vote_average: number;
     vote_count: number;
 }
-export interface TVResponse {
-    results: TVProps[];
+export interface tvResponse {
+    results: tvProps[];
 }

@@ -1,9 +1,9 @@
 import { createContext, useEffect, useState } from 'react';
-import { ContextProps } from '../types/ContextProps';
-import { MovieProps } from '../types/MovieProps';
+import { contextProps } from '../types/contextProps';
+import { movieProps } from '../types/movieProps';
 import { api } from '../api/api';
 
-export const Context = createContext<ContextProps>({
+export const Context = createContext<contextProps>({
     language: 'en-US',
     setLanguage: () => {},
     movies: [],
@@ -18,7 +18,7 @@ export const ContextProvider = ({
         typeof window !== 'undefined' ? window.localStorage : null;
 
     const [language, setLanguage] = useState<string>('en-US');
-    const [movies, setMovies] = useState<MovieProps[]>([]);
+    const [movies, setMovies] = useState<movieProps[]>([]);
 
     useEffect(() => {
         const storageLanguage = ls?.getItem('language');
