@@ -1,4 +1,4 @@
-import { movieProps } from './movieProps';
+import { movieProps } from './movieProps1';
 
 export interface trailerProps {
     link: string;

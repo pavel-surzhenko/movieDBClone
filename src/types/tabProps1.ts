@@ -1,5 +1,5 @@
-import { movieProps } from './movieProps';
-import { tvProps } from './tvProps';
+import { movieProps } from './movieProps1';
+import { tvProps } from './tvProps1';
 
 export interface tabProps {
     openTab: number;
