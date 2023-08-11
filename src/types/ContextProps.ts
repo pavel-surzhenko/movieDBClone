@@ -5,3 +5,4 @@ export interface contextProps {
     setLanguage: (newLanguage: string) => void;
     movies: movieProps[];
 }
+console.log(1);
