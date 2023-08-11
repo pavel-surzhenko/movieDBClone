@@ -25,13 +25,13 @@ export const ModalTrailer: React.FC<ModalTrailerProps> = (props) => {
             className='h-full'
         >
             {loading && <Spinner />}
-            {/* <iframe
+            <iframe
                 src={`${YOUTUBE_BASE}embed/${props.showTrailerLink}`}
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
                 aria-controls='false'
                 className='absolute top-0 bottom-0 left-0 right-0 w-full h-full'
                 onLoad={() => setLoading(false)}
-            ></iframe> */}
+            ></iframe>
         </div>
     );
 };
