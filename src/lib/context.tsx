@@ -33,8 +33,7 @@ export const ContextProvider = ({
     };
 
     useEffect(() => {
-        api.movies
-            .getTrendingAll(language)
+        api.getTrendingAll(language)
             .then((data) => {
                 setMovies(data);
             })

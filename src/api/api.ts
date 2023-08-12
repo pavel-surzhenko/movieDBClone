@@ -13,17 +13,17 @@ export const apiOptions = {
 };
 
 export const api = {
-    movies: {
-        async getTrendingAll(language: string): Promise<movieProps[]> {
-            const {
-                data: { results },
-            } = await axios.get<movieResponse>(
-                `${baseUrl}trending/all/day?language=${language}`,
-                apiOptions
-            );
+    async getTrendingAll(language: string): Promise<movieProps[]> {
+        const {
+            data: { results },
+        } = await axios.get<movieResponse>(
+            `${baseUrl}trending/all/day?language=${language}`,
+            apiOptions
+        );
 
-            return results;
-        },
+        return results;
+    },
+    movies: {
         async getTrendingMovies(
             time: string,
             language: string
@@ -34,9 +34,25 @@ export const api = {
                 `${baseUrl}trending/movie/${time}?language=${language}`,
                 apiOptions
             );
-
             return results;
         },
+
+        async getVideos(
+            id: number,
+            language: string
+        ): Promise<videoPropsResponse | null> {
+            try {
+                const { data } = await axios.get<videoPropsResponse>(
+                    `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                return null;
+            }
+        },
+    },
+    tv: {
         async getTrendingTV(
             time: string,
             language: string
@@ -47,23 +63,7 @@ export const api = {
                 `${baseUrl}trending/tv/${time}?language=${language}`,
                 apiOptions
             );
-
             return results;
-        },
-        async getVideos(
-            id: number,
-            language: string
-        ): Promise<videoPropsResponse | null> {
-            try {
-                const { data } = await axios.get<videoPropsResponse>(
-                    `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
-                    apiOptions
-                );
-
-                return data;
-            } catch (error) {
-                return null;
-            }
         },
     },
 };

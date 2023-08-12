@@ -22,7 +22,7 @@ export const TrendingTV = () => {
     ];
 
     useEffect(() => {
-        api.movies
+        api.tv
             .getTrendingTV(trendingInterval, language)
             .then((data) => {
                 setTrendingTV(data);

@@ -6,6 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { movieProps } from '../types/movieProps';
 import { tvProps } from '../types/tvProps';
 import MoreInfoIcon from '../assets/MoreInfoIcon';
+import { Link } from 'react-router-dom';
 
 export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);
@@ -42,11 +43,19 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
         <div className='min-w-[150px] animate-fade animate-duration-500 animate-ease-linear mr-5'>
             <div className='drop-shadow-custom relative'>
                 <div className='overflow-hidden rounded-lg cursor-pointer'>
-                    <img
-                        src={`${baseUrlImg}/w500${props.poster_path}`}
-                        alt={title}
-                        className='w-full h-auto object-contain '
-                    />
+                    <Link
+                        to={`${
+                            'title' in props
+                                ? `movie/:${props.id}`
+                                : `tv/:${props.id}`
+                        }`}
+                    >
+                        <img
+                            src={`${baseUrlImg}/w500${props.poster_path}`}
+                            alt={title}
+                            className='w-full h-auto object-contain '
+                        />
+                    </Link>
                 </div>
                 <div className='w-9 h-9 absolute -bottom-4 left-4 font-semibold'>
                     <CircularProgressbar
@@ -70,9 +79,17 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
             </div>
             <div className='pt-6 px-2'>
                 <div>
-                    <h2 className='movies-title hover:text-lightBlue cursor-pointer transition-colors duration-300'>
-                        {title}
-                    </h2>
+                    <Link
+                        to={`${
+                            'title' in props
+                                ? `movie/:${props.id}`
+                                : `tv/:${props.id}`
+                        }`}
+                    >
+                        <h2 className='movies-title hover:text-lightBlue cursor-pointer transition-colors duration-300'>
+                            {title}
+                        </h2>
+                    </Link>
                 </div>
                 <div>
                     <p className='text-black/60'>{localDate}</p>
