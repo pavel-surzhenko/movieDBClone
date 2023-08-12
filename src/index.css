@@ -24,6 +24,3 @@
 .white-shadow {
     @apply after:content-[''] after:w-10 after:h-full after:absolute after:top-0 after:right-0 after:bg-gradient-to-r from-white/0 to-white;
 }
-#player .ytp-cued-thumbnail-overlay-image {
-    background-size: contain !important;
-}
