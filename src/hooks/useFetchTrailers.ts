@@ -12,9 +12,13 @@ export function useFetchVideos(movies: movieProps[]): successVideoProps[] {
         if (movies.length > 0) {
             const moviesId = movies.map((movie) => movie.id);
 
-            const videoPromises = moviesId.map((id: number) =>
-                api.movies.getVideos(id, language)
-            );
+            const videoPromises = moviesId.map((id: number) => {
+                try {
+                    return api.movies.getVideos(id, language);
+                } catch (error) {
+                    return null;
+                }
+            });
 
             Promise.allSettled(videoPromises)
                 .then((data) => {
@@ -23,7 +27,8 @@ export function useFetchVideos(movies: movieProps[]): successVideoProps[] {
                             (
                                 result
                             ): result is PromiseFulfilledResult<videoPropsResponse> =>
-                                result.status === 'fulfilled'
+                                result.status === 'fulfilled' &&
+                                result.value !== null
                         )
                         .map((result) => ({
                             id: result.value.id,

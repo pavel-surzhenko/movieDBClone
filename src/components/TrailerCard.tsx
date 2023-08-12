@@ -29,7 +29,7 @@ export const TrailerCard: React.FC<trailerProps> = ({
                         <div className='w-16 h-16 flex items-center justify-center '>
                             <img
                                 src='/playIcon.svg'
-                                className='invert'
+                                className='invert hover:scale-125 transition-all duration-300'
                             />
                         </div>
                     </div>
