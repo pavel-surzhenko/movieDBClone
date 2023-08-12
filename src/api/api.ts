@@ -3,6 +3,7 @@ import { movieProps, movieResponse } from '../types/movieProps';
 import { baseUrl } from '../lib/links';
 import { tvProps, tvResponse } from '../types/tvProps';
 import { videoPropsResponse } from '../types/videoProps';
+import { movieDetailProps } from '../types/movieDetailProps';
 
 export const apiOptions = {
     method: 'GET',
@@ -44,6 +45,21 @@ export const api = {
             try {
                 const { data } = await axios.get<videoPropsResponse>(
                     `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                return null;
+            }
+        },
+
+        async getDetails(
+            id: number,
+            language: string
+        ): Promise<movieDetailProps | null> {
+            try {
+                const { data } = await axios.get<movieDetailProps>(
+                    `${baseUrl}movie/${id}?${language}`,
                     apiOptions
                 );
                 return data;
