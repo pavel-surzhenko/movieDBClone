@@ -10,11 +10,22 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { getCircleColor } from '../hooks/useGetCircleColor';
 import { getTrailColor } from '../hooks/useGettrailColor';
+import { movieCreditsProps } from '../types/movieCreditsProps';
+import { movieProvidersProps } from '../types/movieProvidersProps';
 
 export const MovieDetailPage = () => {
     const { movieId } = useParams();
     const { language } = useContext(Context);
     const [movieData, setMovieData] = useState<movieDetailProps | null>(null);
+    const [movieProviders, setMovieProviders] =
+        useState<movieProvidersProps | null>(null);
+    const [movieCredits, setMovieCredits] = useState<movieCreditsProps | null>(
+        null
+    );
+
+    const director = movieCredits?.crew.find(
+        (person) => person.job === 'Director'
+    );
 
     useEffect(() => {
         api.movies
@@ -23,9 +34,23 @@ export const MovieDetailPage = () => {
             .catch((error) => {
                 console.log(error);
             });
+        api.movies
+            .getCredits(Number(movieId), language)
+            .then((data) => setMovieCredits(data))
+            .catch((error) => {
+                console.log(error);
+            });
+        api.movies
+            .getProvider(Number(movieId))
+            .then((data) => setMovieProviders(data))
+            .catch((error) => {
+                console.log(error);
+            });
     }, [language, movieId]);
 
-    console.log(movieData);
+    // console.log(movieData);
+    // console.log(director);
+    // console.log(movieProviders);
 
     return (
         <>
@@ -33,13 +58,13 @@ export const MovieDetailPage = () => {
             <div
                 style={{
                     background: movieData
-                        ? `url(${baseUrlImg}/w1280${movieData?.backdrop_path}) left calc((50vw - 170px) - 340px) center / cover no-repeat `
+                        ? `url(${baseUrlImg}/w1280${movieData?.backdrop_path}) left calc((50vw - 170px) - 340px) top / cover no-repeat `
                         : '',
                 }}
             >
                 <div
                     style={{
-                        background: `linear-gradient(to right, rgba(31.5, 10.5, 10.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 10.5, 10.5, 0.84) 50%, rgba(31.5, 10.5, 10.5, 0.84) 100%)`,
+                        background: `linear-gradient(to right, rgba(0, 0, 0, 1) calc((50vw - 170px) - 340px), rgba(0, 0, 0, 0.84) 50%, rgba(0, 0, 0, 0.84) 100%)`,
                     }}
                 >
                     <Container>
@@ -114,7 +139,7 @@ export const MovieDetailPage = () => {
                                         })}
                                     />
                                 </div>
-                                <div>
+                                <div className='mb-5'>
                                     <h3 className='text-xl mb-2'>
                                         {language === 'uk-UA'
                                             ? 'Опис'
@@ -123,6 +148,29 @@ export const MovieDetailPage = () => {
                                     <p className='font-light'>
                                         {movieData?.overview}
                                     </p>
+                                </div>
+                                <div className='flex justify-between items-center'>
+                                    <div>
+                                        <h4>{director?.name}</h4>
+                                        <span className='font-light text-sm'>
+                                            {language === 'uk-UA'
+                                                ? 'Режисер'
+                                                : 'Director'}
+                                        </span>
+                                    </div>
+                                    {movieProviders?.results?.US?.flatrate && (
+                                        <div className='w-12 h-12'>
+                                            <img
+                                                src={`${baseUrlImg}/original${movieProviders?.results.US.flatrate[0].logo_path}`}
+                                                alt={
+                                                    movieProviders?.results.US
+                                                        .flatrate[0]
+                                                        .provider_name
+                                                }
+                                                className='w-full object-contain'
+                                            />
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>

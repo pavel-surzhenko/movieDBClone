@@ -4,6 +4,8 @@ import { baseUrl } from '../lib/links';
 import { tvProps, tvResponse } from '../types/tvProps';
 import { videoPropsResponse } from '../types/videoProps';
 import { movieDetailProps } from '../types/movieDetailProps';
+import { movieCreditsProps } from '../types/movieCreditsProps';
+import { movieProvidersProps } from '../types/movieProvidersProps';
 
 export const apiOptions = {
     method: 'GET',
@@ -60,6 +62,33 @@ export const api = {
             try {
                 const { data } = await axios.get<movieDetailProps>(
                     `${baseUrl}movie/${id}?language=${language}`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                return null;
+            }
+        },
+
+        async getCredits(
+            id: number,
+            language: string
+        ): Promise<movieCreditsProps | null> {
+            try {
+                const { data } = await axios.get<movieCreditsProps>(
+                    `${baseUrl}movie/${id}/credits?language=${language}`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                return null;
+            }
+        },
+
+        async getProvider(id: number): Promise<movieProvidersProps | null> {
+            try {
+                const { data } = await axios.get<movieProvidersProps>(
+                    `${baseUrl}movie/${id}/watch/providers?locale='US'`,
                     apiOptions
                 );
                 return data;
