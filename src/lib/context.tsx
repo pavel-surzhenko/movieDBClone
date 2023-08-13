@@ -16,16 +16,18 @@ export const ContextProvider = ({
 }) => {
     const ls: Storage | null =
         typeof window !== 'undefined' ? window.localStorage : null;
+    const storageLanguage = ls?.getItem('language');
 
-    const [language, setLanguage] = useState<string>('en-US');
+    const [language, setLanguage] = useState<string>(
+        storageLanguage || 'en-US'
+    );
     const [movies, setMovies] = useState<movieProps[]>([]);
 
     useEffect(() => {
-        const storageLanguage = ls?.getItem('language');
         if (storageLanguage) {
             setLanguage(JSON.parse(storageLanguage));
         }
-    }, [ls]);
+    }, [ls, storageLanguage]);
 
     const handleLanguageChange = (newLanguage: string) => {
         setLanguage(newLanguage);

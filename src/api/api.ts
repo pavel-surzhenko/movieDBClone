@@ -59,7 +59,7 @@ export const api = {
         ): Promise<movieDetailProps | null> {
             try {
                 const { data } = await axios.get<movieDetailProps>(
-                    `${baseUrl}movie/${id}?${language}`,
+                    `${baseUrl}movie/${id}?language=${language}`,
                     apiOptions
                 );
                 return data;

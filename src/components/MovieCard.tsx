@@ -7,6 +7,8 @@ import { movieProps } from '../types/movieProps';
 import { tvProps } from '../types/tvProps';
 import MoreInfoIcon from '../assets/MoreInfoIcon';
 import { Link } from 'react-router-dom';
+import { getCircleColor } from '../hooks/useGetCircleColor';
+import { getTrailColor } from '../hooks/useGettrailColor';
 
 export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);
@@ -26,19 +28,6 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
 
     const title = 'title' in props ? props.title : props.name;
 
-    const circleColor =
-        props.vote_average < 5
-            ? '#db2360'
-            : props.vote_average < 7
-            ? '#d2d531'
-            : '#21d07a';
-    const trailColor =
-        props.vote_average < 5
-            ? '#571435'
-            : props.vote_average < 7
-            ? '#423d0f'
-            : '#204529';
-
     return (
         <div className='min-w-[150px] animate-fade animate-duration-500 animate-ease-linear mr-5'>
             <div className='drop-shadow-custom relative'>
@@ -46,8 +35,8 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                     <Link
                         to={`${
                             'title' in props
-                                ? `movie/:${props.id}`
-                                : `tv/:${props.id}`
+                                ? `movie/${props.id}`
+                                : `tv/${props.id}`
                         }`}
                     >
                         <img
@@ -65,9 +54,9 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                         text={`${Math.round(props.vote_average * 10)}`}
                         background
                         styles={buildStyles({
-                            pathColor: `${circleColor}`,
+                            pathColor: `${getCircleColor(props.vote_average)}`,
                             textColor: '#fff',
-                            trailColor: `${trailColor}`,
+                            trailColor: `${getTrailColor(props.vote_average)}`,
                             backgroundColor: '#001C22',
                             textSize: '35px',
                         })}
@@ -82,8 +71,8 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                     <Link
                         to={`${
                             'title' in props
-                                ? `movie/:${props.id}`
-                                : `tv/:${props.id}`
+                                ? `movie/${props.id}`
+                                : `tv/${props.id}`
                         }`}
                     >
                         <h2 className='movies-title hover:text-lightBlue cursor-pointer transition-colors duration-300'>
