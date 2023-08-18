@@ -1,3 +1,5 @@
+import { movieCreditsProps } from './movieCreditsProps';
+
 export interface movieDetailProps {
     adult: boolean;
     backdrop_path: string;
@@ -24,6 +26,11 @@ export interface movieDetailProps {
     video: boolean;
     vote_average: number;
     vote_count: number;
+}
+
+export interface movieDetailsHeaderProps {
+    movieDetails: movieDetailProps;
+    movieCredits: movieCreditsProps;
 }
 
 type collection = {

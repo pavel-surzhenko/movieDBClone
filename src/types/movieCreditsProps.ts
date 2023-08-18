@@ -4,7 +4,7 @@ export interface movieCreditsProps {
     crew: crew[];
 }
 
-type cast = {
+export type cast = {
     adult: boolean;
     gender: number;
     id: number;
@@ -19,7 +19,7 @@ type cast = {
     order: number;
 };
 
-type crew = {
+export type crew = {
     adult: boolean;
     gender: number;
     id: number;
