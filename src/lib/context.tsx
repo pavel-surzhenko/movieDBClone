@@ -23,8 +23,6 @@ export const ContextProvider = ({
     );
     const [movies, setMovies] = useState<movieProps[]>([]);
 
-    console.log(movies);
-
     useEffect(() => {
         if (storageLanguage) {
             setLanguage(JSON.parse(storageLanguage));
@@ -41,7 +39,7 @@ export const ContextProvider = ({
             .then((data) => {
                 setMovies(data);
             })
-            .catch((error) => console.log(error));
+            .catch();
     }, [language]);
 
     return (

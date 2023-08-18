@@ -8,7 +8,7 @@ import { tvProps } from '../types/tvProps';
 import MoreInfoIcon from '../assets/MoreInfoIcon';
 import { Link } from 'react-router-dom';
 import { getCircleColor } from '../hooks/useGetCircleColor';
-import { getTrailColor } from '../hooks/useGettrailColor';
+import { getTrailColor } from '../hooks/useGetTrailColor';
 
 export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);
