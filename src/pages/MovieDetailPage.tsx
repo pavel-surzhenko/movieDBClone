@@ -13,16 +13,28 @@ import { getTrailColor } from '../hooks/useGettrailColor';
 import { movieCreditsProps } from '../types/movieCreditsProps';
 import { movieProvidersProps } from '../types/movieProvidersProps';
 import Spinner from '../components/Spinner';
+import Modal from 'react-modal';
+import ModalTrailer from '../components/ModalTrailer';
+import { useFetchVideos } from '../hooks/useFetchTrailers';
 
 export const MovieDetailPage = () => {
     const { movieId } = useParams();
-    const { language } = useContext(Context);
+    const { language, movies } = useContext(Context);
     const [movieData, setMovieData] = useState<movieDetailProps | null>(null);
     const [movieProviders, setMovieProviders] =
         useState<movieProvidersProps | null>(null);
     const [movieCredits, setMovieCredits] = useState<movieCreditsProps | null>(
         null
     );
+
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showTrailerLink, setShowTrailerLink] = useState<string>('');
+    const trailers = useFetchVideos(movies);
+    const trailer = trailers.find((trailer) => trailer.id === Number(movieId));
+
+    const handleClickClose = () => {
+        setShowModal(false);
+    };
 
     const director = movieCredits?.crew.find(
         (person) => person.job === 'Director'
@@ -47,14 +59,17 @@ export const MovieDetailPage = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, [language, movieId]);
+        if (trailer) {
+            setShowTrailerLink(trailer.link);
+        }
+    }, [language, movieId, trailer]);
 
     return (
         <>
             <Header />
 
             {movieData ? (
-                <>
+                <section className='relative'>
                     <div
                         className={` h-[200px] w-full lg:hidden relative`}
                         style={{
@@ -149,34 +164,58 @@ export const MovieDetailPage = () => {
                                                     }`}
                                             </span>
                                         </div>
-                                        <div className='w-10 h-10 lg:w-[60px] lg:h-[60px] mb-5'>
-                                            <CircularProgressbar
-                                                value={
-                                                    movieData?.vote_average || 0
-                                                }
-                                                minValue={1}
-                                                maxValue={10}
-                                                text={`${Math.round(
-                                                    movieData
-                                                        ? movieData?.vote_average *
-                                                              10
-                                                        : 0
-                                                )}`}
-                                                background
-                                                styles={buildStyles({
-                                                    pathColor: `${getCircleColor(
+                                        <div className='flex items-center  mb-5'>
+                                            <div className='w-10 h-10 lg:w-[60px] lg:h-[60px]'>
+                                                <CircularProgressbar
+                                                    value={
                                                         movieData?.vote_average ||
-                                                            0
-                                                    )}`,
-                                                    textColor: '#fff',
-                                                    trailColor: `${getTrailColor(
-                                                        movieData?.vote_average ||
-                                                            0
-                                                    )}`,
-                                                    backgroundColor: '#001C22',
-                                                    textSize: '35px',
-                                                })}
-                                            />
+                                                        0
+                                                    }
+                                                    minValue={1}
+                                                    maxValue={10}
+                                                    text={`${Math.round(
+                                                        movieData
+                                                            ? movieData?.vote_average *
+                                                                  10
+                                                            : 0
+                                                    )}`}
+                                                    background
+                                                    styles={buildStyles({
+                                                        pathColor: `${getCircleColor(
+                                                            movieData?.vote_average ||
+                                                                0
+                                                        )}`,
+                                                        textColor: '#fff',
+                                                        trailColor: `${getTrailColor(
+                                                            movieData?.vote_average ||
+                                                                0
+                                                        )}`,
+                                                        backgroundColor:
+                                                            '#001C22',
+                                                        textSize: '35px',
+                                                    })}
+                                                />
+                                            </div>
+                                            {trailer && (
+                                                <div
+                                                    className='flex items-center ml-5 cursor-pointer'
+                                                    onClick={(e) => {
+                                                        setShowModal(true);
+                                                        e.stopPropagation();
+                                                    }}
+                                                >
+                                                    <img
+                                                        className='invert hover:scale-125 transition-all duration-300 w-5 h-5'
+                                                        src='/playIcon.svg'
+                                                        alt='play'
+                                                    />
+                                                    <p className='ml-1'>
+                                                        {language === 'uk-UA'
+                                                            ? 'Дивитись трейлер'
+                                                            : 'Play Trailer'}
+                                                    </p>
+                                                </div>
+                                            )}
                                         </div>
                                         <div className='mb-5'>
                                             <h3 className='text-xl mb-2'>
@@ -218,7 +257,32 @@ export const MovieDetailPage = () => {
                             </Container>
                         </div>
                     </div>
-                </>
+                    <Modal
+                        isOpen={showModal}
+                        ariaHideApp={false}
+                        style={{
+                            overlay: {
+                                backgroundColor: 'rgba(0,0,0, 0.5)',
+                            },
+                            content: {
+                                background: '#0d253f',
+                                position: 'absolute',
+                                top: '15%',
+                                left: '10%',
+                                right: '10%',
+                                bottom: '10%',
+                                border: 'transparent',
+                                padding: '0px',
+                                aspectRatio: 16 / 9,
+                            },
+                        }}
+                    >
+                        <ModalTrailer
+                            showTrailerLink={showTrailerLink}
+                            closeModal={handleClickClose}
+                        />
+                    </Modal>
+                </section>
             ) : (
                 <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
                     <Spinner />

@@ -36,7 +36,7 @@ export const TrailerCard: React.FC<trailerProps> = ({
                 </div>
             </div>
             <div>
-                <h2 className='text-white text-lg pb-5'>
+                <h2 className='text-white text-lg pb-5 text-center'>
                     {movieDetails?.title}
                 </h2>
             </div>

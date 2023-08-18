@@ -10,9 +10,11 @@ export function useFetchVideos(movies: movieProps[]): successVideoProps[] {
 
     useEffect(() => {
         if (movies.length > 0) {
-            const moviesId = movies.map((movie) => movie.id);
+            const filmsId = movies
+                .filter((movie) => movie.media_type === 'movie')
+                .map((movie) => movie.id);
 
-            const videoPromises = moviesId.map((id: number) => {
+            const videoPromises = filmsId.map((id: number) => {
                 try {
                     return api.movies.getVideos(id, language);
                 } catch (error) {
