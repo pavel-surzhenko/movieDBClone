@@ -35,7 +35,7 @@ export const PopularTrailers = () => {
 
     return (
         <section
-            className={`pt-[30px] pl-5 relative white-shadow`}
+            className={`pt-[30px] pl-5 relative white-shadow `}
             style={{
                 background: backImg
                     ? `center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%), url(${baseUrlImg}/w1280${backImg}) center / cover  no-repeat `
@@ -74,12 +74,13 @@ export const PopularTrailers = () => {
                     content: {
                         background: '#0d253f',
                         position: 'absolute',
-                        top: '10%',
+                        top: '15%',
                         left: '10%',
                         right: '10%',
                         bottom: '10%',
                         border: 'transparent',
                         padding: '0px',
+                        aspectRatio: 16 / 9,
                     },
                 }}
             >

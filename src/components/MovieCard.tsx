@@ -29,9 +29,9 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const title = 'title' in props ? props.title : props.name;
 
     return (
-        <div className='min-w-[150px] animate-fade animate-duration-500 animate-ease-linear mr-5'>
+        <div className='min-w-[150px] min-h-[225px] animate-fade animate-duration-500 animate-ease-linear mr-5'>
             <div className='drop-shadow-custom relative'>
-                <div className='overflow-hidden rounded-lg cursor-pointer'>
+                <div className='overflow-hidden rounded-lg cursor-pointer '>
                     <Link
                         to={`${
                             'title' in props
