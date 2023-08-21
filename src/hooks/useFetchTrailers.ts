@@ -45,9 +45,7 @@ export function useFetchVideos(movies: movieProps[]): successVideoProps[] {
 
                     setVideos(successfulResults);
                 })
-                .catch((error) =>
-                    console.log('Promise.allSettled error:', error)
-                );
+                .catch();
         }
     }, [movies, language]);
 

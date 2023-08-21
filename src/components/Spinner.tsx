@@ -1,8 +1,8 @@
 import { RotatingLines } from 'react-loader-spinner';
 
-export const Spinner = () => {
+export const Spinner: React.FC = () => {
     return (
-        <div className='w-full h-full flex items-center justify-center'>
+        <div className={`w-full  flex items-center  justify-center `}>
             <RotatingLines
                 strokeColor={'#01B4E4'}
                 animationDuration='1'

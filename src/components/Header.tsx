@@ -21,7 +21,7 @@ const Header = () => {
                     />
                 </Link>
                 <div
-                    className='block lg:hidden relative z-20 text-white'
+                    className='block lg:hidden left-5 z-20 text-white'
                     onClick={() => setShowMenu((prev) => !prev)}
                 >
                     {showMenu ? <CloseIcon /> : <MenuIcon />}

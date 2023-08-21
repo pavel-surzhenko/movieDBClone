@@ -1,9 +1,15 @@
+import React, { Suspense } from 'react';
 import Container from '../components/Container';
 import Header from '../components/Header';
-import PopularTrailers from '../components/PopularTrailers';
-import TrendingMovies from '../components/TrendingMovies';
-import TrendingTV from '../components/TrendingTV';
+
 import Welcome from '../components/Welcome';
+import Spinner from '../components/Spinner';
+
+const TrendingTV = React.lazy(() => import('../components/TrendingTV'));
+const TrendingMovies = React.lazy(() => import('../components/TrendingMovies'));
+const PopularTrailers = React.lazy(
+    () => import('../components/PopularTrailers')
+);
 
 export const MainPage = () => {
     return (
@@ -11,9 +17,17 @@ export const MainPage = () => {
             <Header />
             <Container>
                 <Welcome />
-                {/* <TrendingMovies /> */}
-                {/* <PopularTrailers /> */}
-                {/* <TrendingTV /> */}
+                <Suspense
+                    fallback={
+                        <div className='mt-5'>
+                            <Spinner />
+                        </div>
+                    }
+                >
+                    <TrendingMovies />
+                    <PopularTrailers />
+                    <TrendingTV />
+                </Suspense>
             </Container>
         </>
     );

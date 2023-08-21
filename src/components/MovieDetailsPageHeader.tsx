@@ -19,7 +19,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
 }) => {
     const { movieId } = useParams();
     const { language, movies } = useContext(Context);
-    const trailers = useFetchVideos(movies);
+    const trailers = useFetchVideos(movies); // роблю запит на всі відео, потрібно переробити
     const trailer = trailers.find((trailer) => trailer.id === Number(movieId));
     const [showModal, setShowModal] = useState<boolean>(false);
     const [showTrailerLink, setShowTrailerLink] = useState<string>('');

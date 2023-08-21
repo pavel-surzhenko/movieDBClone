@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Container from '../components/Container';
 import Header from '../components/Header';
 import { useContext, useEffect, useState } from 'react';
 import { movieDetailProps } from '../types/movieDetailProps';
@@ -23,11 +22,11 @@ export const MovieDetailPage: React.FC = () => {
         api.movies
             .getDetails(Number(movieId), language)
             .then((data) => setMovieData(data))
-            .catch((error) => {});
+            .catch(() => {});
         api.movies
             .getCredits(Number(movieId), language)
             .then((data) => setMovieCredits(data))
-            .catch((error) => {});
+            .catch(() => {});
     }, [language, movieId]);
 
     return (

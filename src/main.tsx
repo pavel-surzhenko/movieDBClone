@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import MainPage from './pages/MainPage';
 import { ContextProvider } from './lib/context';
-import MovieDetailPage from './pages/MovieDetailPage';
+
+const MovieDetailPage = React.lazy(() => import('./pages/MovieDetailPage'));
+const MainPage = React.lazy(() => import('./pages/MainPage'));
 
 const router = createBrowserRouter([
     { path: '/', element: <MainPage /> },

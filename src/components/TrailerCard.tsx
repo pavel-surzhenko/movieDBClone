@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { baseUrlImg } from '../lib/links';
 import { trailerProps } from '../types/trailerProps';
 
@@ -8,10 +9,10 @@ export const TrailerCard: React.FC<trailerProps> = ({
     handleClick,
 }) => {
     return (
-        <div className='mr-5 min-w-[300px] animate-fade animate-duration-500 animate-ease-linear cursor-pointer relative'>
+        <div className='mr-5 min-w-[300px] animate-fade animate-duration-500 animate-ease-linear cursor-pointer relative '>
             <div className='drop-shadow-custom relative mb-2'>
                 <div
-                    className={`overflow-hidden rounded-lg min-h-[168px] relative hover:scale-105 transition-transform duration-300`}
+                    className={`overflow-hidden rounded-lg min-h-[168px] relative  transition-transform duration-300`}
                     onMouseEnter={() => {
                         handleHover(movieDetails!.backdrop_path);
                     }}
@@ -20,10 +21,14 @@ export const TrailerCard: React.FC<trailerProps> = ({
                         e.stopPropagation();
                     }}
                 >
-                    <img
-                        src={`${baseUrlImg}/w500${movieDetails?.backdrop_path}`}
+                    <LazyLoadImage
+                        src={`${baseUrlImg}/w300${movieDetails?.backdrop_path}`}
                         alt={movieDetails?.title}
-                        className={`w-full h-auto object-contain`}
+                        className={`w-full h-full object-cover`}
+                        effect='blur'
+                        threshold={1}
+                        delayMethod='debounce'
+                        wrapperClassName={'fix-style'}
                     />
                     <div className='absolute inset-0 flex items-center justify-center'>
                         <div className='w-16 h-16 flex items-center justify-center '>

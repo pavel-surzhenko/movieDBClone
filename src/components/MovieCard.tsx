@@ -9,6 +9,9 @@ import MoreInfoIcon from '../assets/MoreInfoIcon';
 import { Link } from 'react-router-dom';
 import { getCircleColor } from '../hooks/useGetCircleColor';
 import { getTrailColor } from '../hooks/useGetTrailColor';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import LoadingModel from './LoadingModel';
 
 export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);
@@ -22,17 +25,19 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const release_date =
         'release_date' in props ? props.release_date : props.first_air_date;
 
+    const localLanguage = language.replace(`"`, '').slice(0, 2);
+
     const localDate = new Date(release_date).toLocaleDateString(
-        'uk',
+        localLanguage,
         dateOptions
     );
 
     const title = 'title' in props ? props.title : props.name;
 
     return (
-        <div className='min-w-[150px] min-h-[225px] animate-fade animate-duration-500 animate-ease-linear mr-5'>
-            <div className='drop-shadow-custom relative'>
-                <div className='overflow-hidden rounded-lg cursor-pointer '>
+        <div className='min-w-[150px] min-h-[225px]  mr-5 '>
+            <div className='drop-shadow-custom relative '>
+                <div className='overflow-hidden rounded-lg cursor-pointer'>
                     <Link
                         to={`${
                             'title' in props
@@ -40,10 +45,20 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                                 : `tv/${props.id}`
                         }`}
                     >
-                        <img
-                            src={`${baseUrlImg}/w500${props.poster_path}`}
+                        <LazyLoadImage
+                            src={`${baseUrlImg}/w200${props.poster_path}`}
                             alt={title}
-                            className='w-full h-auto object-contain '
+                            className='w-full object-cover h-[225px] '
+                            effect='blur'
+                            placeholder={
+                                <LoadingModel
+                                    width='150'
+                                    height='225'
+                                />
+                            }
+                            threshold={1}
+                            delayMethod='debounce'
+                            wrapperClassName={'fix-style'}
                         />
                     </Link>
                 </div>

@@ -1,8 +1,10 @@
 import { baseUrlImg } from '../lib/links';
-import { cast, crew, movieCreditsProps } from '../types/movieCreditsProps';
+import { cast, crew } from '../types/movieCreditsProps';
 
 export const PersonCard: React.FC<cast | crew> = (props) => {
     const person_role = 'character' in props ? props.character : props.job;
+    // зображення може бути налл, зробити перевірку
+
     return (
         <div
             key={props.id}

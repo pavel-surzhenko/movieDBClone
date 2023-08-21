@@ -19,7 +19,10 @@ export const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({
                     </h2>
                     <div className='flex flex-nowrap overflow-x-auto snap-x '>
                         {cast.slice(0, 10).map((person) => (
-                            <PersonCard {...person} />
+                            <PersonCard
+                                {...person}
+                                key={person.id}
+                            />
                         ))}
                     </div>
                 </div>
