@@ -11,9 +11,9 @@ export const MainPage = () => {
             <Header />
             <Container>
                 <Welcome />
-                <TrendingMovies />
-                <PopularTrailers />
-                <TrendingTV />
+                {/* <TrendingMovies /> */}
+                {/* <PopularTrailers /> */}
+                {/* <TrendingTV /> */}
             </Container>
         </>
     );

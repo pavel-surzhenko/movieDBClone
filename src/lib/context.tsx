@@ -14,8 +14,7 @@ export const ContextProvider = ({
 }: {
     children: React.ReactNode;
 }) => {
-    const ls: Storage | null =
-        typeof window !== 'undefined' ? window.localStorage : null;
+    const ls: Storage = window.localStorage;
     const storageLanguage = ls?.getItem('language');
 
     const [language, setLanguage] = useState<string>(
@@ -23,15 +22,9 @@ export const ContextProvider = ({
     );
     const [movies, setMovies] = useState<movieProps[]>([]);
 
-    useEffect(() => {
-        if (storageLanguage) {
-            setLanguage(JSON.parse(storageLanguage));
-        }
-    }, [ls, storageLanguage]);
-
     const handleLanguageChange = (newLanguage: string) => {
         setLanguage(newLanguage);
-        ls?.setItem('language', JSON.stringify(newLanguage));
+        ls?.setItem('language', newLanguage);
     };
 
     useEffect(() => {

@@ -12,6 +12,7 @@ import { getTrailColor } from '../hooks/useGetTrailColor';
 
 export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);
+
     const dateOptions: Intl.DateTimeFormatOptions = {
         day: 'numeric',
         month: 'short',
@@ -22,7 +23,7 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
         'release_date' in props ? props.release_date : props.first_air_date;
 
     const localDate = new Date(release_date).toLocaleDateString(
-        language,
+        'uk',
         dateOptions
     );
 

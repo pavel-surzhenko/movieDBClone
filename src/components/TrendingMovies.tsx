@@ -27,7 +27,7 @@ export const TrendingMovies = () => {
             .then((data) => {
                 setTrendingMovies(data);
             })
-            .catch((error) => console.log(error));
+            .catch();
     }, [trendingInterval, language]);
 
     return (
