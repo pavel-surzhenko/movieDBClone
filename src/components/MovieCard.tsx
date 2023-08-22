@@ -8,7 +8,7 @@ import { tvProps } from '../types/tvProps';
 import MoreInfoIcon from '../assets/MoreInfoIcon';
 import { Link } from 'react-router-dom';
 import { getCircleColor } from '../hooks/useGetCircleColor';
-import { getTrailColor } from '../hooks/useGetTrailColor_old';
+import { getTrailColor } from '../hooks/useGetTrailColor';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import LoadingModel from './LoadingModel';

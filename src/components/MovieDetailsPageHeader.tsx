@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import ModalTrailer from '../components/ModalTrailer';
 import { getCircleColor } from '../hooks/useGetCircleColor';
-import { getTrailColor } from '../hooks/useGetTrailColor_old';
+import { getTrailColor } from '../hooks/useGetTrailColor';
 import { baseUrlImg } from '../lib/links';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import Container from '../components/Container';
@@ -34,7 +34,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
         api.movies
             .getProvider(Number(movieId))
             .then((data) => setMovieProviders(data))
-            .catch((error) => {});
+            .catch(() => {});
 
         if (trailer) {
             setShowTrailerLink(trailer.link);

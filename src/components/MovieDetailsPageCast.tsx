@@ -4,10 +4,7 @@ import { Context } from '../lib/context';
 import Container from './Container';
 import PersonCard from './PersonCard';
 
-export const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({
-    cast,
-    crew,
-}) => {
+export const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({ cast }) => {
     const { language } = useContext(Context);
 
     return (
