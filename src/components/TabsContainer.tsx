@@ -3,14 +3,13 @@ import { tvProps } from '../types/tvProps';
 import { tabContainerProps } from '../types/tabProps';
 import React, { Suspense } from 'react';
 import LoadingModel from './LoadingModel';
-import {
-    trackWindowScroll,
-    LazyComponentProps,
-} from 'react-lazy-load-image-component';
+import { LazyComponentProps } from 'react-lazy-load-image-component';
 
 const MovieCard = React.lazy(() => import('./MovieCard'));
 
-function TabsContainer({ movies }: tabContainerProps & LazyComponentProps) {
+const TabsContainer: React.FC<tabContainerProps & LazyComponentProps> = ({
+    movies,
+}) => {
     const isMobile = /iPhone/i.test(navigator.userAgent);
     const trimmedMovies = isMobile ? movies.slice(0, 10) : movies;
 
@@ -35,7 +34,6 @@ function TabsContainer({ movies }: tabContainerProps & LazyComponentProps) {
             </div>
         </>
     );
-}
-// export default TabsContainer;
+};
 
-export default trackWindowScroll(TabsContainer);
+export default TabsContainer;
