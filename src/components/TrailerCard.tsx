@@ -3,7 +3,6 @@ import { baseUrlImg } from '../lib/links';
 import { trailerProps } from '../types/trailerProps';
 
 export const TrailerCard: React.FC<trailerProps> = ({
-    link,
     movieDetails,
     handleHover,
     handleClick,
@@ -17,7 +16,7 @@ export const TrailerCard: React.FC<trailerProps> = ({
                         handleHover(movieDetails!.backdrop_path);
                     }}
                     onClick={(e) => {
-                        handleClick(link);
+                        handleClick(String(movieDetails.id));
                         e.stopPropagation();
                     }}
                 >

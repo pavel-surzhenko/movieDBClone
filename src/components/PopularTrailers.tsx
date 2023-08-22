@@ -1,6 +1,5 @@
 import React, { Suspense, useContext, useEffect, useState } from 'react';
 import { Context } from '../lib/context';
-import { useFetchVideos } from '../hooks/useFetchTrailers';
 import { baseUrlImg } from '../lib/links';
 import Modal from 'react-modal';
 import ModalTrailer from './ModalTrailer';
@@ -11,14 +10,13 @@ const TrailerCard = React.lazy(() => import('./TrailerCard'));
 export const PopularTrailers = () => {
     const { language, movies } = useContext(Context);
     const [backImg, setBackImg] = useState<string>('');
-    const trailers = useFetchVideos(movies);
 
     const [showModal, setShowModal] = useState<boolean>(false);
     const [showTrailerLink, setShowTrailerLink] = useState<string>('');
 
-    const handleClickOpen = (link: string) => {
+    const handleClickOpen = (id: string) => {
         setShowModal(true);
-        setShowTrailerLink(link);
+        setShowTrailerLink(id);
     };
 
     const handleClickClose = () => {
@@ -53,25 +51,24 @@ export const PopularTrailers = () => {
             </div>
             <div className='relative flex flex-col break-words w-full pt-5 mb-5 '>
                 <div className='flex flex-nowrap overflow-x-auto snap-x -mb-4 min-h-[240px]'>
-                    {trailers.map((trailer) => (
-                        <Suspense
-                            fallback={
-                                <div className='min-w-[300px]'>
-                                    <Spinner />
-                                </div>
-                            }
-                            key={trailer.id}
-                        >
-                            <TrailerCard
-                                {...trailer}
-                                movieDetails={movies.find(
-                                    (movie) => movie.id === trailer.id
-                                )}
-                                handleHover={handleHover}
-                                handleClick={handleClickOpen}
-                            />
-                        </Suspense>
-                    ))}
+                    {movies
+                        .filter((movie) => movie.media_type === 'movie')
+                        .map((movie) => (
+                            <Suspense
+                                fallback={
+                                    <div className='min-w-[300px]'>
+                                        <Spinner />
+                                    </div>
+                                }
+                                key={movie.id}
+                            >
+                                <TrailerCard
+                                    movieDetails={movie}
+                                    handleHover={handleHover}
+                                    handleClick={handleClickOpen}
+                                />
+                            </Suspense>
+                        ))}
                 </div>
             </div>
             <Modal

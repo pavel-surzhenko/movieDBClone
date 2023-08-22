@@ -1,8 +1,7 @@
 import { movieProps } from './movieProps';
 
 export interface trailerProps {
-    link: string;
-    movieDetails?: movieProps;
+    movieDetails: movieProps;
     handleHover: (id: string) => void;
-    handleClick: (link: string) => void;
+    handleClick: (id: string) => void;
 }
