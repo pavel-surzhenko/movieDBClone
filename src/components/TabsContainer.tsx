@@ -3,13 +3,10 @@ import { tvProps } from '../types/tvProps';
 import { tabContainerProps } from '../types/tabProps';
 import React, { Suspense } from 'react';
 import LoadingModel from './LoadingModel';
-import { LazyComponentProps } from 'react-lazy-load-image-component';
 
 const MovieCard = React.lazy(() => import('./MovieCard'));
 
-const TabsContainer: React.FC<tabContainerProps & LazyComponentProps> = ({
-    movies,
-}) => {
+const TabsContainer: React.FC<tabContainerProps> = ({ movies }) => {
     const isMobile = /iPhone/i.test(navigator.userAgent);
     const trimmedMovies = isMobile ? movies.slice(0, 10) : movies;
 
