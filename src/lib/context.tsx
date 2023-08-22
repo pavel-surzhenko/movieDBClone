@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, startTransition, useEffect, useState } from 'react';
 import { contextProps } from '../types/contextProps';
 import { movieProps } from '../types/movieProps';
 import { api } from '../api/api';
@@ -23,8 +23,10 @@ export const ContextProvider = ({
     const [movies, setMovies] = useState<movieProps[]>([]);
 
     const handleLanguageChange = (newLanguage: string) => {
-        setLanguage(newLanguage);
-        ls?.setItem('language', newLanguage);
+        startTransition(() => {
+            setLanguage(newLanguage);
+            ls?.setItem('language', newLanguage);
+        });
     };
 
     useEffect(() => {
