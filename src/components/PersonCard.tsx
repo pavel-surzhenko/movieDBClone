@@ -3,7 +3,6 @@ import { cast, crew } from '../types/movieCreditsProps';
 
 export const PersonCard: React.FC<cast | crew> = (props) => {
     const person_role = 'character' in props ? props.character : props.job;
-    // зображення може бути налл, зробити перевірку
 
     return (
         <div
@@ -13,11 +12,19 @@ export const PersonCard: React.FC<cast | crew> = (props) => {
             <div className='drop-shadow-custom relative'>
                 <div className='overflow-hidden rounded-lg cursor-pointer '>
                     <div>
-                        <img
-                            src={`${baseUrlImg}/w500${props.profile_path}`}
-                            alt={props.name}
-                            className='w-full h-auto object-contain '
-                        />
+                        {props.profile_path ? (
+                            <img
+                                src={`${baseUrlImg}/w500${props.profile_path}`}
+                                alt={props.name}
+                                className='w-full h-auto object-contain '
+                            />
+                        ) : (
+                            <img
+                                src='/user.svg'
+                                alt={props.name}
+                                className='w-full h-[225px] object-contain '
+                            />
+                        )}
                     </div>
                 </div>
             </div>
