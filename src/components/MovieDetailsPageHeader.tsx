@@ -196,6 +196,9 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                         </p>
                                     </div>
                                 </div>
+                                <div className='italic text-lg mb-2'>
+                                    {movieDetails?.tagline}
+                                </div>
                                 <div className='mb-5'>
                                     <h3 className='text-xl mb-2'>
                                         {language === 'uk-UA'
