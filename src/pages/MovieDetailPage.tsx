@@ -9,6 +9,7 @@ import Spinner from '../components/Spinner';
 import MovieDetailsPageHeader from '../components/MovieDetailsPageHeader';
 import { movieCreditsProps } from '../types/movieCreditsProps';
 import MovieDetailsPageCast from '../components/MovieDetailsPageCast';
+import { Helmet } from 'react-helmet';
 
 export const MovieDetailPage: React.FC = () => {
     const { movieId } = useParams();
@@ -35,6 +36,11 @@ export const MovieDetailPage: React.FC = () => {
 
             {movieData && movieCredits ? (
                 <>
+                    <Helmet>
+                        <title>
+                            {movieData?.title}- The Movie Data Base(TMDB)
+                        </title>
+                    </Helmet>
                     <MovieDetailsPageHeader
                         movieDetails={movieData}
                         movieCredits={movieCredits}

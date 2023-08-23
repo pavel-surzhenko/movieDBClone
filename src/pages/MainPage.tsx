@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import Container from '../components/Container';
 import Header from '../components/Header';
+import { Helmet } from 'react-helmet';
 
 import Welcome from '../components/Welcome';
 import Spinner from '../components/Spinner';
@@ -15,6 +16,9 @@ export const MainPage = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                <title>The Movie Data Base (TMDB)</title>
+            </Helmet>
             <Container>
                 <Welcome />
                 <Suspense

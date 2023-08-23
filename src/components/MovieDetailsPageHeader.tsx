@@ -46,7 +46,6 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const handleClickClose = () => {
         setShowModal(false);
     };
-    console.log(dominantColor);
 
     return (
         <section className='relative'>
