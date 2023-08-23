@@ -11,6 +11,8 @@ import { Context } from '../lib/context';
 import { useParams } from 'react-router-dom';
 import { api } from '../api/api';
 import { movieProvidersProps } from '../types/movieProvidersProps';
+import { getColor } from 'color-thief-react';
+import { ArrayRGB } from 'color-thief-react/lib/types';
 
 export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     movieDetails,
@@ -21,7 +23,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const [showModal, setShowModal] = useState<boolean>(false);
     const [movieProviders, setMovieProviders] =
         useState<movieProvidersProps | null>(null);
-
+    const [dominantColor, setDominantColor] = useState<ArrayRGB>([0, 0, 0]);
     const director = movieCredits?.crew.find(
         (person) => person.job === 'Director'
     );
@@ -31,11 +33,20 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
             .getProvider(Number(movieId))
             .then((data) => setMovieProviders(data))
             .catch(() => {});
+
+        getColor(
+            `${baseUrlImg}/w1280${movieDetails?.poster_path}?api_key=${
+                import.meta.env.VITE_TMDB_KEY
+            }`,
+            'rgbArray',
+            'anonymous'
+        ).then((color) => setDominantColor(color));
     }, [language, movieId]);
 
     const handleClickClose = () => {
         setShowModal(false);
     };
+    console.log(dominantColor);
 
     return (
         <section className='relative'>
@@ -50,7 +61,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                 <div
                     className='w-full h-full flex items-center'
                     style={{
-                        background: `linear-gradient(to right, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 50%)`,
+                        background: `linear-gradient(to right, rgba(${dominantColor}, 1 ) 20%, rgba(${dominantColor}, .1 ) 50%)`,
                     }}
                 >
                     <div className='max-w-[100px] ml-8'>
@@ -78,9 +89,15 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                 }
             >
                 <div
-                    style={{
-                        background: `linear-gradient(to right, rgba(0, 0, 0, 1) calc((50vw - 170px) - 340px), rgba(0, 0, 0, 0.84) 50%, rgba(0, 0, 0, 0.84) 100%)`,
-                    }}
+                    style={
+                        window?.innerWidth >= 1024
+                            ? {
+                                  background: `linear-gradient(to right, rgba(${dominantColor}, 1 ) calc((50vw - 170px) - 340px), rgba(${dominantColor}, .3 ) 50%, rgba(${dominantColor}, .2 ) 100%)`,
+                              }
+                            : {
+                                  background: `rgba(${dominantColor}, 1)`,
+                              }
+                    }
                 >
                     <Container>
                         <div
