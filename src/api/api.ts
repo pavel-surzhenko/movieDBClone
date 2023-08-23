@@ -43,16 +43,12 @@ export const api = {
         async getVideos(
             id: number,
             language: string
-        ): Promise<videoPropsResponse | null> {
-            try {
-                const { data } = await axios.get<videoPropsResponse>(
-                    `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
-                    apiOptions
-                );
-                return data;
-            } catch (error) {
-                return null;
-            }
+        ): Promise<videoPropsResponse> {
+            const { data } = await axios.get<videoPropsResponse>(
+                `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
+                apiOptions
+            );
+            return data;
         },
 
         async getDetails(

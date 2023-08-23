@@ -9,7 +9,6 @@ import { movieDetailsHeaderProps } from '../types/movieDetailProps';
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../lib/context';
 import { useParams } from 'react-router-dom';
-import { useFetchVideos } from '../hooks/useFetchTrailers';
 import { api } from '../api/api';
 import { movieProvidersProps } from '../types/movieProvidersProps';
 
@@ -18,11 +17,8 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     movieCredits,
 }) => {
     const { movieId } = useParams();
-    const { language, movies } = useContext(Context);
-    const trailers = useFetchVideos(movies); // роблю запит на всі відео, потрібно переробити
-    const trailer = trailers.find((trailer) => trailer.id === Number(movieId));
+    const { language } = useContext(Context);
     const [showModal, setShowModal] = useState<boolean>(false);
-    const [showTrailerLink, setShowTrailerLink] = useState<string>('');
     const [movieProviders, setMovieProviders] =
         useState<movieProvidersProps | null>(null);
 
@@ -35,10 +31,6 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
             .getProvider(Number(movieId))
             .then((data) => setMovieProviders(data))
             .catch(() => {});
-
-        if (trailer) {
-            setShowTrailerLink(trailer.link);
-        }
     }, [language, movieId]);
 
     const handleClickClose = () => {
@@ -168,26 +160,24 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             })}
                                         />
                                     </div>
-                                    {trailer && (
-                                        <div
-                                            className='flex items-center ml-5 cursor-pointer'
-                                            onClick={(e) => {
-                                                setShowModal(true);
-                                                e.stopPropagation();
-                                            }}
-                                        >
-                                            <img
-                                                className='invert hover:scale-125 transition-all duration-300 w-5 h-5'
-                                                src='/playIcon.svg'
-                                                alt='play'
-                                            />
-                                            <p className='ml-1'>
-                                                {language === 'uk-UA'
-                                                    ? 'Дивитись трейлер'
-                                                    : 'Play Trailer'}
-                                            </p>
-                                        </div>
-                                    )}
+                                    <div
+                                        className='flex items-center ml-5 cursor-pointer'
+                                        onClick={(e) => {
+                                            setShowModal(true);
+                                            e.stopPropagation();
+                                        }}
+                                    >
+                                        <img
+                                            className='invert hover:scale-125 transition-all duration-300 w-5 h-5'
+                                            src='/playIcon.svg'
+                                            alt='play'
+                                        />
+                                        <p className='ml-1'>
+                                            {language === 'uk-UA'
+                                                ? 'Дивитись трейлер'
+                                                : 'Play Trailer'}
+                                        </p>
+                                    </div>
                                 </div>
                                 <div className='mb-5'>
                                     <h3 className='text-xl mb-2'>
@@ -249,7 +239,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                 }}
             >
                 <ModalTrailer
-                    showTrailerLink={showTrailerLink}
+                    trailerId={movieId!}
                     closeModal={handleClickClose}
                 />
             </Modal>

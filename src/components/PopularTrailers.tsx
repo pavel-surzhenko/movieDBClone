@@ -12,11 +12,11 @@ export const PopularTrailers = () => {
     const [backImg, setBackImg] = useState<string>('');
 
     const [showModal, setShowModal] = useState<boolean>(false);
-    const [showTrailerLink, setShowTrailerLink] = useState<string>('');
+    const [trailerId, setTrailerId] = useState<string>('');
 
     const handleClickOpen = (id: string) => {
         setShowModal(true);
-        setShowTrailerLink(id);
+        setTrailerId(id);
     };
 
     const handleClickClose = () => {
@@ -92,7 +92,7 @@ export const PopularTrailers = () => {
                 }}
             >
                 <ModalTrailer
-                    showTrailerLink={showTrailerLink}
+                    trailerId={trailerId}
                     closeModal={handleClickClose}
                 />
             </Modal>
