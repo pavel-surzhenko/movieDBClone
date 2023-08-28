@@ -10,6 +10,7 @@ import { movieCreditsProps } from '../types/movieCreditsProps';
 import { Helmet } from 'react-helmet';
 import { movieProps } from '../types/movieProps';
 import React from 'react';
+import Footer from '../components/Footer';
 
 const MovieDetailsPageHeader = React.lazy(() => import('../components/MovieDetailsPageHeader'));
 const MovieDetailsPageCast = React.lazy(() => import('../components/MovieDetailsPageCast'));
@@ -64,6 +65,7 @@ export const MovieDetailPage: React.FC = () => {
                     <Spinner />
                 </div>
             )}
+            <Footer />
         </>
     );
 };

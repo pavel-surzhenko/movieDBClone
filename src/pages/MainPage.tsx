@@ -5,12 +5,11 @@ import { Helmet } from 'react-helmet';
 
 import Welcome from '../components/Welcome';
 import Spinner from '../components/Spinner';
+import Footer from '../components/Footer';
 
 const TrendingTV = React.lazy(() => import('../components/TrendingTV'));
 const TrendingMovies = React.lazy(() => import('../components/TrendingMovies'));
-const PopularTrailers = React.lazy(
-    () => import('../components/PopularTrailers')
-);
+const PopularTrailers = React.lazy(() => import('../components/PopularTrailers'));
 
 export const MainPage = () => {
     return (
@@ -33,6 +32,7 @@ export const MainPage = () => {
                     <TrendingTV />
                 </Suspense>
             </Container>
+            <Footer />
         </>
     );
 };
