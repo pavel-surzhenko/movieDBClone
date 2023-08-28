@@ -3,12 +3,10 @@ import { movieCreditsProps } from '../types/movieCreditsProps';
 import { Context } from '../lib/context';
 import Container from './Container';
 import PersonCard from './PersonCard';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({ cast }) => {
     const { language } = useContext(Context);
-    const navigate = useNavigate();
-
     return (
         <section>
             <Container>
@@ -25,11 +23,10 @@ export const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({ cast }) => {
                         ))}
                     </div>
                 </div>
-                <div
-                    className='text-lg font-semibold cursor-pointer hover:underline pl-8 lg:pl-[40px] py-4 lg:py-[20px]'
-                    onClick={() => navigate('/t')}
-                >
-                    {language === 'uk-UA' ? 'Всі актори та команда' : 'Full cast & crew'}
+                <div className='text-lg font-semibold cursor-pointer hover:underline pl-8 lg:pl-[40px] py-4 lg:py-[20px]'>
+                    <Link to='cast'>
+                        {language === 'uk-UA' ? 'Всі актори та команда' : 'Full cast & crew'}
+                    </Link>
                 </div>
             </Container>
         </section>

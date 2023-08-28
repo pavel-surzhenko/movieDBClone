@@ -1,4 +1,5 @@
 import { movieCreditsProps } from './movieCreditsProps';
+import { movieProps } from './movieProps';
 
 export interface movieDetailProps {
     adult: boolean;
@@ -31,6 +32,12 @@ export interface movieDetailProps {
 export interface movieDetailsHeaderProps {
     movieDetails: movieDetailProps;
     movieCredits: movieCreditsProps;
+}
+
+export interface OutletContextType {
+    movieCredits: movieCreditsProps;
+    movieData: movieDetailProps;
+    recommendations: movieProps[];
 }
 
 type collection = {

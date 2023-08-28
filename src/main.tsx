@@ -5,20 +5,17 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ContextProvider } from './lib/context';
 import MainPage from './pages/MainPage';
 import MovieDetailPage from './pages/MovieDetailPage';
-import Layout from './components/Layout';
+import RootLayout from './components/RootLayout';
 import NoFindPage from './pages/NoFindPage';
 import MoviePage from './pages/MoviePage';
 import ErrorPage from './pages/ErrorPage';
-
-// const router = createBrowserRouter([
-//     { path: '/', element: <MainPage /> },
-//     { path: 'movie/:movieId', element: <MovieDetailPage /> },
-// ]);
+import CastPage from './pages/CastPage';
+import MovieDetails from './components/MovieDetails';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout />,
+        element: <RootLayout />,
         children: [
             { index: true, element: <MainPage />, errorElement: <ErrorPage /> },
             {
@@ -26,7 +23,15 @@ const router = createBrowserRouter([
                 element: <MoviePage />,
                 errorElement: <ErrorPage />,
             },
-            { path: '/movie/:movieId', element: <MovieDetailPage />, errorElement: <ErrorPage /> },
+            {
+                path: '/movie/:movieId',
+                element: <MovieDetailPage />,
+                errorElement: <ErrorPage />,
+                children: [
+                    { index: true, element: <MovieDetails />, errorElement: <ErrorPage /> },
+                    { path: 'cast', element: <CastPage />, errorElement: <ErrorPage /> },
+                ],
+            },
             {
                 path: '*',
                 element: <NoFindPage />,

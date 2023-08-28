@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { Suspense, useContext, useEffect, useState } from 'react';
+import { Outlet, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import { movieDetailProps } from '../types/movieDetailProps';
 import { api } from '../api/api';
 import { Context } from '../lib/context';
@@ -10,14 +10,8 @@ import { Helmet } from 'react-helmet';
 import { movieProps } from '../types/movieProps';
 import React from 'react';
 
-const MovieDetailsPageHeader = React.lazy(() => import('../components/MovieDetailsPageHeader'));
-const MovieDetailsPageCast = React.lazy(() => import('../components/MovieDetailsPageCast'));
-const MovieDetailsPageRecommendations = React.lazy(
-    () => import('../components/MovieDetailsPageRecommendations')
-);
-
 export const MovieDetailPage: React.FC = () => {
-    const { movieId } = useParams();
+    const { movieId } = useParams<'movieId'>();
     const { language } = useContext(Context);
     const [movieData, setMovieData] = useState<movieDetailProps | null>(null);
     const [movieCredits, setMovieCredits] = useState<movieCreditsProps | null>(null);
@@ -45,16 +39,7 @@ export const MovieDetailPage: React.FC = () => {
                     <Helmet>
                         <title>{movieData?.title}- The Movie Data Base(TMDB)</title>
                     </Helmet>
-                    <Suspense>
-                        <MovieDetailsPageHeader
-                            movieDetails={movieData}
-                            movieCredits={movieCredits}
-                        />
-                        <div>
-                            <MovieDetailsPageCast {...movieCredits} />
-                            <MovieDetailsPageRecommendations recommendations={recommendations} />
-                        </div>
-                    </Suspense>
+                    <Outlet context={{ movieData, movieCredits, recommendations }} />
                 </>
             ) : (
                 <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
