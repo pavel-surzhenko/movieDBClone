@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header';
 import { Suspense, useContext, useEffect, useState } from 'react';
 import { movieDetailProps } from '../types/movieDetailProps';
 import { api } from '../api/api';
@@ -10,7 +9,6 @@ import { movieCreditsProps } from '../types/movieCreditsProps';
 import { Helmet } from 'react-helmet';
 import { movieProps } from '../types/movieProps';
 import React from 'react';
-import Footer from '../components/Footer';
 
 const MovieDetailsPageHeader = React.lazy(() => import('../components/MovieDetailsPageHeader'));
 const MovieDetailsPageCast = React.lazy(() => import('../components/MovieDetailsPageCast'));
@@ -42,33 +40,27 @@ export const MovieDetailPage: React.FC = () => {
 
     return (
         <>
-            <Header />
-            <div className='min-h-full flex-1'>
-                {movieData && movieCredits ? (
-                    <>
-                        <Helmet>
-                            <title>{movieData?.title}- The Movie Data Base(TMDB)</title>
-                        </Helmet>
-                        <Suspense>
-                            <MovieDetailsPageHeader
-                                movieDetails={movieData}
-                                movieCredits={movieCredits}
-                            />
-                            <div>
-                                <MovieDetailsPageCast {...movieCredits} />
-                                <MovieDetailsPageRecommendations
-                                    recommendations={recommendations}
-                                />
-                            </div>
-                        </Suspense>
-                    </>
-                ) : (
-                    <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
-                        <Spinner />
-                    </div>
-                )}
-            </div>
-            <Footer />
+            {movieData && movieCredits ? (
+                <>
+                    <Helmet>
+                        <title>{movieData?.title}- The Movie Data Base(TMDB)</title>
+                    </Helmet>
+                    <Suspense>
+                        <MovieDetailsPageHeader
+                            movieDetails={movieData}
+                            movieCredits={movieCredits}
+                        />
+                        <div>
+                            <MovieDetailsPageCast {...movieCredits} />
+                            <MovieDetailsPageRecommendations recommendations={recommendations} />
+                        </div>
+                    </Suspense>
+                </>
+            ) : (
+                <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
+                    <Spinner />
+                </div>
+            )}
         </>
     );
 };

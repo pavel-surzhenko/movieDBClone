@@ -5,13 +5,34 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ContextProvider } from './lib/context';
 import MainPage from './pages/MainPage';
 import MovieDetailPage from './pages/MovieDetailPage';
+import Layout from './components/Layout';
+import NoFindPage from './pages/NoFindPage';
+import MoviePage from './pages/MoviePage';
+import ErrorPage from './pages/ErrorPage';
 
-// const MovieDetailPage = React.lazy(() => import('./pages/MovieDetailPage'));
-// const MainPage = React.lazy(() => import('./pages/MainPage'));
+// const router = createBrowserRouter([
+//     { path: '/', element: <MainPage /> },
+//     { path: 'movie/:movieId', element: <MovieDetailPage /> },
+// ]);
 
 const router = createBrowserRouter([
-    { path: '/', element: <MainPage /> },
-    { path: 'movie/:movieId', element: <MovieDetailPage /> },
+    {
+        path: '/',
+        element: <Layout />,
+        children: [
+            { index: true, element: <MainPage />, errorElement: <ErrorPage /> },
+            {
+                path: '/movie',
+                element: <MoviePage />,
+                errorElement: <ErrorPage />,
+            },
+            { path: '/movie/:movieId', element: <MovieDetailPage />, errorElement: <ErrorPage /> },
+            {
+                path: '*',
+                element: <NoFindPage />,
+            },
+        ],
+    },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
