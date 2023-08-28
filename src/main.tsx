@@ -9,7 +9,7 @@ import RootLayout from './components/RootLayout';
 import NoFindPage from './pages/NoFindPage';
 import MoviePage from './pages/MoviePage';
 import ErrorPage from './pages/ErrorPage';
-import CastPage from './pages/CastPage';
+import CastAndCrew from './components/CastAndCrew';
 import MovieDetails from './components/MovieDetails';
 
 const router = createBrowserRouter([
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 errorElement: <ErrorPage />,
                 children: [
                     { index: true, element: <MovieDetails />, errorElement: <ErrorPage /> },
-                    { path: 'cast', element: <CastPage />, errorElement: <ErrorPage /> },
+                    { path: 'cast', element: <CastAndCrew />, errorElement: <ErrorPage /> },
                 ],
             },
             {

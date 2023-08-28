@@ -1,9 +1,12 @@
-import { useContext } from 'react';
+import { Suspense, useContext } from 'react';
 import { movieCreditsProps } from '../types/movieCreditsProps';
 import { Context } from '../lib/context';
 import Container from './Container';
-import PersonCard from './PersonCard';
 import { Link } from 'react-router-dom';
+import LoadingModel from './LoadingModel';
+import React from 'react';
+
+const PersonCard = React.lazy(() => import('./PersonCard'));
 
 export const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({ cast }) => {
     const { language } = useContext(Context);
@@ -16,15 +19,25 @@ export const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({ cast }) => {
                     </h2>
                     <div className='flex flex-nowrap overflow-x-auto snap-x '>
                         {cast.slice(0, 10).map((person) => (
-                            <PersonCard
-                                {...person}
+                            <Suspense
                                 key={person.id}
-                            />
+                                fallback={
+                                    <LoadingModel
+                                        width='150'
+                                        height='225'
+                                    />
+                                }
+                            >
+                                <PersonCard {...person} />
+                            </Suspense>
                         ))}
                     </div>
                 </div>
                 <div className='text-lg font-semibold cursor-pointer hover:underline pl-8 lg:pl-[40px] py-4 lg:py-[20px]'>
-                    <Link to='cast'>
+                    <Link
+                        to='cast'
+                        onClick={() => window?.scrollTo(0, 0)}
+                    >
                         {language === 'uk-UA' ? 'Всі актори та команда' : 'Full cast & crew'}
                     </Link>
                 </div>

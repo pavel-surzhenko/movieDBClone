@@ -1,5 +1,7 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { baseUrlImg } from '../lib/links';
 import { cast, crew } from '../types/movieCreditsProps';
+import LoadingModel from './LoadingModel';
 
 export const PersonCard: React.FC<cast | crew> = (props) => {
     const person_role = 'character' in props ? props.character : props.job;
@@ -13,10 +15,17 @@ export const PersonCard: React.FC<cast | crew> = (props) => {
                 <div className='overflow-hidden rounded-lg cursor-pointer '>
                     <div>
                         {props.profile_path ? (
-                            <img
-                                src={`${baseUrlImg}/w500${props.profile_path}`}
+                            <LazyLoadImage
+                                src={`${baseUrlImg}/w200${props.profile_path}`}
                                 alt={props.name}
                                 className='w-full h-auto object-contain '
+                                effect='blur'
+                                placeholder={
+                                    <LoadingModel
+                                        width='150'
+                                        height='225'
+                                    />
+                                }
                             />
                         ) : (
                             <img
