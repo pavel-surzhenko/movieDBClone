@@ -21,12 +21,9 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const { movieId } = useParams();
     const { language } = useContext(Context);
     const [showModal, setShowModal] = useState<boolean>(false);
-    const [movieProviders, setMovieProviders] =
-        useState<movieProvidersProps | null>(null);
+    const [movieProviders, setMovieProviders] = useState<movieProvidersProps | null>(null);
     const [dominantColor, setDominantColor] = useState<ArrayRGB>([0, 0, 0]);
-    const director = movieCredits?.crew.find(
-        (person) => person.job === 'Director'
-    );
+    const director = movieCredits?.crew.find((person) => person.job === 'Director');
 
     useEffect(() => {
         api.movies
@@ -50,7 +47,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     return (
         <section className='relative'>
             <div
-                className={` h-[200px] w-full lg:hidden relative`}
+                className={`h-[200px] w-full lg:hidden relative`}
                 style={{
                     background: movieDetails
                         ? `url(${baseUrlImg}/w1280${movieDetails?.backdrop_path}) calc((((100vw / 2.222) - 20px) / 1.5) /2) top / cover no-repeat `
@@ -67,9 +64,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                         <img
                             className='w-full h-auto object-contain'
                             src={
-                                movieDetails
-                                    ? `${baseUrlImg}/w400${movieDetails?.poster_path}`
-                                    : ''
+                                movieDetails ? `${baseUrlImg}/w400${movieDetails?.poster_path}` : ''
                             }
                             alt='poster'
                         />
@@ -117,59 +112,39 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                 <h1 className=' font-semibold text-xl lg:text-4xl text-center mb-4 lg:mb-0 lg:text-left'>
                                     {movieDetails?.title + ' '}
                                     <span className='opacity-60 font-normal'>
-                                        (
-                                        {movieDetails?.release_date.substring(
-                                            0,
-                                            4
-                                        )}
-                                        )
+                                        ({movieDetails?.release_date.substring(0, 4)})
                                     </span>
                                 </h1>
                                 <div className='lg:opacity-60 mb-6 text-center lg:text-left bg-lightBlack lg:bg-lightBlack/0 -mx-8 lg:mx-0 px-8 lg:px-0 py-2 lg:py-0'>
-                                    <span>
-                                        {movieDetails?.release_date + ' • '}
-                                    </span>
+                                    <span>{movieDetails?.release_date + ' • '}</span>
                                     <span>
                                         {movieDetails?.genres.map((genre) => (
-                                            <span key={genre.id}>
-                                                {genre.name + ' '}
-                                            </span>
+                                            <span key={genre.id}>{genre.name + ' '}</span>
                                         ))}
                                     </span>
                                     <span>
                                         {' • ' +
                                             movieDetails?.runtime +
-                                            `${
-                                                language === 'uk-UA'
-                                                    ? ' хв'
-                                                    : ' m'
-                                            }`}
+                                            `${language === 'uk-UA' ? ' хв' : ' m'}`}
                                     </span>
                                 </div>
                                 <div className='flex items-center  mb-5'>
                                     <div className='w-10 h-10 lg:w-[60px] lg:h-[60px]'>
                                         <CircularProgressbar
-                                            value={
-                                                movieDetails?.vote_average || 0
-                                            }
+                                            value={movieDetails?.vote_average || 0}
                                             minValue={1}
                                             maxValue={10}
                                             text={`${Math.round(
-                                                movieDetails
-                                                    ? movieDetails?.vote_average *
-                                                          10
-                                                    : 0
+                                                movieDetails ? movieDetails?.vote_average * 10 : 0
                                             )}`}
                                             background
                                             styles={buildStyles({
                                                 pathColor: `${getCircleColor(
-                                                    movieDetails?.vote_average ||
-                                                        0
+                                                    movieDetails?.vote_average || 0
                                                 )}`,
                                                 textColor: '#fff',
                                                 trailColor: `${getTrailColor(
-                                                    movieDetails?.vote_average ||
-                                                        0
+                                                    movieDetails?.vote_average || 0
                                                 )}`,
                                                 backgroundColor: '#001C22',
                                                 textSize: '35px',
@@ -195,14 +170,10 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                         </p>
                                     </div>
                                 </div>
-                                <div className='italic text-lg mb-2'>
-                                    {movieDetails?.tagline}
-                                </div>
+                                <div className='italic text-lg mb-2'>{movieDetails?.tagline}</div>
                                 <div className='mb-5'>
                                     <h3 className='text-xl mb-2'>
-                                        {language === 'uk-UA'
-                                            ? 'Опис'
-                                            : 'Overview'}
+                                        {language === 'uk-UA' ? 'Опис' : 'Overview'}
                                     </h3>
                                     <p className='font-light'>
                                         {movieDetails?.overview ||
@@ -213,9 +184,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                     <div>
                                         <h4>{director?.name}</h4>
                                         <span className='font-light text-sm'>
-                                            {language === 'uk-UA'
-                                                ? 'Режисер'
-                                                : 'Director'}
+                                            {language === 'uk-UA' ? 'Режисер' : 'Director'}
                                         </span>
                                     </div>
                                     {movieProviders?.results?.US?.flatrate && (
@@ -223,8 +192,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             <img
                                                 src={`${baseUrlImg}/original${movieProviders?.results.US.flatrate[0].logo_path}`}
                                                 alt={
-                                                    movieProviders?.results.US
-                                                        .flatrate[0]
+                                                    movieProviders?.results.US.flatrate[0]
                                                         .provider_name
                                                 }
                                                 className='w-full object-contain'
@@ -247,7 +215,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                     content: {
                         background: '#0d253f',
                         position: 'absolute',
-                        top: '15%',
+                        top: '10%',
                         left: '10%',
                         right: '10%',
                         bottom: '10%',

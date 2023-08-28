@@ -44,9 +44,7 @@ export const PopularTrailers = () => {
         >
             <div className='flex'>
                 <h3 className='title-white'>
-                    {language === 'en-US'
-                        ? 'Popular trailers'
-                        : 'Популярні трейлери'}
+                    {language === 'en-US' ? 'Popular trailers' : 'Популярні трейлери'}
                 </h3>
             </div>
             <div className='relative flex flex-col break-words w-full pt-5 mb-5 '>
@@ -81,7 +79,7 @@ export const PopularTrailers = () => {
                     content: {
                         background: '#0d253f',
                         position: 'absolute',
-                        top: '15%',
+                        top: '10%',
                         left: '10%',
                         right: '10%',
                         bottom: '10%',
