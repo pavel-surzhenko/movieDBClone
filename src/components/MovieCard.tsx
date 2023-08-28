@@ -22,15 +22,11 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
         year: 'numeric',
     };
 
-    const release_date =
-        'release_date' in props ? props.release_date : props.first_air_date;
+    const release_date = 'release_date' in props ? props.release_date : props.first_air_date;
 
     const localLanguage = language.replace(`"`, '').slice(0, 2);
 
-    const localDate = new Date(release_date).toLocaleDateString(
-        localLanguage,
-        dateOptions
-    );
+    const localDate = new Date(release_date).toLocaleDateString(localLanguage, dateOptions);
 
     const title = 'title' in props ? props.title : props.name;
 
@@ -39,27 +35,42 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
             <div className='drop-shadow-custom relative '>
                 <div className='overflow-hidden rounded-lg cursor-pointer'>
                     <Link
-                        to={`${
-                            'title' in props
-                                ? `movie/${props.id}`
-                                : `tv/${props.id}`
-                        }`}
+                        to={`${'title' in props ? `/movie/${props.id}` : `/tv/${props.id}`}`}
+                        onClick={() => window.scrollTo(0, 0)}
                     >
-                        <LazyLoadImage
-                            src={`${baseUrlImg}/w200${props.poster_path}`}
-                            alt={title}
-                            className='w-full object-cover h-[225px] '
-                            effect='blur'
-                            placeholder={
-                                <LoadingModel
-                                    width='150'
-                                    height='225'
-                                />
-                            }
-                            threshold={1}
-                            delayMethod='debounce'
-                            wrapperClassName={'fix-style'}
-                        />
+                        {props.poster_path ? (
+                            <LazyLoadImage
+                                src={`${baseUrlImg}/w200${props.poster_path}`}
+                                alt={title}
+                                className='w-full object-cover h-[225px] '
+                                effect='blur'
+                                placeholder={
+                                    <LoadingModel
+                                        width='150'
+                                        height='225'
+                                    />
+                                }
+                                threshold={1}
+                                delayMethod='debounce'
+                                wrapperClassName={'fix-style'}
+                            />
+                        ) : (
+                            <LazyLoadImage
+                                src={'/image.svg'}
+                                alt={title}
+                                className='w-full object-contain h-[225px]'
+                                effect='blur'
+                                placeholder={
+                                    <LoadingModel
+                                        width='150'
+                                        height='225'
+                                    />
+                                }
+                                threshold={1}
+                                delayMethod='debounce'
+                                wrapperClassName={'fix-style'}
+                            />
+                        )}
                     </Link>
                 </div>
                 <div className='w-9 h-9 absolute -bottom-4 left-4 font-semibold'>
@@ -85,11 +96,8 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
             <div className='pt-6 px-2'>
                 <div>
                     <Link
-                        to={`${
-                            'title' in props
-                                ? `movie/${props.id}`
-                                : `tv/${props.id}`
-                        }`}
+                        to={`${'title' in props ? `/movie/${props.id}` : `/tv/${props.id}`}`}
+                        onClick={() => window.scrollTo(0, 0)}
                     >
                         <h2 className='movies-title hover:text-lightBlue cursor-pointer transition-colors duration-300'>
                             {title}

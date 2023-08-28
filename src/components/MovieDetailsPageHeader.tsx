@@ -38,7 +38,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
             'rgbArray',
             'anonymous'
         ).then((color) => setDominantColor(color));
-    }, [language, movieId]);
+    }, [language, movieId, movieDetails.poster_path]);
 
     const handleClickClose = () => {
         setShowModal(false);

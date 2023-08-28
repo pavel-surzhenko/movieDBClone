@@ -1,23 +1,28 @@
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
-import { useContext, useEffect, useState } from 'react';
+import { Suspense, useContext, useEffect, useState } from 'react';
 import { movieDetailProps } from '../types/movieDetailProps';
 import { api } from '../api/api';
 import { Context } from '../lib/context';
 import 'react-circular-progressbar/dist/styles.css';
 import Spinner from '../components/Spinner';
-import MovieDetailsPageHeader from '../components/MovieDetailsPageHeader';
 import { movieCreditsProps } from '../types/movieCreditsProps';
-import MovieDetailsPageCast from '../components/MovieDetailsPageCast';
 import { Helmet } from 'react-helmet';
+import { movieProps } from '../types/movieProps';
+import React from 'react';
+
+const MovieDetailsPageHeader = React.lazy(() => import('../components/MovieDetailsPageHeader'));
+const MovieDetailsPageCast = React.lazy(() => import('../components/MovieDetailsPageCast'));
+const MovieDetailsPageRecommendations = React.lazy(
+    () => import('../components/MovieDetailsPageRecommendations')
+);
 
 export const MovieDetailPage: React.FC = () => {
     const { movieId } = useParams();
     const { language } = useContext(Context);
     const [movieData, setMovieData] = useState<movieDetailProps | null>(null);
-    const [movieCredits, setMovieCredits] = useState<movieCreditsProps | null>(
-        null
-    );
+    const [movieCredits, setMovieCredits] = useState<movieCreditsProps | null>(null);
+    const [recommendations, setRecommendations] = useState<movieProps[]>([]);
 
     useEffect(() => {
         api.movies
@@ -28,6 +33,10 @@ export const MovieDetailPage: React.FC = () => {
             .getCredits(Number(movieId), language)
             .then((data) => setMovieCredits(data))
             .catch(() => {});
+        api.movies
+            .getRecommendations(Number(movieId), language)
+            .then((data) => setRecommendations(data))
+            .catch(() => {});
     }, [language, movieId]);
 
     return (
@@ -37,17 +46,18 @@ export const MovieDetailPage: React.FC = () => {
             {movieData && movieCredits ? (
                 <>
                     <Helmet>
-                        <title>
-                            {movieData?.title}- The Movie Data Base(TMDB)
-                        </title>
+                        <title>{movieData?.title}- The Movie Data Base(TMDB)</title>
                     </Helmet>
-                    <MovieDetailsPageHeader
-                        movieDetails={movieData}
-                        movieCredits={movieCredits}
-                    />
-                    <div>
-                        <MovieDetailsPageCast {...movieCredits} />
-                    </div>
+                    <Suspense>
+                        <MovieDetailsPageHeader
+                            movieDetails={movieData}
+                            movieCredits={movieCredits}
+                        />
+                        <div>
+                            <MovieDetailsPageCast {...movieCredits} />
+                            <MovieDetailsPageRecommendations recommendations={recommendations} />
+                        </div>
+                    </Suspense>
                 </>
             ) : (
                 <div className='absolute top-1/2 right-1/2 translate-x-1/2'>

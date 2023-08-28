@@ -27,10 +27,7 @@ export const api = {
         return results;
     },
     movies: {
-        async getTrendingMovies(
-            time: string,
-            language: string
-        ): Promise<movieProps[]> {
+        async getTrendingMovies(time: string, language: string): Promise<movieProps[]> {
             const {
                 data: { results },
             } = await axios.get<movieResponse>(
@@ -40,10 +37,7 @@ export const api = {
             return results;
         },
 
-        async getVideos(
-            id: number,
-            language: string
-        ): Promise<videoPropsResponse> {
+        async getVideos(id: number, language: string): Promise<videoPropsResponse> {
             const { data } = await axios.get<videoPropsResponse>(
                 `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
                 apiOptions
@@ -51,10 +45,7 @@ export const api = {
             return data;
         },
 
-        async getDetails(
-            id: number,
-            language: string
-        ): Promise<movieDetailProps | null> {
+        async getDetails(id: number, language: string): Promise<movieDetailProps | null> {
             try {
                 const { data } = await axios.get<movieDetailProps>(
                     `${baseUrl}movie/${id}?language=${language}`,
@@ -66,10 +57,7 @@ export const api = {
             }
         },
 
-        async getCredits(
-            id: number,
-            language: string
-        ): Promise<movieCreditsProps | null> {
+        async getCredits(id: number, language: string): Promise<movieCreditsProps | null> {
             try {
                 const { data } = await axios.get<movieCreditsProps>(
                     `${baseUrl}movie/${id}/credits?language=${language}`,
@@ -92,12 +80,19 @@ export const api = {
                 return null;
             }
         },
+        async getRecommendations(id: number, language: string): Promise<movieProps[]> {
+            const {
+                data: { results },
+            } = await axios.get<movieResponse>(
+                `${baseUrl}movie/${id}/recommendations?language=${language}`,
+                apiOptions
+            );
+
+            return results;
+        },
     },
     tv: {
-        async getTrendingTV(
-            time: string,
-            language: string
-        ): Promise<tvProps[]> {
+        async getTrendingTV(time: string, language: string): Promise<tvProps[]> {
             const {
                 data: { results },
             } = await axios.get<tvResponse>(
