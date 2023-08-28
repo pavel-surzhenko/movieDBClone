@@ -16,7 +16,15 @@ export const MovieDetailsPageRecommendations: React.FC<{ recommendations: movieP
                     <h2 className='text-xl font-semibold mb-5'>
                         {language === 'uk-UA' ? 'Рекомендації' : 'Recommendations'}
                     </h2>
-                    <TabsContainer movies={recommendations} />
+                    {recommendations.length > 1 ? (
+                        <TabsContainer movies={recommendations} />
+                    ) : (
+                        <div>
+                            {language === 'uk-UA'
+                                ? `У нас недостатньо даних, щоб запропонувати фільми, засновані на цьому фільмі.`
+                                : `We don't have enough data to suggest any movies based on this film.`}
+                        </div>
+                    )}
                 </div>
             </Container>
         </section>

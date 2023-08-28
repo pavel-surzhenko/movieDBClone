@@ -43,28 +43,31 @@ export const MovieDetailPage: React.FC = () => {
     return (
         <>
             <Header />
-
-            {movieData && movieCredits ? (
-                <>
-                    <Helmet>
-                        <title>{movieData?.title}- The Movie Data Base(TMDB)</title>
-                    </Helmet>
-                    <Suspense>
-                        <MovieDetailsPageHeader
-                            movieDetails={movieData}
-                            movieCredits={movieCredits}
-                        />
-                        <div>
-                            <MovieDetailsPageCast {...movieCredits} />
-                            <MovieDetailsPageRecommendations recommendations={recommendations} />
-                        </div>
-                    </Suspense>
-                </>
-            ) : (
-                <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
-                    <Spinner />
-                </div>
-            )}
+            <div className='min-h-full flex-1'>
+                {movieData && movieCredits ? (
+                    <>
+                        <Helmet>
+                            <title>{movieData?.title}- The Movie Data Base(TMDB)</title>
+                        </Helmet>
+                        <Suspense>
+                            <MovieDetailsPageHeader
+                                movieDetails={movieData}
+                                movieCredits={movieCredits}
+                            />
+                            <div>
+                                <MovieDetailsPageCast {...movieCredits} />
+                                <MovieDetailsPageRecommendations
+                                    recommendations={recommendations}
+                                />
+                            </div>
+                        </Suspense>
+                    </>
+                ) : (
+                    <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
+                        <Spinner />
+                    </div>
+                )}
+            </div>
             <Footer />
         </>
     );
