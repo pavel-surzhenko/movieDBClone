@@ -135,7 +135,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                     <span>{release_date + ' • '}</span>
                                     <span>
                                         {movieDetails?.genres.map((genre) => (
-                                            <span key={genre.id}>{genre.name + ' '}</span>
+                                            <span key={genre.id}>{genre.name + ' • '}</span>
                                         ))}
                                     </span>
                                     {'runtime' in movieDetails && (
