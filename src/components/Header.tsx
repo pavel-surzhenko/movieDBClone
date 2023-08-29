@@ -10,6 +10,7 @@ const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
     const { language, setLanguage } = useContext(Context);
 
+    // потрібно переробити
     return (
         <div className='bg-darkBlue'>
             <header className='py-5 flex items-center justify-between px-5 flex-row-reverse lg:flex-row'>
@@ -33,9 +34,7 @@ const Header = () => {
                     <div className='flex text-white'>
                         <button
                             className={`language-btn mr-2 ${
-                                language === 'en-US'
-                                    ? 'bg-white text-darkBlue '
-                                    : ''
+                                language === 'en-US' ? 'bg-white text-darkBlue ' : ''
                             }`}
                             onClick={() => setLanguage('en-US')}
                         >
@@ -43,9 +42,7 @@ const Header = () => {
                         </button>
                         <button
                             className={`language-btn ${
-                                language === 'uk-UA'
-                                    ? 'bg-white text-darkBlue '
-                                    : ''
+                                language === 'uk-UA' ? 'bg-white text-darkBlue ' : ''
                             }`}
                             onClick={() => setLanguage('uk-UA')}
                         >
@@ -62,9 +59,7 @@ const Header = () => {
                     <div className='flex text-white mt-10'>
                         <button
                             className={`language-btn mr-5 ${
-                                language === 'en-US'
-                                    ? 'bg-white text-darkBlue '
-                                    : ''
+                                language === 'en-US' ? 'bg-white text-darkBlue ' : ''
                             }`}
                             onClick={() => setLanguage('en-US')}
                         >
@@ -72,9 +67,7 @@ const Header = () => {
                         </button>
                         <button
                             className={`language-btn ${
-                                language === 'uk-UA'
-                                    ? 'bg-white text-darkBlue '
-                                    : ''
+                                language === 'uk-UA' ? 'bg-white text-darkBlue ' : ''
                             }`}
                             onClick={() => setLanguage('uk-UA')}
                         >

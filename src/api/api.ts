@@ -175,7 +175,7 @@ export const api = {
         async getVideos(id: number, language: string): Promise<videoPropsResponse> {
             try {
                 const { data } = await axios.get<videoPropsResponse>(
-                    `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
+                    `${baseUrl}tv/${id}/videos?language=${language}&append_to_response=videos`,
                     apiOptions
                 );
                 return data;
