@@ -2,7 +2,7 @@ import Container from './Container';
 import logoSvg from '../assets/logo.svg';
 import { Link } from 'react-router-dom';
 
-export const Footer = () => {
+const Footer = () => {
     return (
         <footer className='bg-darkBlue'>
             <Container>

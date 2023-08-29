@@ -5,7 +5,7 @@ import { modalTrailerProps } from '../types/modalTrailerProps';
 import { Context } from '../lib/context';
 import { useFetchTrailer } from '../hooks/useFetchTrailer';
 
-export const ModalTrailer: React.FC<modalTrailerProps> = (props) => {
+const ModalTrailer: React.FC<modalTrailerProps> = (props) => {
     const { language } = useContext(Context);
     const [loading, setLoading] = useState(true);
     const ref = useRef<HTMLDivElement>(null);

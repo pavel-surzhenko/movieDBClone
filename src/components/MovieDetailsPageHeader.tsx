@@ -14,7 +14,7 @@ import { movieProvidersProps } from '../types/movieProvidersProps';
 import { getColor } from 'color-thief-react';
 import { ArrayRGB } from 'color-thief-react/lib/types';
 
-export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
+const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     movieDetails,
     movieCredits,
 }) => {

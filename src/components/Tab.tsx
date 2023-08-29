@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Context } from '../lib/context';
 import { tabProps, tabObj } from '../types/tabProps';
 
-export const Tab: React.FC<tabProps> = ({ openTab, onTabChange, tabs }) => {
+const Tab: React.FC<tabProps> = ({ openTab, onTabChange, tabs }) => {
     const { language } = useContext(Context);
 
     return (
@@ -15,9 +15,7 @@ export const Tab: React.FC<tabProps> = ({ openTab, onTabChange, tabs }) => {
                     >
                         <a
                             className={`px-3 lg:px-5 py-1 block leading-normal rounded-[30px] ${
-                                openTab === index
-                                    ? 'text-lightGreen bg-darkBlue'
-                                    : 'bg-white'
+                                openTab === index ? 'text-lightGreen bg-darkBlue' : 'bg-white'
                             } transition-colors duration-300 ease-out`}
                             onClick={(e) => {
                                 e.preventDefault();

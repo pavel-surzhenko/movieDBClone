@@ -4,13 +4,13 @@ import Container from './Container';
 import { getColor } from 'color-thief-react';
 import { useState, useEffect, useContext } from 'react';
 import { baseUrlImg } from '../lib/links';
-import LeftArrow from '../assets/leftArrow';
+import LeftArrow from '../assets/LeftArrow';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import LoadingModel from './LoadingModel';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Context } from '../lib/context';
 
-export const CastAndCrew = () => {
+const CastAndCrew = () => {
     const { movieCredits, movieData }: OutletContextType = useOutletContext();
     const [dominantColor, setDominantColor] = useState<string>();
     const { language } = useContext(Context);

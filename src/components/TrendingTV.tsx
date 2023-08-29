@@ -5,7 +5,7 @@ import TabsContainer from './TabsContainer';
 import { api } from '../api/api';
 import { tvProps } from '../types/tvProps';
 
-export const TrendingTV = () => {
+const TrendingTV = () => {
     const [openTab, setOpenTab] = useState(0);
     const [trendingTV, setTrendingTV] = useState<tvProps[]>([]);
     const [trendingInterval, setTrendingInterval] = useState<string>('day');
@@ -31,9 +31,7 @@ export const TrendingTV = () => {
     }, [trendingInterval, language]);
 
     return (
-        <section
-            className={`pt-[30px] pl-5 relative bg-trending-bg bg-no-repeat bg-[50%_200px]`}
-        >
+        <section className={`pt-[30px] pl-5 relative bg-trending-bg bg-no-repeat bg-[50%_200px]`}>
             <div className='flex items-center'>
                 <h3 className='title-black'>
                     {language === 'en-US' ? 'Trending TV' : 'Серіали у тренді'}

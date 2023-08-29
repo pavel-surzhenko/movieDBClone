@@ -1,4 +1,4 @@
-export const MoreInfoIcon = () => {
+const MoreInfoIcon = () => {
     return (
         <svg
             id='glyphicons-basic'

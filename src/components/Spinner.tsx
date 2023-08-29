@@ -1,6 +1,6 @@
 import { RotatingLines } from 'react-loader-spinner';
 
-export const Spinner: React.FC = () => {
+const Spinner: React.FC = () => {
     return (
         <div className={`w-full  flex items-center  justify-center `}>
             <RotatingLines

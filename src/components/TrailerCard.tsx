@@ -3,11 +3,7 @@ import { baseUrlImg } from '../lib/links';
 import { trailerProps } from '../types/trailerProps';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-export const TrailerCard: React.FC<trailerProps> = ({
-    movieDetails,
-    handleHover,
-    handleClick,
-}) => {
+const TrailerCard: React.FC<trailerProps> = ({ movieDetails, handleHover, handleClick }) => {
     return (
         <div className='mr-5 min-w-[300px] animate-fade animate-duration-500 animate-ease-linear cursor-pointer relative '>
             <div className='drop-shadow-custom relative mb-2'>
@@ -41,9 +37,7 @@ export const TrailerCard: React.FC<trailerProps> = ({
                 </div>
             </div>
             <div>
-                <h2 className='text-white text-lg pb-5 text-center'>
-                    {movieDetails?.title}
-                </h2>
+                <h2 className='text-white text-lg pb-5 text-center'>{movieDetails?.title}</h2>
             </div>
         </div>
     );

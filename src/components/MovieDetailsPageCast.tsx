@@ -9,7 +9,7 @@ import { tvCreditsProps } from '../types/tvCreditsProps';
 
 const PersonCard = React.lazy(() => import('./PersonCard'));
 
-export const MovieDetailsPageCast: React.FC<movieCreditsProps | tvCreditsProps> = ({ cast }) => {
+const MovieDetailsPageCast: React.FC<movieCreditsProps | tvCreditsProps> = ({ cast }) => {
     const { language } = useContext(Context);
     return (
         <section>

@@ -10,7 +10,7 @@ const MovieDetailsPageRecommendations = React.lazy(
     () => import('../components/MovieDetailsPageRecommendations')
 );
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
     const { movieCredits, movieData, recommendations }: OutletContextType = useOutletContext();
 
     return (

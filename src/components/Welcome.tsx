@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { baseUrlImg } from '../lib/links';
 import { Context } from '../lib/context';
 
-export const Welcome = () => {
+const Welcome = () => {
     const [image, setImage] = useState<string>('');
     const { language, movies } = useContext(Context);
 

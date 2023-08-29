@@ -3,7 +3,7 @@ import { baseUrlImg } from '../lib/links';
 import { cast, crew } from '../types/movieCreditsProps';
 import LoadingModel from './LoadingModel';
 
-export const PersonCard: React.FC<cast | crew> = (props) => {
+const PersonCard: React.FC<cast | crew> = (props) => {
     const person_role = 'character' in props ? props.character : props.job;
 
     return (

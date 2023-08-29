@@ -5,7 +5,7 @@ import Container from './Container';
 import TabsContainer from './TabsContainer';
 import { tvProps } from '../types/tvProps';
 
-export const MovieDetailsPageRecommendations: React.FC<{
+const MovieDetailsPageRecommendations: React.FC<{
     recommendations: movieProps[] | tvProps[];
 }> = ({ recommendations }) => {
     const { language } = useContext(Context);

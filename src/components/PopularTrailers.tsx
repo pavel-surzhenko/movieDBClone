@@ -7,7 +7,7 @@ import Spinner from './Spinner';
 
 const TrailerCard = React.lazy(() => import('./TrailerCard'));
 
-export const PopularTrailers = () => {
+const PopularTrailers = () => {
     const { language, movies } = useContext(Context);
     const [backImg, setBackImg] = useState<string>('');
 

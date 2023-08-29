@@ -5,7 +5,7 @@ import { api } from '../api/api';
 import { movieProps } from '../types/movieProps';
 import { Context } from '../lib/context';
 
-export const TrendingMovies = () => {
+const TrendingMovies = () => {
     const [openTab, setOpenTab] = useState(0);
     const [trendingMovies, setTrendingMovies] = useState<movieProps[]>([]);
     const [trendingInterval, setTrendingInterval] = useState<string>('day');
@@ -31,14 +31,10 @@ export const TrendingMovies = () => {
     }, [trendingInterval, language]);
 
     return (
-        <section
-            className={`pt-[30px] pl-5 relative bg-trending-bg bg-no-repeat bg-[50%_200px]`}
-        >
+        <section className={`pt-[30px] pl-5 relative bg-trending-bg bg-no-repeat bg-[50%_200px]`}>
             <div className='flex items-center'>
                 <h3 className='title-black'>
-                    {language === 'en-US'
-                        ? 'Trending Movies'
-                        : 'Фільми у тренді'}
+                    {language === 'en-US' ? 'Trending Movies' : 'Фільми у тренді'}
                 </h3>
                 <div>
                     <Tab
