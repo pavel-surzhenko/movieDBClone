@@ -4,7 +4,7 @@ import Container from './Container';
 import { getColor } from 'color-thief-react';
 import { useState, useEffect, useContext } from 'react';
 import { baseUrlImg } from '../lib/links';
-import LeftArrow from '../assets/LeftArrow';
+import LeftArrow from '../assets/LeftArrow_old';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import LoadingModel from './LoadingModel';
 import 'react-lazy-load-image-component/src/effects/blur.css';
