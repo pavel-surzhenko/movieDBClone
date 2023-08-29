@@ -6,6 +6,7 @@ import { videoPropsResponse } from '../types/videoProps';
 import { movieDetailProps } from '../types/movieDetailProps';
 import { movieCreditsProps } from '../types/movieCreditsProps';
 import { movieProvidersProps } from '../types/movieProvidersProps';
+import { tvDetailProps } from '../types/tvDetailProps';
 
 export const apiOptions = {
     method: 'GET',
@@ -80,6 +81,7 @@ export const api = {
                 return null;
             }
         },
+
         async getRecommendations(id: number, language: string): Promise<movieProps[]> {
             const {
                 data: { results },
@@ -100,6 +102,18 @@ export const api = {
                 apiOptions
             );
             return results;
+        },
+
+        async getDetails(id: number, language: string): Promise<tvDetailProps | null> {
+            try {
+                const { data } = await axios.get<tvDetailProps>(
+                    `${baseUrl}tv/${id}?language=${language}`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                return null;
+            }
         },
     },
 };

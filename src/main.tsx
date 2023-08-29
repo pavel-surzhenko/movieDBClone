@@ -33,6 +33,20 @@ const router = createBrowserRouter([
                 ],
             },
             {
+                path: '/tv',
+                element: <MoviePage />,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: '/tv/:movieId',
+                element: <MovieDetailPage />,
+                errorElement: <ErrorPage />,
+                children: [
+                    { index: true, element: <MovieDetails />, errorElement: <ErrorPage /> },
+                    { path: 'cast', element: <CastAndCrew />, errorElement: <ErrorPage /> },
+                ],
+            },
+            {
                 path: '*',
                 element: <NoFindPage />,
             },

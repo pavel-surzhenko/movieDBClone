@@ -1,4 +1,4 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { movieDetailProps } from '../types/movieDetailProps';
 import { api } from '../api/api';
@@ -12,6 +12,9 @@ import React from 'react';
 
 export const MovieDetailPage: React.FC = () => {
     const { movieId } = useParams<'movieId'>();
+    const { pathname } = useLocation();
+    const movieType = pathname.split('/')[1];
+
     const { language } = useContext(Context);
     const [movieData, setMovieData] = useState<movieDetailProps | null>(null);
     const [movieCredits, setMovieCredits] = useState<movieCreditsProps | null>(null);
