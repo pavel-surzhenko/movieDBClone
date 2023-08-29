@@ -7,6 +7,7 @@ import { movieDetailProps } from '../types/movieDetailProps';
 import { movieCreditsProps } from '../types/movieCreditsProps';
 import { movieProvidersProps } from '../types/movieProvidersProps';
 import { tvDetailProps } from '../types/tvDetailProps';
+import { tvCreditsProps } from '../types/tvCreditsProps';
 
 export const apiOptions = {
     method: 'GET',
@@ -108,6 +109,18 @@ export const api = {
             try {
                 const { data } = await axios.get<tvDetailProps>(
                     `${baseUrl}tv/${id}?language=${language}`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                return null;
+            }
+        },
+
+        async getCredits(id: number, language: string): Promise<tvCreditsProps | null> {
+            try {
+                const { data } = await axios.get<tvCreditsProps>(
+                    `${baseUrl}tv/${id}/credits?language=${language}`,
                     apiOptions
                 );
                 return data;
