@@ -9,17 +9,11 @@ export const Context = createContext<contextProps>({
     movies: [],
 });
 
-export const ContextProvider = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     const ls: Storage = window.localStorage;
     const storageLanguage = ls?.getItem('language');
 
-    const [language, setLanguage] = useState<string>(
-        storageLanguage || 'en-US'
-    );
+    const [language, setLanguage] = useState<string>(storageLanguage || 'en-US');
     const [movies, setMovies] = useState<movieProps[]>([]);
 
     const handleLanguageChange = (newLanguage: string) => {
@@ -38,9 +32,7 @@ export const ContextProvider = ({
     }, [language]);
 
     return (
-        <Context.Provider
-            value={{ language, setLanguage: handleLanguageChange, movies }}
-        >
+        <Context.Provider value={{ language, setLanguage: handleLanguageChange, movies }}>
             {children}
         </Context.Provider>
     );

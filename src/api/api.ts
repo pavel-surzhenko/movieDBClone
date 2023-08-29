@@ -30,21 +30,29 @@ export const api = {
     },
     movies: {
         async getTrendingMovies(time: string, language: string): Promise<movieProps[]> {
-            const {
-                data: { results },
-            } = await axios.get<movieResponse>(
-                `${baseUrl}trending/movie/${time}?language=${language}`,
-                apiOptions
-            );
-            return results;
+            try {
+                const {
+                    data: { results },
+                } = await axios.get<movieResponse>(
+                    `${baseUrl}trending/movie/${time}?language=${language}`,
+                    apiOptions
+                );
+                return results;
+            } catch (error) {
+                throw new Error(`Failed to fetch movie trending: ${error}`);
+            }
         },
 
         async getVideos(id: number, language: string): Promise<videoPropsResponse> {
-            const { data } = await axios.get<videoPropsResponse>(
-                `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
-                apiOptions
-            );
-            return data;
+            try {
+                const { data } = await axios.get<videoPropsResponse>(
+                    `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch movie videos: ${error}`);
+            }
         },
 
         async getDetails(id: number, language: string): Promise<movieDetailProps> {
@@ -59,7 +67,7 @@ export const api = {
             }
         },
 
-        async getCredits(id: number, language: string): Promise<movieCreditsProps | null> {
+        async getCredits(id: number, language: string): Promise<movieCreditsProps> {
             try {
                 const { data } = await axios.get<movieCreditsProps>(
                     `${baseUrl}movie/${id}/credits?language=${language}`,
@@ -67,11 +75,11 @@ export const api = {
                 );
                 return data;
             } catch (error) {
-                return null;
+                throw new Error(`Failed to fetch movie credits: ${error}`);
             }
         },
 
-        async getProvider(id: number): Promise<movieProvidersProps | null> {
+        async getProvider(id: number): Promise<movieProvidersProps> {
             try {
                 const { data } = await axios.get<movieProvidersProps>(
                     `${baseUrl}movie/${id}/watch/providers?locale='US'`,
@@ -79,30 +87,38 @@ export const api = {
                 );
                 return data;
             } catch (error) {
-                return null;
+                throw new Error(`Failed to fetch movie provider: ${error}`);
             }
         },
 
         async getRecommendations(id: number, language: string): Promise<movieProps[]> {
-            const {
-                data: { results },
-            } = await axios.get<movieResponse>(
-                `${baseUrl}movie/${id}/recommendations?language=${language}`,
-                apiOptions
-            );
+            try {
+                const {
+                    data: { results },
+                } = await axios.get<movieResponse>(
+                    `${baseUrl}movie/${id}/recommendations?language=${language}`,
+                    apiOptions
+                );
 
-            return results;
+                return results;
+            } catch (error) {
+                throw new Error(`Failed to fetch movie recommendations: ${error}`);
+            }
         },
     },
     tv: {
         async getTrendingTV(time: string, language: string): Promise<tvProps[]> {
-            const {
-                data: { results },
-            } = await axios.get<tvResponse>(
-                `${baseUrl}trending/tv/${time}?language=${language}`,
-                apiOptions
-            );
-            return results;
+            try {
+                const {
+                    data: { results },
+                } = await axios.get<tvResponse>(
+                    `${baseUrl}trending/tv/${time}?language=${language}`,
+                    apiOptions
+                );
+                return results;
+            } catch (error) {
+                throw new Error(`Failed to fetch tv trending: ${error}`);
+            }
         },
 
         async getDetails(id: number, language: string): Promise<tvDetailProps> {
@@ -117,7 +133,7 @@ export const api = {
             }
         },
 
-        async getCredits(id: number, language: string): Promise<tvCreditsProps | null> {
+        async getCredits(id: number, language: string): Promise<tvCreditsProps> {
             try {
                 const { data } = await axios.get<tvCreditsProps>(
                     `${baseUrl}tv/${id}/credits?language=${language}`,
@@ -125,19 +141,23 @@ export const api = {
                 );
                 return data;
             } catch (error) {
-                return null;
+                throw new Error(`Failed to fetch tv credits: ${error}`);
             }
         },
 
         async getRecommendations(id: number, language: string): Promise<tvProps[]> {
-            const {
-                data: { results },
-            } = await axios.get<tvResponse>(
-                `${baseUrl}tv/${id}/recommendations?language=${language}`,
-                apiOptions
-            );
+            try {
+                const {
+                    data: { results },
+                } = await axios.get<tvResponse>(
+                    `${baseUrl}tv/${id}/recommendations?language=${language}`,
+                    apiOptions
+                );
 
-            return results;
+                return results;
+            } catch (error) {
+                throw new Error(`Failed to fetch tv recommendations: ${error}`);
+            }
         },
 
         async getProvider(id: number): Promise<movieProvidersProps> {
@@ -153,11 +173,15 @@ export const api = {
         },
 
         async getVideos(id: number, language: string): Promise<videoPropsResponse> {
-            const { data } = await axios.get<videoPropsResponse>(
-                `${baseUrl}tv/${id}/videos?language=${language}&append_to_response=videos`,
-                apiOptions
-            );
-            return data;
+            try {
+                const { data } = await axios.get<videoPropsResponse>(
+                    `${baseUrl}movie/${id}/videos?language=${language}&append_to_response=videos`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch tv videos: ${error}`);
+            }
         },
     },
 };

@@ -38,7 +38,7 @@ export const useFetchTrailer = (id: string, language: string, type?: 'movie' | '
                 setTrailer(officialTrailer);
             }
         } catch (error) {
-            console.log(error);
+            throw new Error(`Failed to fetch videos: ${error}`);
         }
     };
 

@@ -18,8 +18,8 @@ const TabsContainer: React.FC<tabContainerProps> = ({ movies }) => {
                         <Suspense
                             fallback={
                                 <LoadingModel
-                                    width='150'
-                                    height='225'
+                                    width={150}
+                                    height={225}
                                 />
                             }
                             key={movie.id}
