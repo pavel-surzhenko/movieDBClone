@@ -47,7 +47,7 @@ export const api = {
             return data;
         },
 
-        async getDetails(id: number, language: string): Promise<movieDetailProps | null> {
+        async getDetails(id: number, language: string): Promise<movieDetailProps> {
             try {
                 const { data } = await axios.get<movieDetailProps>(
                     `${baseUrl}movie/${id}?language=${language}`,
@@ -55,7 +55,7 @@ export const api = {
                 );
                 return data;
             } catch (error) {
-                return null;
+                throw new Error(`Failed to fetch movie details: ${error}`);
             }
         },
 
@@ -105,7 +105,7 @@ export const api = {
             return results;
         },
 
-        async getDetails(id: number, language: string): Promise<tvDetailProps | null> {
+        async getDetails(id: number, language: string): Promise<tvDetailProps> {
             try {
                 const { data } = await axios.get<tvDetailProps>(
                     `${baseUrl}tv/${id}?language=${language}`,
@@ -113,7 +113,7 @@ export const api = {
                 );
                 return data;
             } catch (error) {
-                return null;
+                throw new Error(`Failed to fetch tv details: ${error}`);
             }
         },
 
@@ -127,6 +127,17 @@ export const api = {
             } catch (error) {
                 return null;
             }
+        },
+
+        async getRecommendations(id: number, language: string): Promise<tvProps[]> {
+            const {
+                data: { results },
+            } = await axios.get<tvResponse>(
+                `${baseUrl}tv/${id}/recommendations?language=${language}`,
+                apiOptions
+            );
+
+            return results;
         },
     },
 };

@@ -9,6 +9,9 @@ import { movieCreditsProps } from '../types/movieCreditsProps';
 import { Helmet } from 'react-helmet';
 import { movieProps } from '../types/movieProps';
 import React from 'react';
+import { tvDetailProps } from '../types/tvDetailProps';
+import { tvCreditsProps } from '../types/tvCreditsProps';
+import { tvProps } from '../types/tvProps';
 
 export const MovieDetailPage: React.FC = () => {
     const { movieId } = useParams<'movieId'>();
@@ -16,31 +19,50 @@ export const MovieDetailPage: React.FC = () => {
     const movieType = pathname.split('/')[1];
 
     const { language } = useContext(Context);
-    const [movieData, setMovieData] = useState<movieDetailProps | null>(null);
-    const [movieCredits, setMovieCredits] = useState<movieCreditsProps | null>(null);
-    const [recommendations, setRecommendations] = useState<movieProps[]>([]);
+    const [movieData, setMovieData] = useState<movieDetailProps | tvDetailProps | null>(null);
+    const [movieCredits, setMovieCredits] = useState<movieCreditsProps | tvCreditsProps | null>(
+        null
+    );
+    const [recommendations, setRecommendations] = useState<movieProps[] | tvProps[]>([]);
 
     useEffect(() => {
-        api.movies
-            .getDetails(Number(movieId), language)
-            .then((data) => setMovieData(data))
-            .catch(() => {});
-        api.movies
-            .getCredits(Number(movieId), language)
-            .then((data) => setMovieCredits(data))
-            .catch(() => {});
-        api.movies
-            .getRecommendations(Number(movieId), language)
-            .then((data) => setRecommendations(data))
-            .catch(() => {});
+        if (movieType === 'movie') {
+            api.movies
+                .getDetails(Number(movieId), language)
+                .then((data) => setMovieData(data))
+                .catch(() => {});
+            api.movies
+                .getCredits(Number(movieId), language)
+                .then((data) => setMovieCredits(data))
+                .catch(() => {});
+            api.movies
+                .getRecommendations(Number(movieId), language)
+                .then((data) => setRecommendations(data))
+                .catch(() => {});
+        } else {
+            api.tv
+                .getDetails(Number(movieId), language)
+                .then((data) => setMovieData(data))
+                .catch(() => {});
+            api.tv
+                .getCredits(Number(movieId), language)
+                .then((data) => setMovieCredits(data))
+                .catch(() => {});
+            api.tv
+                .getRecommendations(Number(movieId), language)
+                .then((data) => setRecommendations(data))
+                .catch(() => {});
+        }
     }, [language, movieId]);
+
+    const title = movieData && 'title' in movieData ? movieData.title : movieData?.name;
 
     return (
         <>
             {movieData && movieCredits ? (
                 <>
                     <Helmet>
-                        <title>{movieData?.title}- The Movie Data Base(TMDB)</title>
+                        <title>{title}- The Movie Data Base(TMDB)</title>
                     </Helmet>
                     <Outlet context={{ movieData, movieCredits, recommendations }} />
                 </>
