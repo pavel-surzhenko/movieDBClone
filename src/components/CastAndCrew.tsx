@@ -7,7 +7,6 @@ import { baseUrlImg } from '../lib/links';
 import LeftArrow from '../assets/leftArrow';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import LoadingModel from './LoadingModel';
-
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Context } from '../lib/context';
 
@@ -23,6 +22,8 @@ export const CastAndCrew = () => {
             'anonymous'
         ).then((color) => setDominantColor(color));
     }, [movieData.poster_path]);
+
+    const title = movieData && 'title' in movieData ? movieData.title : movieData?.name;
 
     return (
         <>
@@ -40,7 +41,7 @@ export const CastAndCrew = () => {
                             />
                         </div>
                         <div className='text-white'>
-                            <h2 className='text-lg lg:text-3xl  font-bold'>{movieData.title}</h2>
+                            <h2 className='text-lg lg:text-3xl  font-bold'>{title}</h2>
                             <Link
                                 to='..'
                                 className='flex hover:underline underline-offset-2 items-center'
@@ -60,9 +61,9 @@ export const CastAndCrew = () => {
                             {language === 'uk-UA' ? 'Актори' : 'Cast'}{' '}
                             <span className='opacity-50'>{movieCredits.cast.length}</span>
                         </div>
-                        {movieCredits.cast.map((person) => (
+                        {movieCredits.cast.map((person, index) => (
                             <div
-                                key={person.id}
+                                key={person.id + index}
                                 className='flex pb-4'
                             >
                                 <div className='w-16 h-[70px] mr-5 rounded-md overflow-hidden cursor-pointer'>
@@ -75,8 +76,8 @@ export const CastAndCrew = () => {
                                             width={64}
                                             placeholder={
                                                 <LoadingModel
-                                                    width='64'
-                                                    height='70'
+                                                    width={64}
+                                                    height={70}
                                                 />
                                             }
                                         />
@@ -102,9 +103,9 @@ export const CastAndCrew = () => {
                             {language === 'uk-UA' ? 'Команда' : 'Crew'}{' '}
                             <span className='opacity-50'>{movieCredits.crew.length}</span>
                         </div>
-                        {movieCredits.crew.map((person) => (
+                        {movieCredits.crew.map((person, index) => (
                             <div
-                                key={person.id}
+                                key={person.id + index}
                                 className='flex pb-4'
                             >
                                 <div className='w-16 h-[70px] mr-5 rounded-md overflow-hidden  cursor-pointer'>
@@ -118,8 +119,8 @@ export const CastAndCrew = () => {
                                             width={64}
                                             placeholder={
                                                 <LoadingModel
-                                                    width='64'
-                                                    height='70'
+                                                    width={64}
+                                                    height={70}
                                                 />
                                             }
                                         />

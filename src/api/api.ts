@@ -139,5 +139,25 @@ export const api = {
 
             return results;
         },
+
+        async getProvider(id: number): Promise<movieProvidersProps> {
+            try {
+                const { data } = await axios.get<movieProvidersProps>(
+                    `${baseUrl}tv/${id}/watch/providers?locale='US'`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch tv providers: ${error}`);
+            }
+        },
+
+        async getVideos(id: number, language: string): Promise<videoPropsResponse> {
+            const { data } = await axios.get<videoPropsResponse>(
+                `${baseUrl}tv/${id}/videos?language=${language}&append_to_response=videos`,
+                apiOptions
+            );
+            return data;
+        },
     },
 };

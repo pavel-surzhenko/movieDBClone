@@ -8,7 +8,7 @@ import Container from '../components/Container';
 import { movieDetailsHeaderProps } from '../types/movieDetailProps';
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../lib/context';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { api } from '../api/api';
 import { movieProvidersProps } from '../types/movieProvidersProps';
 import { getColor } from 'color-thief-react';
@@ -25,11 +25,21 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const [dominantColor, setDominantColor] = useState<ArrayRGB>([0, 0, 0]);
     const director = movieCredits?.crew.find((person) => person.job === 'Director');
 
+    const { pathname } = useLocation();
+    const movieType = pathname.split('/')[1] as 'movie' | 'tv';
+
     useEffect(() => {
-        api.movies
-            .getProvider(Number(movieId))
-            .then((data) => setMovieProviders(data))
-            .catch(() => {});
+        if (movieType === 'movie') {
+            api.movies
+                .getProvider(Number(movieId))
+                .then((data) => setMovieProviders(data))
+                .catch(() => {});
+        } else {
+            api.tv
+                .getProvider(Number(movieId))
+                .then((data) => setMovieProviders(data))
+                .catch(() => {});
+        }
 
         getColor(
             `${baseUrlImg}/w1280${movieDetails?.poster_path}?api_key=${
@@ -38,11 +48,16 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
             'rgbArray',
             'anonymous'
         ).then((color) => setDominantColor(color));
-    }, [language, movieId, movieDetails.poster_path]);
+    }, [language, movieId, movieDetails.poster_path, movieType]);
 
     const handleClickClose = () => {
         setShowModal(false);
     };
+
+    const title = movieDetails && 'title' in movieDetails ? movieDetails.title : movieDetails?.name;
+
+    const release_date =
+        'release_date' in movieDetails ? movieDetails.release_date : movieDetails.first_air_date;
 
     return (
         <section className='relative'>
@@ -104,29 +119,31 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             ? `${baseUrlImg}/w1280${movieDetails?.poster_path}`
                                             : ''
                                     }
-                                    alt={movieDetails?.title}
+                                    alt={title}
                                     className='w-full object-contain'
                                 />
                             </div>
                             <div className=' pl-0 lg:pl-10 text-white'>
                                 <h1 className=' font-semibold text-xl lg:text-4xl text-center mb-4 lg:mb-0 lg:text-left'>
-                                    {movieDetails?.title + ' '}
+                                    {title + ' '}
                                     <span className='opacity-60 font-normal'>
-                                        ({movieDetails?.release_date.substring(0, 4)})
+                                        ({release_date.substring(0, 4)})
                                     </span>
                                 </h1>
                                 <div className='lg:opacity-60 mb-6 text-center lg:text-left bg-lightBlack lg:bg-lightBlack/0 -mx-8 lg:mx-0 px-8 lg:px-0 py-2 lg:py-0'>
-                                    <span>{movieDetails?.release_date + ' • '}</span>
+                                    <span>{release_date + ' • '}</span>
                                     <span>
                                         {movieDetails?.genres.map((genre) => (
                                             <span key={genre.id}>{genre.name + ' '}</span>
                                         ))}
                                     </span>
-                                    <span>
-                                        {' • ' +
-                                            movieDetails?.runtime +
-                                            `${language === 'uk-UA' ? ' хв' : ' m'}`}
-                                    </span>
+                                    {'runtime' in movieDetails && (
+                                        <span>
+                                            {' • ' +
+                                                movieDetails?.runtime +
+                                                `${language === 'uk-UA' ? ' хв' : ' m'}`}
+                                        </span>
+                                    )}
                                 </div>
                                 <div className='flex items-center  mb-5'>
                                     <div className='w-10 h-10 lg:w-[60px] lg:h-[60px]'>
@@ -181,12 +198,14 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                     </p>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <div>
-                                        <h4>{director?.name}</h4>
-                                        <span className='font-light text-sm'>
-                                            {language === 'uk-UA' ? 'Режисер' : 'Director'}
-                                        </span>
-                                    </div>
+                                    {director && (
+                                        <div>
+                                            <h4>{director?.name}</h4>
+                                            <span className='font-light text-sm'>
+                                                {language === 'uk-UA' ? 'Режисер' : 'Director'}
+                                            </span>
+                                        </div>
+                                    )}
                                     {movieProviders?.results?.US?.flatrate && (
                                         <div className='w-12 h-12'>
                                             <img
@@ -228,6 +247,7 @@ export const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                 <ModalTrailer
                     trailerId={movieId!}
                     closeModal={handleClickClose}
+                    type={movieType}
                 />
             </Modal>
         </section>

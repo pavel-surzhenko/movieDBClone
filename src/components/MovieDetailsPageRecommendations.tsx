@@ -3,10 +3,11 @@ import { Context } from '../lib/context';
 import { movieProps } from '../types/movieProps';
 import Container from './Container';
 import TabsContainer from './TabsContainer';
+import { tvProps } from '../types/tvProps';
 
-export const MovieDetailsPageRecommendations: React.FC<{ recommendations: movieProps[] }> = ({
-    recommendations,
-}) => {
+export const MovieDetailsPageRecommendations: React.FC<{
+    recommendations: movieProps[] | tvProps[];
+}> = ({ recommendations }) => {
     const { language } = useContext(Context);
 
     return (

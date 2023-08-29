@@ -22,8 +22,8 @@ export const PersonCard: React.FC<cast | crew> = (props) => {
                                 effect='blur'
                                 placeholder={
                                     <LoadingModel
-                                        width='150'
-                                        height='225'
+                                        width={150}
+                                        height={225}
                                     />
                                 }
                             />

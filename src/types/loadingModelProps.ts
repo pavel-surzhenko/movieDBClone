@@ -1,4 +1,4 @@
 export type loadingModelProps = {
-    width: string;
-    height: string;
+    width: number;
+    height: number;
 };

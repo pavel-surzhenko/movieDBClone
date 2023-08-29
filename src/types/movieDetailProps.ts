@@ -1,5 +1,8 @@
 import { movieCreditsProps } from './movieCreditsProps';
 import { movieProps } from './movieProps';
+import { tvCreditsProps } from './tvCreditsProps';
+import { tvDetailProps } from './tvDetailProps';
+import { tvProps } from './tvProps';
 
 export interface movieDetailProps {
     adult: boolean;
@@ -30,14 +33,14 @@ export interface movieDetailProps {
 }
 
 export interface movieDetailsHeaderProps {
-    movieDetails: movieDetailProps;
-    movieCredits: movieCreditsProps;
+    movieDetails: movieDetailProps | tvDetailProps;
+    movieCredits: movieCreditsProps | tvCreditsProps;
 }
 
 export interface OutletContextType {
-    movieCredits: movieCreditsProps;
-    movieData: movieDetailProps;
-    recommendations: movieProps[];
+    movieCredits: movieCreditsProps | tvCreditsProps;
+    movieData: movieDetailProps | tvDetailProps;
+    recommendations: movieProps[] | tvProps[];
 }
 
 type collection = {

@@ -5,10 +5,11 @@ import Container from './Container';
 import { Link } from 'react-router-dom';
 import LoadingModel from './LoadingModel';
 import React from 'react';
+import { tvCreditsProps } from '../types/tvCreditsProps';
 
 const PersonCard = React.lazy(() => import('./PersonCard'));
 
-export const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({ cast }) => {
+export const MovieDetailsPageCast: React.FC<movieCreditsProps | tvCreditsProps> = ({ cast }) => {
     const { language } = useContext(Context);
     return (
         <section>
@@ -23,8 +24,8 @@ export const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({ cast }) => {
                                 key={person.id}
                                 fallback={
                                     <LoadingModel
-                                        width='150'
-                                        height='225'
+                                        width={150}
+                                        height={225}
                                     />
                                 }
                             >

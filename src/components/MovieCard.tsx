@@ -13,7 +13,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import LoadingModel from './LoadingModel';
 
-export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
+const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);
 
     const dateOptions: Intl.DateTimeFormatOptions = {
@@ -46,8 +46,8 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                                 effect='blur'
                                 placeholder={
                                     <LoadingModel
-                                        width='150'
-                                        height='225'
+                                        width={150}
+                                        height={225}
                                     />
                                 }
                                 threshold={1}
@@ -62,8 +62,8 @@ export const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                                 effect='blur'
                                 placeholder={
                                     <LoadingModel
-                                        width='150'
-                                        height='225'
+                                        width={150}
+                                        height={225}
                                     />
                                 }
                                 threshold={1}

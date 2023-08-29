@@ -9,7 +9,7 @@ export const ModalTrailer: React.FC<modalTrailerProps> = (props) => {
     const { language } = useContext(Context);
     const [loading, setLoading] = useState(true);
     const ref = useRef<HTMLDivElement>(null);
-    const trailer = useFetchTrailer(props.trailerId, language);
+    const trailer = useFetchTrailer(props.trailerId, language, props.type);
 
     useEffect(() => {
         const checkIfClickedOutside = (e: MouseEvent) => {
