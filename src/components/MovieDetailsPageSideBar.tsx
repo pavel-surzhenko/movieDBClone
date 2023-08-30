@@ -99,6 +99,22 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (pro
                     </div>
                     <div className='font-light'>{props.status}</div>
                 </div>
+                {'number_of_episodes' in props && (
+                    <div className='mb-3'>
+                        <div className='font-semibold'>
+                            {language === 'uk-UA' ? 'Кількість серій' : 'Number of episodes'}
+                        </div>
+                        <div className='font-light'>{props.number_of_episodes}</div>
+                    </div>
+                )}
+                {'number_of_seasons' in props && (
+                    <div className='mb-3'>
+                        <div className='font-semibold'>
+                            {language === 'uk-UA' ? 'Кількість сезонів' : 'Number of seasons'}
+                        </div>
+                        <div className='font-light'>{props.number_of_seasons}</div>
+                    </div>
+                )}
                 {'budget' in props && (
                     <div className='mb-3'>
                         <div className='font-semibold'>
