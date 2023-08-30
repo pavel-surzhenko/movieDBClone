@@ -11,12 +11,7 @@ import { api } from '../api/api';
 import { tvLinksProps } from '../types/tvLinksProps';
 import { keyWordsProps } from '../types/keyWordsProps';
 
-const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
-    status,
-    id,
-    homepage,
-    original_language,
-}) => {
+const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (props) => {
     const [links, setLinks] = useState<tvLinksProps>();
     const [words, setWords] = useState<keyWordsProps>();
     const { pathname } = useLocation();
@@ -25,24 +20,24 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
     useEffect(() => {
         if (movieType === 'tv') {
             api.tv
-                .getLinks(id)
+                .getLinks(props.id)
                 .then((data) => setLinks(data))
                 .catch();
             api.tv
-                .getKeyWords(id)
+                .getKeyWords(props.id)
                 .then((data) => setWords(data))
                 .catch();
         } else {
             api.movies
-                .getLinks(id)
+                .getLinks(props.id)
                 .then((data) => setLinks(data))
                 .catch();
             api.movies
-                .getKeyWords(id)
+                .getKeyWords(props.id)
                 .then((data) => setWords(data))
                 .catch();
         }
-    }, [id, movieType]);
+    }, [props.id, movieType]);
     return (
         <aside>
             <div className='flex mb-3 items-center'>
@@ -82,10 +77,10 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
                         <IMDB />
                     </Link>
                 )}
-                {homepage && (
+                {props.homepage && (
                     <Link
                         className='mr-2'
-                        to={homepage}
+                        to={props.homepage}
                         target='_blank'
                     >
                         <CustomLink />
@@ -96,11 +91,30 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
                 <p className='text-lg font-semibold mb-4'>Facts</p>
                 <div className='mb-3'>
                     <div className='font-semibold'>Status</div>
-                    <div className='font-light'>{status}</div>
+                    <div className='font-light'>{props.status}</div>
                 </div>
+                {'budget' in props && (
+                    <div className='mb-3'>
+                        <div className='font-semibold'>Budget</div>
+                        <div className='font-light'>{props.budget}$</div>
+                    </div>
+                )}
+                {'networks' in props && (
+                    <div className='mb-3'>
+                        <div className='font-semibold'>Networks</div>
+                        {props.networks.map((network) => (
+                            <div
+                                key={network.id}
+                                className='font-light'
+                            >
+                                {network.name}
+                            </div>
+                        ))}
+                    </div>
+                )}
                 <div className='mb-3'>
                     <div className='font-semibold'>Original Language</div>
-                    <div className='font-light'>{original_language}</div>
+                    <div className='font-light'>{props.original_language}</div>
                 </div>
                 {words && words.keywords?.length > 0 && (
                     <div className='mb-3'>
