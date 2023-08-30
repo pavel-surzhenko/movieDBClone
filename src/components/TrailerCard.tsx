@@ -6,7 +6,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 const TrailerCard: React.FC<trailerProps> = ({ movieDetails, handleHover, handleClick }) => {
     return (
         <div className='mr-5 min-w-[300px] animate-fade animate-duration-500 animate-ease-linear cursor-pointer relative '>
-            <div className='drop-shadow-custom relative mb-2'>
+            <div className='shadow-custom relative mb-2'>
                 <div
                     className={`overflow-hidden rounded-lg min-h-[168px] relative  transition-transform duration-300`}
                     onMouseEnter={() => {

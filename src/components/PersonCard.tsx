@@ -11,7 +11,7 @@ const PersonCard: React.FC<cast | crew> = (props) => {
             key={props.id}
             className='min-w-[150px] min-h-[225px] animate-fade animate-duration-500 animate-ease-linear mr-5'
         >
-            <div className='drop-shadow-custom relative'>
+            <div className='shadow-custom relative'>
                 <div className='overflow-hidden rounded-lg cursor-pointer '>
                     <div>
                         {props.profile_path ? (

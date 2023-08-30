@@ -32,7 +32,7 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
 
     return (
         <div className='min-w-[150px] min-h-[225px]  mr-5 '>
-            <div className='drop-shadow-custom relative '>
+            <div className='shadow-custom relative '>
                 <div className='overflow-hidden rounded-lg cursor-pointer'>
                     <Link
                         to={`${'title' in props ? `/movie/${props.id}` : `/tv/${props.id}`}`}

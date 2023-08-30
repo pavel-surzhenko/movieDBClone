@@ -16,8 +16,8 @@ export default {
             fontFamily: {
                 Source: ['Source Sans 3', 'sans-serif'],
             },
-            dropShadow: {
-                custom: '0 2px 8px rgba(0, 0, 0, 0.1)',
+            boxShadow: {
+                custom: '0 2px 8px rgba(0, 0, 0, 0.3)',
             },
             backgroundImage: {
                 'trending-bg': 'url(/trendingBg.svg)',
