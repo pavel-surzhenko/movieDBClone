@@ -6,16 +6,18 @@ import Twitter from '../assets/Twitter';
 import { movieDetailProps } from '../types/movieDetailProps';
 import { tvDetailProps } from '../types/tvDetailProps';
 import { Link, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { api } from '../api/api';
 import { tvLinksProps } from '../types/tvLinksProps';
 import { keyWordsProps } from '../types/keyWordsProps';
+import { Context } from '../lib/context';
 
 const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (props) => {
     const [links, setLinks] = useState<tvLinksProps>();
     const [words, setWords] = useState<keyWordsProps>();
     const { pathname } = useLocation();
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
+    const { language } = useContext(Context);
 
     useEffect(() => {
         if (movieType === 'tv') {
@@ -88,20 +90,28 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (pro
                 )}
             </div>
             <div>
-                <p className='text-lg font-semibold mb-4'>Facts</p>
+                <p className='text-lg font-semibold mb-4'>
+                    {language === 'uk-UA' ? 'Факти' : 'Facts'}
+                </p>
                 <div className='mb-3'>
-                    <div className='font-semibold'>Status</div>
+                    <div className='font-semibold'>
+                        {language === 'uk-UA' ? 'Статус' : 'Status'}
+                    </div>
                     <div className='font-light'>{props.status}</div>
                 </div>
                 {'budget' in props && (
                     <div className='mb-3'>
-                        <div className='font-semibold'>Budget</div>
+                        <div className='font-semibold'>
+                            {language === 'uk-UA' ? 'Бюджет' : 'Budget'}
+                        </div>
                         <div className='font-light'>{props.budget}$</div>
                     </div>
                 )}
                 {'networks' in props && (
                     <div className='mb-3'>
-                        <div className='font-semibold'>Networks</div>
+                        <div className='font-semibold'>
+                            {language === 'uk-UA' ? 'Мережа' : 'Networks'}
+                        </div>
                         {props.networks.map((network) => (
                             <div
                                 key={network.id}
@@ -113,14 +123,21 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (pro
                     </div>
                 )}
                 <div className='mb-3'>
-                    <div className='font-semibold'>Original Language</div>
+                    <div className='font-semibold'>
+                        {language === 'uk-UA' ? 'Мова оригінала' : 'Original Language'}
+                    </div>
                     <div className='font-light'>{props.original_language}</div>
                 </div>
                 {words && words.keywords?.length > 0 && (
                     <div className='mb-3'>
-                        <div className='font-semibold mb-1'>Keywords</div>
+                        <div className='font-semibold mb-1'>
+                            {language === 'uk-UA' ? 'Ключові слова' : 'Keywords'}
+                        </div>
                         {words?.keywords.map((word) => (
-                            <span className='text-sm inline-block px-1 mr-2 mb-2 font-light bg-black bg-opacity-10 border border-solid border-[#d7d7d7]'>
+                            <span
+                                key={word.id}
+                                className='text-sm inline-block px-1 mr-2 mb-2 font-light bg-black bg-opacity-10 border border-solid border-[#d7d7d7]'
+                            >
                                 {word.name}
                             </span>
                         ))}

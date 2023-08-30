@@ -28,5 +28,4 @@ If you are developing a production application, we recommend updating the config
 
 додати колекцію фільмів,серіалів якщо така є
 додати сезони до серіалів
-додати хомпейдж до фільмів серіалів
 переробити апі
