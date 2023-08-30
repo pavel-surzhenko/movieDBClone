@@ -214,7 +214,12 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             </span>
                                             <div className='flex'>
                                                 {createdBy.map((person) => (
-                                                    <h4 className='mr-2'>{person?.name}</h4>
+                                                    <h4
+                                                        key={person.id}
+                                                        className='mr-2'
+                                                    >
+                                                        {person?.name}
+                                                    </h4>
                                                 ))}
                                             </div>
                                         </div>

@@ -18,7 +18,7 @@ const PersonCard: React.FC<cast | crew> = (props) => {
                             <LazyLoadImage
                                 src={`${baseUrlImg}/w200${props.profile_path}`}
                                 alt={props.name}
-                                className='w-full h-auto object-contain '
+                                className='w-full h-auto object-contain'
                                 effect='blur'
                                 placeholder={
                                     <LoadingModel
@@ -26,6 +26,7 @@ const PersonCard: React.FC<cast | crew> = (props) => {
                                         height={225}
                                     />
                                 }
+                                wrapperClassName={'fix-style'}
                             />
                         ) : (
                             <img
@@ -37,7 +38,7 @@ const PersonCard: React.FC<cast | crew> = (props) => {
                     </div>
                 </div>
             </div>
-            <div className='pt-6 px-2'>
+            <div className='pt-3 px-2'>
                 <div>
                     <div>
                         <h2 className='movies-title hover:text-lightBlue cursor-pointer transition-colors duration-300'>
