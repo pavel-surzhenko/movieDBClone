@@ -125,13 +125,13 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                 />
                             </div>
                             <div className=' pl-0 lg:pl-10 text-white'>
-                                <h1 className=' font-semibold text-xl lg:text-4xl text-center mb-4 lg:mb-0 lg:text-left'>
+                                <h1 className=' font-semibold text-xl lg:text-4xl text-center mb-4 lg:mb-0 lg:text-left animate-fade-down animate-once animate-duration-500 animate-ease-linear'>
                                     {title + ' '}
                                     <span className='opacity-60 font-normal'>
                                         ({release_date.substring(0, 4)})
                                     </span>
                                 </h1>
-                                <div className='lg:opacity-60 mb-6 text-center lg:text-left bg-lightBlack lg:bg-lightBlack/0 -mx-8 lg:mx-0 px-8 lg:px-0 py-2 lg:py-0'>
+                                <div className='lg:opacity-60 mb-6 text-center lg:text-left bg-lightBlack lg:bg-lightBlack/0 -mx-8 lg:mx-0 px-8 lg:px-0 py-2 lg:py-0 animate-fade-down animate-once animate-duration-500 animate-delay-100 animate-ease-linear'>
                                     <span>{release_date + ' • '}</span>
                                     <span>
                                         {movieDetails?.genres.map((genre) => (
@@ -189,7 +189,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                     </div>
                                 </div>
                                 <div className='italic text-lg mb-2'>{movieDetails?.tagline}</div>
-                                <div className='mb-5'>
+                                <div className='mb-5 animate-flip-down animate-once animate-duration-500 animate-delay-500 animate-ease-linear'>
                                     <h3 className='text-xl mb-2'>
                                         {language === 'uk-UA' ? 'Опис' : 'Overview'}
                                     </h3>
@@ -198,7 +198,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             'Немає опису до фільму українською :('}
                                     </p>
                                 </div>
-                                <div className='flex justify-between items-center'>
+                                <div className='flex justify-between items-center animate-flip-down animate-once animate-duration-700 animate-delay-500 animate-ease-linear'>
                                     {director && (
                                         <div>
                                             <h4>{director?.name}</h4>

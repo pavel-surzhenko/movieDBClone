@@ -12,7 +12,7 @@ const MovieDetailsPageRecommendations: React.FC<{
     return (
         <section>
             <div className='pt-4 lg:py-[30px] pl-8 lg:pl-[40px] white-shadow relative'>
-                <h2 className='text-xl font-semibold mb-5'>
+                <h2 className='text-xl font-semibold mb-5 animate-fade-right animate-once animate-duration-500'>
                     {language === 'uk-UA' ? 'Рекомендації' : 'Recommendations'}
                 </h2>
                 {recommendations.length > 1 ? (

@@ -10,6 +10,7 @@ import { tvDetailProps } from '../types/tvDetailProps';
 import { tvCreditsProps } from '../types/tvCreditsProps';
 import { tvLinksProps } from '../types/tvLinksProps';
 import { keyWordsProps } from '../types/keyWordsProps';
+import { collectionProps } from '../types/collectionProps';
 
 export const apiOptions = {
     method: 'GET',
@@ -116,7 +117,7 @@ export const api = {
                 );
                 return data;
             } catch (error) {
-                throw new Error(`Failed to fetch tv videos: ${error}`);
+                throw new Error(`Failed to fetch links: ${error}`);
             }
         },
 
@@ -128,7 +129,19 @@ export const api = {
                 );
                 return data;
             } catch (error) {
-                throw new Error(`Failed to fetch tv videos: ${error}`);
+                throw new Error(`Failed to fetch keywords: ${error}`);
+            }
+        },
+
+        async getCollection(id: number, language: string): Promise<collectionProps> {
+            try {
+                const { data } = await axios.get<collectionProps>(
+                    `${baseUrl}collection/${id}?language=${language}`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch collection: ${error}`);
             }
         },
     },
@@ -218,7 +231,7 @@ export const api = {
                 );
                 return data;
             } catch (error) {
-                throw new Error(`Failed to fetch tv videos: ${error}`);
+                throw new Error(`Failed to fetch links: ${error}`);
             }
         },
 
@@ -230,7 +243,7 @@ export const api = {
                 );
                 return data;
             } catch (error) {
-                throw new Error(`Failed to fetch tv videos: ${error}`);
+                throw new Error(`Failed to fetch keywords: ${error}`);
             }
         },
     },

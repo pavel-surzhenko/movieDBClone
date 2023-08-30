@@ -23,7 +23,7 @@ const MovieDetailsPageCollections: React.FC<collection> = (props) => {
                         <h2 className='text-3xl font-semibold pr-4'>Part of the {props?.name}</h2>
                         <Link
                             className='text-lg underline underline-offset-2'
-                            to={''}
+                            to={`${props.id}-collection`}
                         >
                             VIEW THE COLLECTION
                         </Link>

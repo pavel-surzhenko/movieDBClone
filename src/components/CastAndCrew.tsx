@@ -28,7 +28,7 @@ const CastAndCrew = () => {
     return (
         <>
             <div
-                className='py-4 px-4 lg:px-0'
+                className='p-4'
                 style={{ backgroundColor: `${dominantColor}` }}
             >
                 <Container>
@@ -55,7 +55,7 @@ const CastAndCrew = () => {
                 </Container>
             </div>
             <Container>
-                <div className='py-8 px-4 lg:px-0 flex justify-between flex-col lg:flex-row'>
+                <div className='py-8 px-4 flex justify-between flex-col lg:flex-row'>
                     <div className='lg:basis-1/2 shrink-0 '>
                         <div className='text-xl mb-5 font-medium'>
                             {language === 'uk-UA' ? 'Актори' : 'Cast'}{' '}
