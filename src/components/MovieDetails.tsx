@@ -22,12 +22,12 @@ const MovieDetails = () => {
                 movieCredits={movieCredits}
             />
             <Container>
-                <div className='flex'>
-                    <div className='overflow-x-auto pr-5'>
+                <div className='flex flex-col lg:flex-row'>
+                    <div className='overflow-x-auto lg:pr-5'>
                         <MovieDetailsPageCast {...movieCredits} />
                         <MovieDetailsPageRecommendations recommendations={recommendations} />
                     </div>
-                    <div className='flex-none w-[260px] pt-[30px]'>
+                    <div className='flex-none lg:w-[260px] pt-[30px] ml-8 lg:ml-0 mb-5 lg:mb-0'>
                         <MovieDetailsPageSideBar {...movieData} />
                     </div>
                 </div>

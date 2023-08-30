@@ -10,7 +10,7 @@ const Instagram = () => {
             strokeWidth='2'
             strokeLinecap='round'
             strokeLinejoin='round'
-            className='feather feather-instagram'
+            className='feather feather-instagram w-10 h-10  lg:w-[30px] lg:h-[30px]'
         >
             <rect
                 x='2'
