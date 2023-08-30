@@ -9,6 +9,7 @@ import { movieProvidersProps } from '../types/movieProvidersProps';
 import { tvDetailProps } from '../types/tvDetailProps';
 import { tvCreditsProps } from '../types/tvCreditsProps';
 import { tvLinksProps } from '../types/tvLinksProps';
+import { keyWordsProps } from '../types/keyWordsProps';
 
 export const apiOptions = {
     method: 'GET',
@@ -118,6 +119,18 @@ export const api = {
                 throw new Error(`Failed to fetch tv videos: ${error}`);
             }
         },
+
+        async getKeyWords(id: number): Promise<keyWordsProps> {
+            try {
+                const { data } = await axios.get<keyWordsProps>(
+                    `${baseUrl}movie/${id}/keywords`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch tv videos: ${error}`);
+            }
+        },
     },
     tv: {
         async getTrendingTV(time: string, language: string): Promise<tvProps[]> {
@@ -201,6 +214,18 @@ export const api = {
             try {
                 const { data } = await axios.get<tvLinksProps>(
                     `${baseUrl}tv/${id}/external_ids`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch tv videos: ${error}`);
+            }
+        },
+
+        async getKeyWords(id: number): Promise<keyWordsProps> {
+            try {
+                const { data } = await axios.get<keyWordsProps>(
+                    `${baseUrl}tv/${id}/keywords`,
                     apiOptions
                 );
                 return data;

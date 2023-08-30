@@ -9,17 +9,20 @@ import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { api } from '../api/api';
 import { tvLinksProps } from '../types/tvLinksProps';
+import { keyWordsProps } from '../types/keyWordsProps';
 
 const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
     status,
     id,
     homepage,
+    original_language,
 }) => {
     const [links, setLinks] = useState<tvLinksProps>();
+    const [words, setWords] = useState<keyWordsProps>();
     const { pathname } = useLocation();
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
 
-    console.log(links);
+    console.log(words);
 
     useEffect(() => {
         if (movieType === 'tv') {
@@ -27,10 +30,18 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
                 .getLinks(id)
                 .then((data) => setLinks(data))
                 .catch();
+            api.tv
+                .getKeyWords(id)
+                .then((data) => setWords(data))
+                .catch();
         } else {
             api.movies
                 .getLinks(id)
                 .then((data) => setLinks(data))
+                .catch();
+            api.movies
+                .getKeyWords(id)
+                .then((data) => setWords(data))
                 .catch();
         }
     }, [id]);
@@ -85,9 +96,21 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
             </div>
             <div>
                 <p className='text-lg font-semibold mb-4'>Facts</p>
-                <div className=''>
+                <div className='mb-3'>
                     <div className='font-semibold'>Status</div>
                     <div className='font-light'>{status}</div>
+                </div>
+                <div className='mb-3'>
+                    <div className='font-semibold'>Original Language</div>
+                    <div className='font-light'>{original_language}</div>
+                </div>
+                <div className='mb-3'>
+                    <div className='font-semibold mb-1'>Keywords</div>
+                    {words?.keywords?.map((word) => (
+                        <span className='text-sm inline-block px-1 mr-2 mb-2 font-light bg-black bg-opacity-10 border border-solid border-[#d7d7d7]'>
+                            {word.name}
+                        </span>
+                    ))}
                 </div>
             </div>
         </aside>
