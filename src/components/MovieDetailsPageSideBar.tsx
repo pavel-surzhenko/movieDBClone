@@ -22,8 +22,6 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
     const { pathname } = useLocation();
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
 
-    console.log(words);
-
     useEffect(() => {
         if (movieType === 'tv') {
             api.tv
@@ -44,13 +42,13 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
                 .then((data) => setWords(data))
                 .catch();
         }
-    }, [id]);
+    }, [id, movieType]);
     return (
         <aside>
             <div className='flex mb-3 items-center'>
                 {links?.instagram_id && (
                     <Link
-                        className='mr-2'
+                        className='mr-4'
                         to={`https://www.instagram.com/${links.instagram_id}`}
                         target='_blank'
                     >
@@ -59,7 +57,7 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
                 )}
                 {links?.twitter_id && (
                     <Link
-                        className='mr-2'
+                        className='mr-4'
                         to={`https://twitter.com/${links.twitter_id}`}
                         target='_blank'
                     >
@@ -68,7 +66,7 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
                 )}
                 {links?.facebook_id && (
                     <Link
-                        className='mr-2'
+                        className='mr-4'
                         to={`https://twitter.com/facebook/${links.facebook_id}`}
                         target='_blank'
                     >
@@ -77,7 +75,7 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
                 )}
                 {links?.imdb_id && (
                     <Link
-                        className='mr-2'
+                        className='mr-4'
                         to={`https://www.imdb.com/title/${links.imdb_id}`}
                         target='_blank'
                     >
@@ -104,14 +102,16 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = ({
                     <div className='font-semibold'>Original Language</div>
                     <div className='font-light'>{original_language}</div>
                 </div>
-                <div className='mb-3'>
-                    <div className='font-semibold mb-1'>Keywords</div>
-                    {words?.keywords?.map((word) => (
-                        <span className='text-sm inline-block px-1 mr-2 mb-2 font-light bg-black bg-opacity-10 border border-solid border-[#d7d7d7]'>
-                            {word.name}
-                        </span>
-                    ))}
-                </div>
+                {words && words.keywords?.length > 0 && (
+                    <div className='mb-3'>
+                        <div className='font-semibold mb-1'>Keywords</div>
+                        {words?.keywords.map((word) => (
+                            <span className='text-sm inline-block px-1 mr-2 mb-2 font-light bg-black bg-opacity-10 border border-solid border-[#d7d7d7]'>
+                                {word.name}
+                            </span>
+                        ))}
+                    </div>
+                )}
             </div>
         </aside>
     );
