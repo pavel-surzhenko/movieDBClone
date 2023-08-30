@@ -43,7 +43,7 @@ export interface OutletContextType {
     recommendations: movieProps[] | tvProps[];
 }
 
-type collection = {
+export type collection = {
     id: number;
     name: string;
     poster_path: string;
