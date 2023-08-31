@@ -61,7 +61,7 @@ const SeasonDetail = () => {
                                 />
                             )}
                         </div>
-                        <div className='text-white'>
+                        <div className='text-white flex flex-col justify-between'>
                             <h2 className='text-lg lg:text-3xl  font-bold'>{seasonData?.name}</h2>
                             <Link
                                 to={'..'}

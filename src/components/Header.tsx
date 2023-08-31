@@ -30,20 +30,20 @@ const Header = () => {
                 </div>
                 <div className='hidden md:flex'>
                     <Link
-                        to={'/films'}
-                        className={` mr-10`}
+                        to={'/movie'}
+                        className={` mr-10 hover:text-lightBlue transition-colors duration-300`}
                     >
                         {language === 'en-US' ? 'Movies' : 'Фільми'}
                     </Link>
                     <Link
-                        to={'/tw-shows'}
-                        className={` mr-10`}
+                        to={'/tv'}
+                        className={` mr-10 hover:text-lightBlue transition-colors duration-300`}
                     >
                         {language === 'en-US' ? 'TV Shows' : 'Серіали'}
                     </Link>
                     <Link
                         to={'/people'}
-                        className={`mr-10`}
+                        className={`mr-10 hover:text-lightBlue transition-colors duration-300`}
                     >
                         {language === 'en-US' ? 'People' : 'Персони'}
                     </Link>

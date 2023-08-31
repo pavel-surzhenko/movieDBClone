@@ -134,7 +134,11 @@ const SeasonsCollection = () => {
                                             dateOptions
                                         )}
                                     </div>
-                                    <div className='mr-2'>{`Episodes ${season.episode_count}`}</div>
+                                    <div className='mr-2'>
+                                        {language === 'uk-UA'
+                                            ? `Епізодів: ${season.episode_count}`
+                                            : `Episodes: ${season.episode_count}`}
+                                    </div>
                                 </div>
                             </div>
                         ))}
