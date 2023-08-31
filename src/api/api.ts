@@ -11,6 +11,7 @@ import { tvCreditsProps } from '../types/tvCreditsProps';
 import { tvLinksProps } from '../types/tvLinksProps';
 import { keyWordsProps } from '../types/keyWordsProps';
 import { collectionProps } from '../types/collectionProps';
+import { tvSeasonDetailProps } from '../types/tvSeasonDetailProps';
 
 export const apiOptions = {
     method: 'GET',
@@ -244,6 +245,22 @@ export const api = {
                 return data;
             } catch (error) {
                 throw new Error(`Failed to fetch keywords: ${error}`);
+            }
+        },
+
+        async getSeasonsDetail(
+            id: number,
+            seasonNumber: number,
+            language: string
+        ): Promise<tvSeasonDetailProps> {
+            try {
+                const { data } = await axios.get<tvSeasonDetailProps>(
+                    `${baseUrl}tv/${id}/season/${seasonNumber}?language=${language}`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch season detail: ${error}`);
             }
         },
     },

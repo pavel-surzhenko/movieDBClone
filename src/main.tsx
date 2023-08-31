@@ -13,6 +13,7 @@ import CastAndCrew from './components/CastAndCrew';
 import MovieDetails from './components/MovieDetails';
 import MovieCollection from './components/MovieCollection';
 import SeasonsCollection from './components/SeasonsCollection';
+import SeasonDetail from './components/SeasonDetail';
 
 const router = createBrowserRouter([
     {
@@ -54,6 +55,11 @@ const router = createBrowserRouter([
                     {
                         path: 'seasons',
                         element: <SeasonsCollection />,
+                        errorElement: <ErrorPage />,
+                    },
+                    {
+                        path: 'seasons/:seasonId',
+                        element: <SeasonDetail />,
                         errorElement: <ErrorPage />,
                     },
                 ],

@@ -24,7 +24,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const [movieProviders, setMovieProviders] = useState<movieProvidersProps | null>(null);
     const [dominantColor, setDominantColor] = useState<ArrayRGB>([0, 0, 0]);
     const director = movieCredits?.crew.find((person) => person.job === 'Director');
-    const createdBy = 'created_by' in movieDetails && movieDetails.created_by;
+    const createdBy = 'created_by' in movieDetails ? movieDetails.created_by : [];
 
     const { pathname } = useLocation();
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
@@ -207,7 +207,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             </span>
                                         </div>
                                     )}
-                                    {createdBy && (
+                                    {createdBy?.length > 0 && (
                                         <div>
                                             <span className='font-light text-sm'>
                                                 {language === 'uk-UA' ? 'Створений' : 'Created by'}

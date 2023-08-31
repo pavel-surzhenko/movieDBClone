@@ -63,13 +63,13 @@ const SeasonsCollection = () => {
             <Container>
                 <div className='px-5 lg:px-10 pt-[30px]'>
                     <Suspense>
-                        {seasons?.map((season) => (
+                        {seasons?.map((season, index) => (
                             <div
                                 key={season.id}
-                                className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex'
+                                className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-delay-100 animate-ease-linear animate-fill-forwards'
                             >
                                 <Link
-                                    to={`/tv/${season.id}`}
+                                    to={`/tv/${movieData.id}/seasons/${index}`}
                                     onClick={() => window.scrollTo(0, 0)}
                                 >
                                     <div className='max-w-[100px] min-w-[90px] cursor-pointer'>
@@ -110,7 +110,7 @@ const SeasonsCollection = () => {
                                 </Link>
                                 <div className='px-4 pt-2 font-semibold'>
                                     <Link
-                                        to={`/tv/${season.id}`}
+                                        to={`/tv/${movieData.id}/seasons/${index}`}
                                         onClick={() => window.scrollTo(0, 0)}
                                     >
                                         <h2 className='text-lg font-bold cursor-pointer hover:text-lightBlue transition-colors duration-300'>
