@@ -12,6 +12,7 @@ import ErrorPage from './pages/ErrorPage';
 import CastAndCrew from './components/CastAndCrew';
 import MovieDetails from './components/MovieDetails';
 import MovieCollection from './components/MovieCollection';
+import SeasonsCollection from './components/SeasonsCollection';
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
                 children: [
                     { index: true, element: <MovieDetails />, errorElement: <ErrorPage /> },
                     { path: 'cast', element: <CastAndCrew />, errorElement: <ErrorPage /> },
+                    {
+                        path: 'seasons',
+                        element: <SeasonsCollection />,
+                        errorElement: <ErrorPage />,
+                    },
                 ],
             },
             {
