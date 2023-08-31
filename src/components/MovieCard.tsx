@@ -99,7 +99,7 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                         to={`${'title' in props ? `/movie/${props.id}` : `/tv/${props.id}`}`}
                         onClick={() => window.scrollTo(0, 0)}
                     >
-                        <h2 className='movies-title hover:text-lightBlue cursor-pointer transition-colors duration-300'>
+                        <h2 className='font-bold hover:text-lightBlue cursor-pointer transition-colors duration-300'>
                             {title}
                         </h2>
                     </Link>

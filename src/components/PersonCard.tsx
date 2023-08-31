@@ -41,7 +41,7 @@ const PersonCard: React.FC<cast | crew> = (props) => {
             <div className='pt-3 px-2'>
                 <div>
                     <div>
-                        <h2 className='movies-title hover:text-lightBlue cursor-pointer transition-colors duration-300'>
+                        <h2 className='font-bold hover:text-lightBlue cursor-pointer transition-colors duration-300'>
                             {props.name}
                         </h2>
                     </div>
