@@ -72,7 +72,7 @@ const SeasonsCollection = () => {
                                     to={`/tv/${movieData.id}/seasons/${index}`}
                                     onClick={() => window.scrollTo(0, 0)}
                                 >
-                                    <div className='max-w-[100px] min-w-[90px] cursor-pointer'>
+                                    <div className='max-w-[100px] min-w-[100px] cursor-pointer'>
                                         {season.poster_path ? (
                                             <LazyLoadImage
                                                 src={`${baseUrlImg}/w200${season.poster_path}`}
@@ -113,20 +113,22 @@ const SeasonsCollection = () => {
                                         to={`/tv/${movieData.id}/seasons/${index}`}
                                         onClick={() => window.scrollTo(0, 0)}
                                     >
-                                        <h2 className='text-lg font-bold cursor-pointer hover:text-lightBlue transition-colors duration-300'>
+                                        <h2 className='text-base lg:text-lg font-bold cursor-pointer hover:text-lightBlue transition-colors duration-300'>
                                             {season.name}
                                         </h2>
                                     </Link>
 
                                     {season.vote_average > 0 && (
-                                        <div className='px-2 bg-black text-white rounded-lg font-normal flex items-center text-sm w-2/3'>
-                                            <Star />
-                                            <span className='ml-1'>
-                                                {season.vote_average.toFixed(1)}
-                                            </span>
+                                        <div className='flex'>
+                                            <div className='px-2 bg-black text-white rounded-lg font-normal flex items-center text-sm mr-2'>
+                                                <Star />
+                                                <span className='ml-1'>
+                                                    {season.vote_average.toFixed(1)}
+                                                </span>
+                                            </div>
                                         </div>
                                     )}
-                                    <div className='mr-2 font-normal'>
+                                    <div className='text-sm lg:text-base font-normal opacity-70'>
                                         {new Date(season.air_date).toLocaleDateString(
                                             localLanguage,
                                             dateOptions
