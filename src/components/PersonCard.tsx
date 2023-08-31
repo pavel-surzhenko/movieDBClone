@@ -9,7 +9,7 @@ const PersonCard: React.FC<cast | crew> = (props) => {
     return (
         <div
             key={props.id}
-            className='min-w-[150px] min-h-[225px] animate-fade animate-duration-500 animate-ease-linear mr-5'
+            className='max-w-[150px] min-w-[150px] min-h-[225px] animate-fade animate-duration-500 animate-ease-linear mr-5'
         >
             <div className='shadow-custom relative'>
                 <div className='overflow-hidden rounded-lg cursor-pointer '>
