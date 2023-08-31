@@ -1,4 +1,4 @@
-import { Link, useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { Link, useOutletContext, useParams } from 'react-router-dom';
 import { OutletContextType } from '../types/movieDetailProps';
 import { Suspense, useContext, useEffect, useState } from 'react';
 import { api } from '../api/api';
@@ -20,7 +20,6 @@ const SeasonDetail = () => {
     const { language } = useContext(Context);
     const [seasonData, setSeasonData] = useState<tvSeasonDetailProps>();
     const [dominantColor, setDominantColor] = useState<string>();
-    const navigate = useNavigate();
     const seasonsLength = 'seasons' in movieData ? movieData.seasons.length : 0;
 
     const dateOptions: Intl.DateTimeFormatOptions = {
@@ -112,21 +111,21 @@ const SeasonDetail = () => {
                         <span className='opacity-50'>{seasonData?.episodes.length}</span>
                     </div>
                     <Suspense>
-                        {seasonData?.episodes.map((episode, index) => (
+                        {seasonData?.episodes.map((episode) => (
                             <div
                                 key={episode.id}
-                                className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-delay-100 animate-ease-linear animate-fill-forwards'
+                                className='mb-3 lg:mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-delay-100 animate-ease-linear animate-fill-forwards'
                             >
-                                <div className='max-w-[250px] min-w-[250px]'>
+                                <div className='max-w-[100px] min-w-[100px] lg:max-w-[250px] lg:min-w-[250px]'>
                                     {episode.still_path ? (
                                         <LazyLoadImage
                                             src={`${baseUrlImg}/w200${episode.still_path}`}
                                             alt={episode.name}
-                                            className='w-full object-cover h-[150px] '
+                                            className='w-full object-cover h-[125px] lg:h-[150px] '
                                             effect='blur'
                                             placeholder={
                                                 <LoadingModel
-                                                    width={100}
+                                                    width={150}
                                                     height={150}
                                                 />
                                             }
@@ -153,25 +152,27 @@ const SeasonDetail = () => {
                                     )}
                                 </div>
 
-                                <div className='flex flex-col grow mx-4 my-2'>
-                                    <h2 className='text-lg font-bold'>{episode.name}</h2>
+                                <div className='flex flex-col grow mx-4 my-1 lg:my-2'>
+                                    <h2 className='text-sm lg:text-lg font-semibold lg:font-bold mb-1 lg:mb-0 line-clamp-2 lg:line-clamp-none text-ellipsis overflow-hidden'>
+                                        {episode.name}
+                                    </h2>
                                     <div className='flex grow-0 items-center mb-2'>
                                         {episode.vote_average > 0 && (
-                                            <div className='px-2 bg-black text-white rounded-lg font-normal flex items-center text-sm '>
+                                            <div className='px-2 bg-black text-white rounded-lg font-normal flex items-center text-sm mr-2'>
                                                 <Star />
-                                                <span className='ml-'>
+                                                <span className='ml-1 font-light'>
                                                     {episode.vote_average.toFixed(1)}
                                                 </span>
                                             </div>
                                         )}
-                                        <div className='ml-2 font-normal opacity-70'>
+                                        <div className='text-sm lg:text-base font-normal opacity-70'>
                                             {new Date(episode.air_date).toLocaleDateString(
                                                 localLanguage,
                                                 dateOptions
                                             )}
                                         </div>
                                     </div>
-                                    <div className=' text-sm lg:text-base font-thin text-ellipsis overflow-hidden line-clamp-3'>
+                                    <div className=' text-sm lg:text-base font-thin text-ellipsis overflow-hidden line-clamp-2 lg:line-clamp-3'>
                                         {episode.overview}
                                     </div>
                                 </div>
