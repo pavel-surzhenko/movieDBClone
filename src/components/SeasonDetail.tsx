@@ -1,9 +1,9 @@
 import { Link, useOutletContext, useParams } from 'react-router-dom';
-import { OutletContextType } from '../types/movieDetailProps';
+import { OutletContextType } from '../types/Movie/movieDetailProps';
 import { Suspense, useContext, useEffect, useState } from 'react';
 import { api } from '../api/api';
 import { Context } from '../lib/context';
-import { tvSeasonDetailProps } from '../types/tvSeasonDetailProps';
+import { tvSeasonDetailProps } from '../types/TV/tvSeasonDetailProps';
 import { getColor } from 'color-thief-react';
 import LeftArrow from '../assets/LeftArrow';
 import { baseUrlImg } from '../lib/links';

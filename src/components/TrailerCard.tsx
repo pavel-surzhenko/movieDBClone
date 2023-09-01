@@ -1,6 +1,6 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { baseUrlImg } from '../lib/links';
-import { trailerProps } from '../types/trailerProps';
+import { trailerProps } from '../types/Trailer/trailerProps';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const TrailerCard: React.FC<trailerProps> = ({ movieDetails, handleHover, handleClick }) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Suspense } from 'react';
 
 import { useOutletContext } from 'react-router-dom';
-import { OutletContextType } from '../types/movieDetailProps';
+import { OutletContextType } from '../types/Movie/movieDetailProps';
 import MovieDetailsPageSideBar from './MovieDetailsPageSideBar';
 import Container from './Container';
 import MovieDetailsPageCollections from './MovieDetailsPageCollections';

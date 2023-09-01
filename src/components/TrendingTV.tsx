@@ -3,7 +3,7 @@ import { Context } from '../lib/context';
 import Tab from './Tab';
 import TabsContainer from './TabsContainer';
 import { api } from '../api/api';
-import { tvProps } from '../types/tvProps';
+import { tvProps } from '../types/TV/tvProps';
 
 const TrendingTV = () => {
     const [openTab, setOpenTab] = useState(0);

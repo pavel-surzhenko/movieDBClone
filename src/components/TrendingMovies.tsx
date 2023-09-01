@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import Tab from './Tab';
 import TabsContainer from './TabsContainer';
 import { api } from '../api/api';
-import { movieProps } from '../types/movieProps';
+import { movieProps } from '../types/Movie/movieProps';
 import { Context } from '../lib/context';
 
 const TrendingMovies = () => {

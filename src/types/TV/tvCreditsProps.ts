@@ -1,4 +1,4 @@
-import { cast, crew } from './movieCreditsProps';
+import { cast, crew } from '../Movie/movieCreditsProps';
 
 export interface tvCreditsProps {
     cast: cast[];

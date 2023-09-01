@@ -1,5 +1,5 @@
-import { movieProps } from '../types/movieProps';
-import { tvProps } from '../types/tvProps';
+import { movieProps } from '../types/Movie/movieProps';
+import { tvProps } from '../types/TV/tvProps';
 import { tabContainerProps } from '../types/tabProps';
 import React, { Suspense } from 'react';
 import LoadingModel from './LoadingModel';

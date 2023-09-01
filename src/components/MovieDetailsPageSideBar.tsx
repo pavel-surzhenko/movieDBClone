@@ -3,12 +3,12 @@ import IMDB from '../assets/IMDB';
 import Instagram from '../assets/Instagram';
 import CustomLink from '../assets/CustomLink';
 import Twitter from '../assets/Twitter';
-import { movieDetailProps } from '../types/movieDetailProps';
-import { tvDetailProps } from '../types/tvDetailProps';
+import { movieDetailProps } from '../types/Movie/movieDetailProps';
+import { tvDetailProps } from '../types/TV/tvDetailProps';
 import { Link, useLocation } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { api } from '../api/api';
-import { tvLinksProps } from '../types/tvLinksProps';
+import { tvLinksProps } from '../types/TV/tvLinksProps';
 import { keyWordsProps } from '../types/keyWordsProps';
 import { Context } from '../lib/context';
 

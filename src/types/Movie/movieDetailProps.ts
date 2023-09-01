@@ -1,8 +1,8 @@
 import { movieCreditsProps } from './movieCreditsProps';
 import { movieProps } from './movieProps';
-import { tvCreditsProps } from './tvCreditsProps';
-import { tvDetailProps } from './tvDetailProps';
-import { tvProps } from './tvProps';
+import { tvCreditsProps } from '../TV/tvCreditsProps';
+import { tvDetailProps } from '../TV/tvDetailProps';
+import { tvProps } from '../TV/tvProps';
 
 export interface movieDetailProps {
     adult: boolean;

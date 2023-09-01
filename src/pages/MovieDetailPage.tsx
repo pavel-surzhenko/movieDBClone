@@ -1,17 +1,17 @@
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { movieDetailProps } from '../types/movieDetailProps';
+import { movieDetailProps } from '../types/Movie/movieDetailProps';
 import { api } from '../api/api';
 import { Context } from '../lib/context';
 import 'react-circular-progressbar/dist/styles.css';
 import Spinner from '../components/Spinner';
-import { movieCreditsProps } from '../types/movieCreditsProps';
+import { movieCreditsProps } from '../types/Movie/movieCreditsProps';
 import { Helmet } from 'react-helmet';
-import { movieProps } from '../types/movieProps';
+import { movieProps } from '../types/Movie/movieProps';
 import React from 'react';
-import { tvDetailProps } from '../types/tvDetailProps';
-import { tvCreditsProps } from '../types/tvCreditsProps';
-import { tvProps } from '../types/tvProps';
+import { tvDetailProps } from '../types/TV/tvDetailProps';
+import { tvCreditsProps } from '../types/TV/tvCreditsProps';
+import { tvProps } from '../types/TV/tvProps';
 
 export const MovieDetailPage: React.FC = () => {
     const { movieId } = useParams<'movieId'>();

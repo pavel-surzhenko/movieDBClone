@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Context } from '../lib/context';
-import { movieProps } from '../types/movieProps';
+import { movieProps } from '../types/Movie/movieProps';
 import TabsContainer from './TabsContainer';
-import { tvProps } from '../types/tvProps';
+import { tvProps } from '../types/TV/tvProps';
 
 const MovieDetailsPageRecommendations: React.FC<{
     recommendations: movieProps[] | tvProps[];

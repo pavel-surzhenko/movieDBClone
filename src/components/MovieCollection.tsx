@@ -2,7 +2,7 @@ import { Suspense, useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../api/api';
 import { Context } from '../lib/context';
-import { collectionProps } from '../types/collectionProps';
+import { collectionProps } from '../types/Movie/collectionProps';
 import { baseUrlImg } from '../lib/links';
 import { ArrayRGB } from 'color-thief-react/lib/types';
 import { getColor } from 'color-thief-react';

@@ -1,5 +1,5 @@
 import { Link, useOutletContext } from 'react-router-dom';
-import { OutletContextType } from '../types/movieDetailProps';
+import { OutletContextType } from '../types/Movie/movieDetailProps';
 import { getColor } from 'color-thief-react';
 import { useState, useContext, useEffect, Suspense } from 'react';
 import { Context } from '../lib/context';

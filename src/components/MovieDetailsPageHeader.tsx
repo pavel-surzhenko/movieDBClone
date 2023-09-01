@@ -5,12 +5,12 @@ import { getTrailColor } from '../hooks/useGetTrailColor';
 import { baseUrlImg } from '../lib/links';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import Container from '../components/Container';
-import { movieDetailsHeaderProps } from '../types/movieDetailProps';
+import { movieDetailsHeaderProps } from '../types/Movie/movieDetailProps';
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../lib/context';
 import { useLocation, useParams } from 'react-router-dom';
 import { api } from '../api/api';
-import { movieProvidersProps } from '../types/movieProvidersProps';
+import { movieProvidersProps } from '../types/Movie/movieProvidersProps';
 import { getColor } from 'color-thief-react';
 import { ArrayRGB } from 'color-thief-react/lib/types';
 

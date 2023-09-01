@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { baseUrlImg } from '../lib/links';
-import { collection } from '../types/movieDetailProps';
+import { collection } from '../types/Movie/movieDetailProps';
 import { useContext } from 'react';
 import { Context } from '../lib/context';
 

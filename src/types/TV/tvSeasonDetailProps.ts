@@ -1,4 +1,4 @@
-import { crew } from './movieCreditsProps';
+import { crew } from '../Movie/movieCreditsProps';
 export interface tvSeasonDetailProps {
     _id: string;
     air_date: string;

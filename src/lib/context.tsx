@@ -1,6 +1,6 @@
 import { createContext, startTransition, useEffect, useState } from 'react';
 import { contextProps } from '../types/contextProps';
-import { movieProps } from '../types/movieProps';
+import { movieProps } from '../types/Movie/movieProps';
 import { api } from '../api/api';
 
 export const Context = createContext<contextProps>({

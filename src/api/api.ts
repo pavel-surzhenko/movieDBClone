@@ -1,17 +1,17 @@
 import axios from 'axios';
-import { movieProps, movieResponse } from '../types/movieProps';
+import { movieProps, movieResponse } from '../types/Movie/movieProps';
 import { baseUrl } from '../lib/links';
-import { tvProps, tvResponse } from '../types/tvProps';
+import { tvProps, tvResponse } from '../types/TV/tvProps';
 import { videoPropsResponse } from '../types/videoProps';
-import { movieDetailProps } from '../types/movieDetailProps';
-import { movieCreditsProps } from '../types/movieCreditsProps';
-import { movieProvidersProps } from '../types/movieProvidersProps';
-import { tvDetailProps } from '../types/tvDetailProps';
-import { tvCreditsProps } from '../types/tvCreditsProps';
-import { tvLinksProps } from '../types/tvLinksProps';
+import { movieDetailProps } from '../types/Movie/movieDetailProps';
+import { movieCreditsProps } from '../types/Movie/movieCreditsProps';
+import { movieProvidersProps } from '../types/Movie/movieProvidersProps';
+import { tvDetailProps } from '../types/TV/tvDetailProps';
+import { tvCreditsProps } from '../types/TV/tvCreditsProps';
+import { tvLinksProps } from '../types/TV/tvLinksProps';
 import { keyWordsProps } from '../types/keyWordsProps';
-import { collectionProps } from '../types/collectionProps';
-import { tvSeasonDetailProps } from '../types/tvSeasonDetailProps';
+import { collectionProps } from '../types/Movie/collectionProps';
+import { tvSeasonDetailProps } from '../types/TV/tvSeasonDetailProps';
 
 export const apiOptions = {
     method: 'GET',
