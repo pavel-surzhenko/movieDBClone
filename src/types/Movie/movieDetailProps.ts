@@ -1,13 +1,10 @@
+import { tvDetailProps, tvCreditsProps } from '../TV';
 import { movieCreditsProps } from './movieCreditsProps';
-import { movieProps } from './movieProps';
-import { tvCreditsProps } from '../TV/tvCreditsProps';
-import { tvDetailProps } from '../TV/tvDetailProps';
-import { tvProps } from '../TV/tvProps';
 
 export interface movieDetailProps {
     adult: boolean;
     backdrop_path: string;
-    belongs_to_collection: collection | null;
+    belongs_to_collection: movieCollection | null;
     budget: number;
     genres: genres[];
     homepage: string;
@@ -37,13 +34,7 @@ export interface movieDetailsHeaderProps {
     movieCredits: movieCreditsProps | tvCreditsProps;
 }
 
-export interface OutletContextType {
-    movieCredits: movieCreditsProps | tvCreditsProps;
-    movieData: movieDetailProps | tvDetailProps;
-    recommendations: movieProps[] | tvProps[];
-}
-
-export type collection = {
+export type movieCollection = {
     id: number;
     name: string;
     poster_path: string;

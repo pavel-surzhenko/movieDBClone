@@ -1,14 +1,21 @@
+// React & Libraries
 import { Link, useOutletContext } from 'react-router-dom';
-import { OutletContextType } from '../types/Movie/movieDetailProps';
-import { getColor } from 'color-thief-react';
 import { useState, useContext, useEffect, Suspense } from 'react';
-import { Context } from '../lib/context';
-import { baseUrlImg } from '../lib/links';
-import Container from './Container';
-import LeftArrow from '../assets/LeftArrow';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { getColor } from 'color-thief-react';
+
+// Components
+import Container from './Container';
 import LoadingModel from './LoadingModel';
-import Star from '../assets/Star';
+
+// Assets
+import { LeftArrow, Star } from '../assets';
+
+// Types
+import { OutletContextType } from '../types/OutletContextType';
+
+// Other
+import { Context, baseUrlImg } from '../lib';
 
 const SeasonsCollection = () => {
     const { movieData }: OutletContextType = useOutletContext();

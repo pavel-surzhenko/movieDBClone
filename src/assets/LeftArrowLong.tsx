@@ -1,4 +1,4 @@
-const LeftArrowLong = () => {
+export const LeftArrowLong = () => {
     return (
         <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -16,5 +16,3 @@ const LeftArrowLong = () => {
         </svg>
     );
 };
-
-export default LeftArrowLong;

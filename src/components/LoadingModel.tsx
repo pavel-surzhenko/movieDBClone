@@ -1,3 +1,4 @@
+// Types
 import { loadingModelProps } from '../types/loadingModelProps';
 
 const LoadingModel: React.FC<loadingModelProps> = ({ width, height }) => {

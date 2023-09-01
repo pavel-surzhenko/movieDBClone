@@ -1,0 +1,12 @@
+export { CloseIcon } from './CloseIcon';
+export { CustomLink } from './CustomLink';
+export { Facebook } from './Facebook';
+export { IMDB } from './IMDB';
+export { Instagram } from './Instagram';
+export { LeftArrow } from './LeftArrow';
+export { LeftArrowLong } from './LeftArrowLong';
+export { MenuIcon } from './MenuIcon';
+export { MoreInfoIcon } from './MoreInfoIcon';
+export { RightArrowLong } from './RightArrowLong';
+export { Star } from './Star';
+export { Twitter } from './Twitter';

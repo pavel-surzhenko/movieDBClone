@@ -1,7 +1,9 @@
+// React & Libraries
 import React, { Suspense } from 'react';
-import Container from '../components/Container';
 import { Helmet } from 'react-helmet';
 
+// Components
+import Container from '../components/Container';
 import Welcome from '../components/Welcome';
 import Spinner from '../components/Spinner';
 

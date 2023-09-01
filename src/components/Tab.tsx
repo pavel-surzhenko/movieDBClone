@@ -1,6 +1,11 @@
+// React & Libraries
 import { useContext } from 'react';
-import { Context } from '../lib/context';
+
+// Types
 import { tabProps, tabObj } from '../types/tabProps';
+
+// Other
+import { Context } from '../lib';
 
 const Tab: React.FC<tabProps> = ({ openTab, onTabChange, tabs }) => {
     const { language } = useContext(Context);

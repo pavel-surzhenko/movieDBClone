@@ -1,10 +1,17 @@
-import { Suspense, useContext } from 'react';
-import { movieCreditsProps } from '../types/Movie/movieCreditsProps';
-import { Context } from '../lib/context';
-import { Link } from 'react-router-dom';
-import LoadingModel from './LoadingModel';
+// React & Libraries
 import React from 'react';
-import { tvCreditsProps } from '../types/TV/tvCreditsProps';
+import { Suspense, useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+// Components
+import LoadingModel from './LoadingModel';
+
+// Types
+import { movieCreditsProps } from '../types/Movie';
+import { tvCreditsProps } from '../types/TV';
+
+// Other
+import { Context } from '../lib';
 
 const PersonCard = React.lazy(() => import('./PersonCard'));
 

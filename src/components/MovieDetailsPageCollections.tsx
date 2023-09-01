@@ -1,10 +1,14 @@
+// React & Libraries
 import { Link } from 'react-router-dom';
-import { baseUrlImg } from '../lib/links';
-import { collection } from '../types/Movie/movieDetailProps';
 import { useContext } from 'react';
-import { Context } from '../lib/context';
 
-const MovieDetailsPageCollections: React.FC<collection> = (props) => {
+// Types
+import { movieCollection } from '../types/Movie';
+
+// Other
+import { baseUrlImg, Context } from '../lib';
+
+const MovieDetailsPageCollections: React.FC<movieCollection> = (props) => {
     const { language } = useContext(Context);
 
     return (

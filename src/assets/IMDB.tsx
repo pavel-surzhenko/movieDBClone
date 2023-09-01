@@ -1,4 +1,4 @@
-const IMDB = () => {
+export const IMDB = () => {
     return (
         <svg
             fill='#000000'
@@ -13,4 +13,3 @@ const IMDB = () => {
         </svg>
     );
 };
-export default IMDB;

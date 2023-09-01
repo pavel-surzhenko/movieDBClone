@@ -1,4 +1,4 @@
-const Facebook = () => {
+export const Facebook = () => {
     return (
         <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -16,5 +16,3 @@ const Facebook = () => {
         </svg>
     );
 };
-
-export default Facebook;

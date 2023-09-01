@@ -1,4 +1,4 @@
-const Star = () => {
+export const Star = () => {
     return (
         <svg
             id='glyphicons-basic'
@@ -14,5 +14,3 @@ const Star = () => {
         </svg>
     );
 };
-
-export default Star;

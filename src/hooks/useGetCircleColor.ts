@@ -1,4 +1,4 @@
-export const getCircleColor = (voteAverage: number) => {
+export const useGetCircleColor = (voteAverage: number) => {
     if (voteAverage < 5) {
         return '#db2360';
     } else if (voteAverage < 7) {

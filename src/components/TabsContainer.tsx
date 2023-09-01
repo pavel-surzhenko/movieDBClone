@@ -1,8 +1,13 @@
-import { movieProps } from '../types/Movie/movieProps';
-import { tvProps } from '../types/TV/tvProps';
-import { tabContainerProps } from '../types/tabProps';
+// React & Libraries
 import React, { Suspense } from 'react';
+
+// Components
 import LoadingModel from './LoadingModel';
+
+// Types
+import { movieProps } from '../types/Movie';
+import { tvProps } from '../types/TV';
+import { tabContainerProps } from '../types/tabProps';
 
 const MovieCard = React.lazy(() => import('./MovieCard'));
 

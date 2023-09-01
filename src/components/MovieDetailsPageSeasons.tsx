@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
-import { baseUrlImg } from '../lib/links';
-import { tvSeasonsProps } from '../types/tvSeasonsProps';
+// React & Libraries
 import { useContext } from 'react';
-import { Context } from '../lib/context';
+import { Link } from 'react-router-dom';
+
+// Other
+import { baseUrlImg, Context } from '../lib';
+
+// Types
+import { tvSeasonsProps } from '../types/TV';
 
 const MovieDetailsPageSeasons: React.FC<{ seasons: tvSeasonsProps[] }> = ({ seasons }) => {
     const { language } = useContext(Context);

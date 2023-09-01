@@ -14,6 +14,3 @@ export interface movieProps {
     vote_average: number;
     vote_count: number;
 }
-export interface movieResponse {
-    results: movieProps[];
-}

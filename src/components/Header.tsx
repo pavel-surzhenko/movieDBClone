@@ -1,6 +1,11 @@
+// React & Libraries
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from '../lib/context';
+
+// Other
+import { Context } from '../lib';
+
+// Assets
 import logoSvg from '../assets/logo.svg';
 
 const Header = () => {

@@ -1,4 +1,4 @@
-const Instagram = () => {
+export const Instagram = () => {
     return (
         <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -30,5 +30,3 @@ const Instagram = () => {
         </svg>
     );
 };
-
-export default Instagram;

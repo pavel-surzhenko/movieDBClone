@@ -1,9 +1,16 @@
+// React & Libraries
 import { useContext, useEffect, useState } from 'react';
+
+// Components
 import Tab from './Tab';
 import TabsContainer from './TabsContainer';
+
+// Types
+import { movieProps } from '../types/Movie';
+
+// Other
 import { api } from '../api/api';
-import { movieProps } from '../types/Movie/movieProps';
-import { Context } from '../lib/context';
+import { Context } from '../lib';
 
 const TrendingMovies = () => {
     const [openTab, setOpenTab] = useState(0);

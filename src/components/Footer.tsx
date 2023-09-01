@@ -1,6 +1,11 @@
-import Container from './Container';
-import logoSvg from '../assets/logo.svg';
+// React & Libraries
 import { Link } from 'react-router-dom';
+
+// Components
+import Container from './Container';
+
+// Assets
+import logoSvg from '../assets/logo.svg';
 
 const Footer = () => {
     return (

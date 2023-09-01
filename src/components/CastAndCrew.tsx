@@ -1,14 +1,24 @@
+// React & Libraries
 import { Link, useOutletContext } from 'react-router-dom';
-import { OutletContextType } from '../types/Movie/movieDetailProps';
-import Container from './Container';
-import { getColor } from 'color-thief-react';
 import { useState, useEffect, useContext } from 'react';
-import { baseUrlImg } from '../lib/links';
-import LeftArrow from '../assets/LeftArrow';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import LoadingModel from './LoadingModel';
+import { getColor } from 'color-thief-react';
+
+// CSS
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { Context } from '../lib/context';
+
+// Components
+import Container from './Container';
+import LoadingModel from './LoadingModel';
+
+// Assets
+import { LeftArrow } from '../assets';
+
+// Other
+import { Context, baseUrlImg } from '../lib';
+
+// Types
+import { OutletContextType } from '../types/OutletContextType';
 
 const CastAndCrew = () => {
     const { movieCredits, movieData }: OutletContextType = useOutletContext();

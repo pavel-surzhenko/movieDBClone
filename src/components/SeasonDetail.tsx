@@ -1,18 +1,23 @@
-import { Link, useOutletContext, useParams } from 'react-router-dom';
-import { OutletContextType } from '../types/Movie/movieDetailProps';
+// React & Libraries
 import { Suspense, useContext, useEffect, useState } from 'react';
-import { api } from '../api/api';
-import { Context } from '../lib/context';
-import { tvSeasonDetailProps } from '../types/TV/tvSeasonDetailProps';
+import { Link, useOutletContext, useParams } from 'react-router-dom';
 import { getColor } from 'color-thief-react';
-import LeftArrow from '../assets/LeftArrow';
-import { baseUrlImg } from '../lib/links';
-import Container from './Container';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+// Components
+import Container from './Container';
 import LoadingModel from './LoadingModel';
-import Star from '../assets/Star';
-import LeftArrowLong from '../assets/LeftArrowLong';
-import RightArrowLong from '../assets/RightArrowLong';
+
+// Assets
+import { LeftArrow, LeftArrowLong, RightArrowLong, Star } from '../assets';
+
+// Types
+import { OutletContextType } from '../types/OutletContextType';
+import { tvSeasonDetailProps } from '../types/TV';
+
+// Other
+import { api } from '../api/api';
+import { Context, baseUrlImg } from '../lib';
 
 const SeasonDetail = () => {
     const { movieData }: OutletContextType = useOutletContext();

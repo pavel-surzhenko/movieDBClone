@@ -1,6 +1,8 @@
+// React & Libraries
 import { useContext, useEffect, useState } from 'react';
-import { baseUrlImg } from '../lib/links';
-import { Context } from '../lib/context';
+
+// Other
+import { baseUrlImg, Context } from '../lib';
 
 const Welcome = () => {
     const [image, setImage] = useState<string>('');

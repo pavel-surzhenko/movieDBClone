@@ -1,7 +1,14 @@
+// React & Libraries
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { baseUrlImg } from '../lib/links';
-import { cast, crew } from '../types/Movie/movieCreditsProps';
+
+// Component
 import LoadingModel from './LoadingModel';
+
+// Types
+import { cast, crew } from '../types/Movie';
+
+// Other
+import { baseUrlImg } from '../lib';
 
 const PersonCard: React.FC<cast | crew> = (props) => {
     const person_role = 'character' in props ? props.character : props.job;

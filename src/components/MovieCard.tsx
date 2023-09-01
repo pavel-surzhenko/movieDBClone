@@ -1,17 +1,28 @@
+// React & Libraries
 import { useContext } from 'react';
-import { Context } from '../lib/context';
-import { baseUrlImg } from '../lib/links';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-import { movieProps } from '../types/Movie/movieProps';
-import { tvProps } from '../types/TV/tvProps';
-import MoreInfoIcon from '../assets/MoreInfoIcon';
-import { Link } from 'react-router-dom';
-import { getCircleColor } from '../hooks/useGetCircleColor';
-import { getTrailColor } from '../hooks/useGetTrailColor';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { Link } from 'react-router-dom';
+
+// Components
 import LoadingModel from './LoadingModel';
+
+// Assets
+import { MoreInfoIcon } from '../assets';
+
+// Types
+import { movieProps } from '../types/Movie';
+import { tvProps } from '../types/TV';
+
+// Hooks
+import { useGetCircleColor, useGetTrailColor } from '../hooks';
+
+// Other
+import { Context, baseUrlImg } from '../lib';
+
+// CSS
+import 'react-circular-progressbar/dist/styles.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);
@@ -81,9 +92,9 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                         text={`${Math.round(props.vote_average * 10)}`}
                         background
                         styles={buildStyles({
-                            pathColor: `${getCircleColor(props.vote_average)}`,
+                            pathColor: `${useGetCircleColor(props.vote_average)}`,
                             textColor: '#fff',
-                            trailColor: `${getTrailColor(props.vote_average)}`,
+                            trailColor: `${useGetTrailColor(props.vote_average)}`,
                             backgroundColor: '#001C22',
                             textSize: '35px',
                         })}

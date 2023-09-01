@@ -1,19 +1,22 @@
+// React & Libraries
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { ContextProvider } from './lib/context';
-import MainPage from './pages/MainPage';
-import MovieDetailPage from './pages/MovieDetailPage';
-import RootLayout from './components/RootLayout';
-import NoFindPage from './pages/NoFindPage';
-import MoviePage from './pages/MoviePage';
-import ErrorPage from './pages/ErrorPage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+// Components
 import CastAndCrew from './components/CastAndCrew';
-import MovieDetails from './components/MovieDetails';
 import MovieCollection from './components/MovieCollection';
-import SeasonsCollection from './components/SeasonsCollection';
+import MovieDetails from './components/MovieDetails';
+import RootLayout from './components/RootLayout';
 import SeasonDetail from './components/SeasonDetail';
+import SeasonsCollection from './components/SeasonsCollection';
+import { ContextProvider } from './lib';
+
+// Pages
+import { MainPage, MoviePage, MovieDetailPage, NoFindPage, ErrorPage } from './pages';
+
+// CSS
+import './index.css';
 
 const router = createBrowserRouter([
     {

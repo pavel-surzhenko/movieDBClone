@@ -1,8 +1,8 @@
-import { crew } from '../Movie/movieCreditsProps';
+import { crew } from '../Movie';
 export interface tvSeasonDetailProps {
     _id: string;
     air_date: string;
-    episodes: episod[];
+    episodes: episode[];
     name: string;
     overview: string;
     id: number;
@@ -11,7 +11,7 @@ export interface tvSeasonDetailProps {
     vote_average: number;
 }
 
-type episod = {
+type episode = {
     air_date: string;
     episode_number: number;
     episode_type: string;

@@ -1,4 +1,7 @@
+// React & Libraries
 import { Link } from 'react-router-dom';
+
+// Components
 import Container from '../components/Container';
 
 export const ErrorPage = () => {

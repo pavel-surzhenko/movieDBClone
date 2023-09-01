@@ -1,13 +1,18 @@
+// React & Libraries
 import React from 'react';
 import { Suspense } from 'react';
-
 import { useOutletContext } from 'react-router-dom';
-import { OutletContextType } from '../types/Movie/movieDetailProps';
+
+// Types
+import { OutletContextType } from '../types/OutletContextType';
+
+// Components
 import MovieDetailsPageSideBar from './MovieDetailsPageSideBar';
 import Container from './Container';
 import MovieDetailsPageCollections from './MovieDetailsPageCollections';
 import MovieDetailsPageSeasons from './MovieDetailsPageSeasons';
 
+// Lazy
 const MovieDetailsPageHeader = React.lazy(() => import('../components/MovieDetailsPageHeader'));
 const MovieDetailsPageCast = React.lazy(() => import('../components/MovieDetailsPageCast'));
 const MovieDetailsPageRecommendations = React.lazy(

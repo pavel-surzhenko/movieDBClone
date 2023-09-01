@@ -1,4 +1,4 @@
-const MoreInfoIcon = () => {
+export const MoreInfoIcon = () => {
     return (
         <svg
             id='glyphicons-basic'
@@ -13,5 +13,3 @@ const MoreInfoIcon = () => {
         </svg>
     );
 };
-
-export default MoreInfoIcon;

@@ -1,10 +1,15 @@
+// React & Libraries
 import React, { Suspense, useContext, useEffect, useState } from 'react';
-import { Context } from '../lib/context';
-import { baseUrlImg } from '../lib/links';
 import Modal from 'react-modal';
+
+// Components
 import ModalTrailer from './ModalTrailer';
 import Spinner from './Spinner';
 
+// Other
+import { Context, baseUrlImg } from '../lib';
+
+// Lazy
 const TrailerCard = React.lazy(() => import('./TrailerCard'));
 
 const PopularTrailers = () => {

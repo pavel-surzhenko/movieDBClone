@@ -1,4 +1,4 @@
-const Twitter = () => {
+export const Twitter = () => {
     return (
         <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -16,5 +16,3 @@ const Twitter = () => {
         </svg>
     );
 };
-
-export default Twitter;

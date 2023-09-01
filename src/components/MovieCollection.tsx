@@ -1,14 +1,20 @@
+// React & Libraries
 import { Suspense, useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { api } from '../api/api';
-import { Context } from '../lib/context';
-import { collectionProps } from '../types/Movie/collectionProps';
-import { baseUrlImg } from '../lib/links';
-import { ArrayRGB } from 'color-thief-react/lib/types';
-import { getColor } from 'color-thief-react';
-import Container from './Container';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { getColor } from 'color-thief-react';
+
+// Components
 import LoadingModel from './LoadingModel';
+import Container from './Container';
+
+// Types
+import { ArrayRGB } from 'color-thief-react/lib/types';
+
+// Other
+import { api } from '../api/api';
+import { Context, baseUrlImg } from '../lib';
+import { collectionProps } from '../types/Movie';
 
 const MovieCollection = () => {
     const { id } = useParams();

@@ -1,17 +1,23 @@
+// React & Libraries
 import Modal from 'react-modal';
-import ModalTrailer from '../components/ModalTrailer';
-import { getCircleColor } from '../hooks/useGetCircleColor';
-import { getTrailColor } from '../hooks/useGetTrailColor';
-import { baseUrlImg } from '../lib/links';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import Container from '../components/Container';
-import { movieDetailsHeaderProps } from '../types/Movie/movieDetailProps';
 import { useContext, useEffect, useState } from 'react';
-import { Context } from '../lib/context';
 import { useLocation, useParams } from 'react-router-dom';
-import { api } from '../api/api';
-import { movieProvidersProps } from '../types/Movie/movieProvidersProps';
 import { getColor } from 'color-thief-react';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+
+// Components
+import ModalTrailer from '../components/ModalTrailer';
+import Container from '../components/Container';
+
+// Hooks
+import { useGetCircleColor, useGetTrailColor } from '../hooks';
+
+// Other
+import { baseUrlImg, Context } from '../lib';
+import { api } from '../api/api';
+
+// Types
+import { movieDetailsHeaderProps, movieProvidersProps } from '../types/Movie';
 import { ArrayRGB } from 'color-thief-react/lib/types';
 
 const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
@@ -157,11 +163,11 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             )}`}
                                             background
                                             styles={buildStyles({
-                                                pathColor: `${getCircleColor(
+                                                pathColor: `${useGetCircleColor(
                                                     movieDetails?.vote_average || 0
                                                 )}`,
                                                 textColor: '#fff',
-                                                trailColor: `${getTrailColor(
+                                                trailColor: `${useGetTrailColor(
                                                     movieDetails?.vote_average || 0
                                                 )}`,
                                                 backgroundColor: '#001C22',

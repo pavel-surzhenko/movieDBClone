@@ -1,4 +1,4 @@
-const CloseIcon = () => {
+export const CloseIcon = () => {
     return (
         <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -16,5 +16,3 @@ const CloseIcon = () => {
         </svg>
     );
 };
-
-export default CloseIcon;

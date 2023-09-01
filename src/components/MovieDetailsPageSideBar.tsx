@@ -1,16 +1,18 @@
-import Facebook from '../assets/Facebook';
-import IMDB from '../assets/IMDB';
-import Instagram from '../assets/Instagram';
-import CustomLink from '../assets/CustomLink';
-import Twitter from '../assets/Twitter';
-import { movieDetailProps } from '../types/Movie/movieDetailProps';
-import { tvDetailProps } from '../types/TV/tvDetailProps';
+// React & Libraries
 import { Link, useLocation } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { api } from '../api/api';
-import { tvLinksProps } from '../types/TV/tvLinksProps';
+
+// Assets
+import { Instagram, Twitter, Facebook, IMDB, CustomLink } from '../assets';
+
+// Types
+import { movieDetailProps } from '../types/Movie';
+import { tvDetailProps, tvLinksProps } from '../types/TV';
 import { keyWordsProps } from '../types/keyWordsProps';
-import { Context } from '../lib/context';
+
+// Other
+import { api } from '../api/api';
+import { Context } from '../lib';
 
 const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (props) => {
     const [links, setLinks] = useState<tvLinksProps>();
