@@ -2,16 +2,16 @@
 import { useRef, useEffect, useState, useContext } from 'react';
 
 // Components
-import Spinner from './Spinner';
+import Spinner from '../Spinner';
 
 // Other
-import { YOUTUBE_BASE, Context } from '../lib';
+import { YOUTUBE_BASE, Context } from '../../lib';
 
 // Types
-import { modalTrailerProps } from '../types/Trailer';
+import { modalTrailerProps } from '../../types/Trailer';
 
 // Hooks
-import { useFetchTrailer } from '../hooks';
+import { useFetchTrailer } from '../../hooks';
 
 const ModalTrailer: React.FC<modalTrailerProps> = (props) => {
     const { language } = useContext(Context);

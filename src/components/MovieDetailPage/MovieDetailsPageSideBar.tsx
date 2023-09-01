@@ -3,16 +3,16 @@ import { Link, useLocation } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 
 // Assets
-import { Instagram, Twitter, Facebook, IMDB, CustomLink } from '../assets';
+import { Instagram, Twitter, Facebook, IMDB, CustomLink } from '../../assets';
 
 // Types
-import { movieDetailProps } from '../types/Movie';
-import { tvDetailProps, tvLinksProps } from '../types/TV';
-import { keyWordsProps } from '../types/keyWordsProps';
+import { movieDetailProps } from '../../types/Movie';
+import { tvDetailProps, tvLinksProps } from '../../types/TV';
+import { keyWordsProps } from '../../types/keyWordsProps';
 
 // Other
-import { api } from '../api/api';
-import { Context } from '../lib';
+import { api } from '../../api/api';
+import { Context } from '../../lib';
 
 const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (props) => {
     const [links, setLinks] = useState<tvLinksProps>();

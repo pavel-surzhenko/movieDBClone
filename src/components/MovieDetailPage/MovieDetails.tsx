@@ -4,19 +4,19 @@ import { Suspense } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 // Types
-import { OutletContextType } from '../types/OutletContextType';
+import { OutletContextType } from '../../types/OutletContextType';
 
 // Components
 import MovieDetailsPageSideBar from './MovieDetailsPageSideBar';
-import Container from './Container';
+import Container from '../Container';
 import MovieDetailsPageCollections from './MovieDetailsPageCollections';
 import MovieDetailsPageSeasons from './MovieDetailsPageSeasons';
 
 // Lazy
-const MovieDetailsPageHeader = React.lazy(() => import('../components/MovieDetailsPageHeader'));
-const MovieDetailsPageCast = React.lazy(() => import('../components/MovieDetailsPageCast'));
+const MovieDetailsPageHeader = React.lazy(() => import('./MovieDetailsPageHeader'));
+const MovieDetailsPageCast = React.lazy(() => import('./MovieDetailsPageCast'));
 const MovieDetailsPageRecommendations = React.lazy(
-    () => import('../components/MovieDetailsPageRecommendations')
+    () => import('./MovieDetailsPageRecommendations')
 );
 
 const MovieDetails = () => {

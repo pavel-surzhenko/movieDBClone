@@ -6,18 +6,18 @@ import { getColor } from 'color-thief-react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
 // Components
-import ModalTrailer from '../components/ModalTrailer';
-import Container from '../components/Container';
+import ModalTrailer from '../Trailer/ModalTrailer';
+import Container from '../Container';
 
 // Hooks
-import { useGetCircleColor, useGetTrailColor } from '../hooks';
+import { useGetCircleColor, useGetTrailColor } from '../../hooks';
 
 // Other
-import { baseUrlImg, Context } from '../lib';
-import { api } from '../api/api';
+import { baseUrlImg, Context } from '../../lib';
+import { api } from '../../api/api';
 
 // Types
-import { movieDetailsHeaderProps, movieProvidersProps } from '../types/Movie';
+import { movieDetailsHeaderProps, movieProvidersProps } from '../../types/Movie';
 import { ArrayRGB } from 'color-thief-react/lib/types';
 
 const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({

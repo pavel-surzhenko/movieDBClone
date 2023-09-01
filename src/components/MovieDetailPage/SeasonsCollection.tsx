@@ -5,17 +5,17 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getColor } from 'color-thief-react';
 
 // Components
-import Container from './Container';
-import LoadingModel from './LoadingModel';
+import Container from '../Container';
+import LoadingModel from '../LoadingModel';
 
 // Assets
-import { LeftArrow, Star } from '../assets';
+import { LeftArrow, Star } from '../../assets';
 
 // Types
-import { OutletContextType } from '../types/OutletContextType';
+import { OutletContextType } from '../../types/OutletContextType';
 
 // Other
-import { Context, baseUrlImg } from '../lib';
+import { Context, baseUrlImg } from '../../lib';
 
 const SeasonsCollection = () => {
     const { movieData }: OutletContextType = useOutletContext();

@@ -8,17 +8,17 @@ import { getColor } from 'color-thief-react';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 // Components
-import Container from './Container';
-import LoadingModel from './LoadingModel';
+import Container from '../Container';
+import LoadingModel from '../LoadingModel';
 
 // Assets
-import { LeftArrow } from '../assets';
+import { LeftArrow } from '../../assets';
 
 // Other
-import { Context, baseUrlImg } from '../lib';
+import { Context, baseUrlImg } from '../../lib';
 
 // Types
-import { OutletContextType } from '../types/OutletContextType';
+import { OutletContextType } from '../../types/OutletContextType';
 
 const CastAndCrew = () => {
     const { movieCredits, movieData }: OutletContextType = useOutletContext();

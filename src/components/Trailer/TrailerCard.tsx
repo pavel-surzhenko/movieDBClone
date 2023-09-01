@@ -2,10 +2,10 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // Types
-import { trailerProps } from '../types/Trailer';
+import { trailerProps } from '../../types/Trailer';
 
 // Other
-import { baseUrlImg } from '../lib';
+import { baseUrlImg } from '../../lib';
 
 // CSS
 import 'react-lazy-load-image-component/src/effects/blur.css';

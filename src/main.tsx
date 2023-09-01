@@ -4,12 +4,12 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Components
-import CastAndCrew from './components/CastAndCrew';
-import MovieCollection from './components/MovieCollection';
-import MovieDetails from './components/MovieDetails';
+import CastAndCrew from './components/MovieDetailPage/CastAndCrew';
+import MovieCollection from './components/MovieDetailPage/MovieCollection';
+import MovieDetails from './components/MovieDetailPage/MovieDetails';
 import RootLayout from './components/RootLayout';
-import SeasonDetail from './components/SeasonDetail';
-import SeasonsCollection from './components/SeasonsCollection';
+import SeasonDetail from './components/MovieDetailPage/SeasonDetail';
+import SeasonsCollection from './components/MovieDetailPage/SeasonsCollection';
 import { ContextProvider } from './lib';
 
 // Pages

@@ -2,14 +2,14 @@
 import { useContext } from 'react';
 
 // Components
-import TabsContainer from './TabsContainer';
+import TabsContainer from '../TabsContainer';
 
 // Other
-import { Context } from '../lib';
+import { Context } from '../../lib';
 
 // Types
-import { movieProps } from '../types/Movie';
-import { tvProps } from '../types/TV';
+import { movieProps } from '../../types/Movie';
+import { tvProps } from '../../types/TV';
 
 const MovieDetailsPageRecommendations: React.FC<{
     recommendations: movieProps[] | tvProps[];

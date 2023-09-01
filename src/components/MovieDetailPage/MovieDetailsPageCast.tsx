@@ -4,16 +4,16 @@ import { Suspense, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // Components
-import LoadingModel from './LoadingModel';
+import LoadingModel from '../LoadingModel';
 
 // Types
-import { movieCreditsProps } from '../types/Movie';
-import { tvCreditsProps } from '../types/TV';
+import { movieCreditsProps } from '../../types/Movie';
+import { tvCreditsProps } from '../../types/TV';
 
 // Other
-import { Context } from '../lib';
+import { Context } from '../../lib';
 
-const PersonCard = React.lazy(() => import('./PersonCard'));
+const PersonCard = React.lazy(() => import('../PersonCard'));
 
 const MovieDetailsPageCast: React.FC<movieCreditsProps | tvCreditsProps> = ({ cast }) => {
     const { language } = useContext(Context);

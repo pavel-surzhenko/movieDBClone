@@ -2,19 +2,19 @@
 import { useContext, useEffect, useState } from 'react';
 
 // Components
-import Tab from './Tab';
-import TabsContainer from './TabsContainer';
-
-// Other
-import { Context } from '../lib';
-import { api } from '../api/api';
+import Tab from '../Tab';
+import TabsContainer from '../TabsContainer';
 
 // Types
-import { tvProps } from '../types/TV';
+import { movieProps } from '../../types/Movie';
 
-const TrendingTV = () => {
+// Other
+import { api } from '../../api/api';
+import { Context } from '../../lib';
+
+const TrendingMovies = () => {
     const [openTab, setOpenTab] = useState(0);
-    const [trendingTV, setTrendingTV] = useState<tvProps[]>([]);
+    const [trendingMovies, setTrendingMovies] = useState<movieProps[]>([]);
     const [trendingInterval, setTrendingInterval] = useState<string>('day');
     const { language } = useContext(Context);
 
@@ -29,10 +29,10 @@ const TrendingTV = () => {
     ];
 
     useEffect(() => {
-        api.tv
-            .getTrendingTV(trendingInterval, language)
+        api.movies
+            .getTrendingMovies(trendingInterval, language)
             .then((data) => {
-                setTrendingTV(data);
+                setTrendingMovies(data);
             })
             .catch();
     }, [trendingInterval, language]);
@@ -41,7 +41,7 @@ const TrendingTV = () => {
         <section className={`pt-[30px] pl-5 relative bg-trending-bg bg-no-repeat bg-[50%_200px]`}>
             <div className='flex items-center'>
                 <h3 className='title-black'>
-                    {language === 'en-US' ? 'Trending TV' : 'Серіали у тренді'}
+                    {language === 'en-US' ? 'Trending Movies' : 'Фільми у тренді'}
                 </h3>
                 <div>
                     <Tab
@@ -51,9 +51,9 @@ const TrendingTV = () => {
                     />
                 </div>
             </div>
-            <TabsContainer movies={trendingTV} />
+            <TabsContainer movies={trendingMovies} />
         </section>
     );
 };
 
-export default TrendingTV;
+export default TrendingMovies;

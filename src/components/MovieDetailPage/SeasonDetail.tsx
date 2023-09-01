@@ -5,19 +5,19 @@ import { getColor } from 'color-thief-react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // Components
-import Container from './Container';
-import LoadingModel from './LoadingModel';
+import Container from '../Container';
+import LoadingModel from '../LoadingModel';
 
 // Assets
-import { LeftArrow, LeftArrowLong, RightArrowLong, Star } from '../assets';
+import { LeftArrow, LeftArrowLong, RightArrowLong, Star } from '../../assets';
 
 // Types
-import { OutletContextType } from '../types/OutletContextType';
-import { tvSeasonDetailProps } from '../types/TV';
+import { OutletContextType } from '../../types/OutletContextType';
+import { tvSeasonDetailProps } from '../../types/TV';
 
 // Other
-import { api } from '../api/api';
-import { Context, baseUrlImg } from '../lib';
+import { api } from '../../api/api';
+import { Context, baseUrlImg } from '../../lib';
 
 const SeasonDetail = () => {
     const { movieData }: OutletContextType = useOutletContext();

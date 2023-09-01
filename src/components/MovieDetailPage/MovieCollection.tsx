@@ -5,16 +5,16 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getColor } from 'color-thief-react';
 
 // Components
-import LoadingModel from './LoadingModel';
-import Container from './Container';
+import LoadingModel from '../LoadingModel';
+import Container from '../Container';
 
 // Types
 import { ArrayRGB } from 'color-thief-react/lib/types';
 
 // Other
-import { api } from '../api/api';
-import { Context, baseUrlImg } from '../lib';
-import { collectionProps } from '../types/Movie';
+import { api } from '../../api/api';
+import { Context, baseUrlImg } from '../../lib';
+import { collectionProps } from '../../types/Movie';
 
 const MovieCollection = () => {
     const { id } = useParams();

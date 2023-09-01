@@ -3,14 +3,14 @@ import React, { Suspense, useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 
 // Components
-import ModalTrailer from './ModalTrailer';
-import Spinner from './Spinner';
+import ModalTrailer from '../Trailer/ModalTrailer';
+import Spinner from '../Spinner';
 
 // Other
-import { Context, baseUrlImg } from '../lib';
+import { Context, baseUrlImg } from '../../lib';
 
 // Lazy
-const TrailerCard = React.lazy(() => import('./TrailerCard'));
+const TrailerCard = React.lazy(() => import('../Trailer/TrailerCard'));
 
 const PopularTrailers = () => {
     const { language, movies } = useContext(Context);
