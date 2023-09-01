@@ -30,7 +30,7 @@ const TrendingMovies = () => {
 
     useEffect(() => {
         api.movies
-            .getTrendingMovies(trendingInterval, language)
+            .getTrending(trendingInterval, language)
             .then((data) => {
                 setTrendingMovies(data);
             })

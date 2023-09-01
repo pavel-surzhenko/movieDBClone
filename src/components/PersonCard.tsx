@@ -53,7 +53,7 @@ const PersonCard: React.FC<cast | crew> = (props) => {
                         </h2>
                     </div>
                 </div>
-                <div>
+                <div className='pb-2'>
                     <p className='text-black/60'>{person_role}</p>
                 </div>
             </div>

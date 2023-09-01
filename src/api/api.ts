@@ -36,7 +36,7 @@ export const api = {
         return results;
     },
     movies: {
-        async getTrendingMovies(time: string, language: string): Promise<movieProps[]> {
+        async getTrending(time: string, language: string): Promise<movieProps[]> {
             try {
                 const {
                     data: { results },
@@ -47,6 +47,20 @@ export const api = {
                 return results;
             } catch (error) {
                 throw new Error(`Failed to fetch movie trending: ${error}`);
+            }
+        },
+
+        async getPopular(page: number, language: string): Promise<movieProps[]> {
+            try {
+                const {
+                    data: { results },
+                } = await axios.get<movieResponseProps>(
+                    `${baseUrl}movie/popular?language=${language}&page=${page}`,
+                    apiOptions
+                );
+                return results;
+            } catch (error) {
+                throw new Error(`Failed to fetch popular movies: ${error}`);
             }
         },
 
