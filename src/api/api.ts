@@ -1,31 +1,34 @@
+// React & Libraries
 import axios from 'axios';
-import { movieProps, movieResponse } from '../types/Movie/movieProps';
-import { baseUrl } from '../lib/links';
-import { tvProps, tvResponse } from '../types/TV/tvProps';
-import { videoPropsResponse } from '../types/videoProps';
-import { movieDetailProps } from '../types/Movie/movieDetailProps';
-import { movieCreditsProps } from '../types/Movie/movieCreditsProps';
-import { movieProvidersProps } from '../types/Movie/movieProvidersProps';
-import { tvDetailProps } from '../types/TV/tvDetailProps';
-import { tvCreditsProps } from '../types/TV/tvCreditsProps';
-import { tvLinksProps } from '../types/TV/tvLinksProps';
-import { keyWordsProps } from '../types/keyWordsProps';
-import { collectionProps } from '../types/Movie/collectionProps';
-import { tvSeasonDetailProps } from '../types/TV/tvSeasonDetailProps';
 
-export const apiOptions = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${import.meta.env.VITE_TMDB_AUTH}`,
-    },
-};
+// Other
+import { baseUrl } from '../lib';
+import { apiOptions } from './options';
+
+// Types
+import { videoPropsResponse, keyWordsProps } from '../types';
+import {
+    movieProps,
+    movieDetailProps,
+    movieCreditsProps,
+    movieProvidersProps,
+    collectionProps,
+    movieResponseProps,
+} from '../types/Movie';
+import {
+    tvLinksProps,
+    tvProps,
+    tvDetailProps,
+    tvCreditsProps,
+    tvSeasonDetailProps,
+    tvResponseProps,
+} from '../types/TV';
 
 export const api = {
     async getTrendingAll(language: string): Promise<movieProps[]> {
         const {
             data: { results },
-        } = await axios.get<movieResponse>(
+        } = await axios.get<movieResponseProps>(
             `${baseUrl}trending/all/day?language=${language}`,
             apiOptions
         );
@@ -37,7 +40,7 @@ export const api = {
             try {
                 const {
                     data: { results },
-                } = await axios.get<movieResponse>(
+                } = await axios.get<movieResponseProps>(
                     `${baseUrl}trending/movie/${time}?language=${language}`,
                     apiOptions
                 );
@@ -99,7 +102,7 @@ export const api = {
             try {
                 const {
                     data: { results },
-                } = await axios.get<movieResponse>(
+                } = await axios.get<movieResponseProps>(
                     `${baseUrl}movie/${id}/recommendations?language=${language}`,
                     apiOptions
                 );
@@ -151,7 +154,7 @@ export const api = {
             try {
                 const {
                     data: { results },
-                } = await axios.get<tvResponse>(
+                } = await axios.get<tvResponseProps>(
                     `${baseUrl}trending/tv/${time}?language=${language}`,
                     apiOptions
                 );
@@ -189,7 +192,7 @@ export const api = {
             try {
                 const {
                     data: { results },
-                } = await axios.get<tvResponse>(
+                } = await axios.get<tvResponseProps>(
                     `${baseUrl}tv/${id}/recommendations?language=${language}`,
                     apiOptions
                 );
