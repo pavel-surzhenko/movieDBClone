@@ -47,7 +47,7 @@ export type collection = {
     id: number;
     name: string;
     poster_path: string;
-    backdrop_path: string;
+    backdrop_path: string | null;
 };
 
 type genres = {

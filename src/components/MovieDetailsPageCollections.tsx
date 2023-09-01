@@ -12,7 +12,7 @@ const MovieDetailsPageCollections: React.FC<collection> = (props) => {
             <div
                 className='mt-4 lg:my-[20px] lg:ml-10 min-h-[240px] rounded-md relative'
                 style={{
-                    background: props
+                    background: props.backdrop_path
                         ? `center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%), url(${baseUrlImg}/w1280${props.backdrop_path}) center / cover  no-repeat `
                         : `center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%)`,
                 }}

@@ -44,7 +44,7 @@ const MovieCollection = () => {
                 <div
                     className={`h-[200px] w-full lg:hidden relative`}
                     style={{
-                        background: collection
+                        background: collection?.backdrop_path
                             ? `url(${baseUrlImg}/w1280${collection?.backdrop_path}) calc((((100vw / 2.222) - 20px) / 1.5) /2) top / cover no-repeat `
                             : '',
                     }}
@@ -138,7 +138,7 @@ const MovieCollection = () => {
                             {collection?.parts.map((movie) => (
                                 <div
                                     key={movie.id}
-                                    className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex'
+                                    className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-delay-100 animate-ease-linear animate-fill-forwards'
                                 >
                                     <Link
                                         to={`/movie/${movie.id}`}
