@@ -41,7 +41,7 @@ export const MoviePage = () => {
                 <title>Movie -The Movie Data Base (TMDB)</title>
             </Helmet>
             <Container>
-                <div className='flex my-10 mx-3'>
+                <div className='flex my-10 mx-3 flex-col md:flex-row'>
                     <aside className='flex-none w-[260px]'>side bar</aside>
                     {movies && !loading ? (
                         <div>
