@@ -40,7 +40,7 @@ const PopularTrailers = () => {
 
     return (
         <section
-            className={`pt-[30px] pl-5 relative white-shadow`}
+            className={`pt-[30px] pl-5 relative white-shadow bg-blend-multiply`}
             style={{
                 background: backImg
                     ? `center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%), url(${baseUrlImg}/w1280${backImg}) center / cover  no-repeat `

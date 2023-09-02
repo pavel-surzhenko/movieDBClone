@@ -15,7 +15,7 @@ import { LeftArrow, Star } from '../../assets';
 import { OutletContextType } from '../../types/OutletContextType';
 
 // Other
-import { Context, baseUrlImg } from '../../lib';
+import { Context, baseUrlImg, dateOptions } from '../../lib';
 
 const SeasonsCollection = () => {
     const { movieData }: OutletContextType = useOutletContext();
@@ -23,11 +23,7 @@ const SeasonsCollection = () => {
     const { language } = useContext(Context);
     const [dominantColor, setDominantColor] = useState<string>();
     const name = movieData && 'name' in movieData ? movieData.name : null;
-    const dateOptions: Intl.DateTimeFormatOptions = {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    };
+
     const localLanguage = language.replace(`"`, '').slice(0, 2);
 
     useEffect(() => {
@@ -53,7 +49,7 @@ const SeasonsCollection = () => {
                                 className='object-contain w-full h-auto'
                             />
                         </div>
-                        <div className='text-white'>
+                        <div className='text-white flex flex-col justify-between'>
                             <h2 className='text-lg lg:text-3xl  font-bold'>{name}</h2>
                             <Link
                                 to='..'
@@ -70,13 +66,13 @@ const SeasonsCollection = () => {
             <Container>
                 <div className='px-5 lg:px-10 pt-[30px]'>
                     <Suspense>
-                        {seasons?.map((season, index) => (
+                        {seasons?.map((season) => (
                             <div
                                 key={season.id}
                                 className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-delay-100 animate-ease-linear animate-fill-forwards'
                             >
                                 <Link
-                                    to={`/tv/${movieData.id}/seasons/${index}`}
+                                    to={`/tv/${movieData.id}/seasons/${season.season_number}`}
                                     onClick={() => window.scrollTo(0, 0)}
                                 >
                                     <div className='max-w-[100px] min-w-[100px] cursor-pointer'>
@@ -117,7 +113,7 @@ const SeasonsCollection = () => {
                                 </Link>
                                 <div className='px-4 pt-2 font-semibold'>
                                     <Link
-                                        to={`/tv/${movieData.id}/seasons/${index}`}
+                                        to={`/tv/${movieData.id}/seasons/${season.season_number}`}
                                         onClick={() => window.scrollTo(0, 0)}
                                     >
                                         <h2 className='text-base lg:text-lg font-bold cursor-pointer hover:text-lightBlue transition-colors duration-300'>

@@ -8,6 +8,7 @@ import Container from '../components/Container';
 import Spinner from '../components/Spinner';
 import LoadingModel from '../components/LoadingModel';
 import MovieCard from '../components/MovieCard';
+import MovieCollectionCard from '../components/MovieCollectionCard';
 
 // Types
 import { movieProps } from '../types/Movie';
@@ -41,11 +42,11 @@ export const MoviePage = () => {
             </Helmet>
             <Container>
                 <div className='flex my-10 mx-3'>
-                    <aside className='flex-none lg:w-[260px]'>side bar</aside>
+                    <aside className='flex-none w-[260px]'>side bar</aside>
                     {movies && !loading ? (
                         <div>
                             <div className='flex flex-col items-center f'>
-                                <div className='grid grid-cols-5 gap-y-4 mb-5'>
+                                <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-y-4 mb-5'>
                                     {movies?.map((movie) => (
                                         <Suspense
                                             fallback={
@@ -56,24 +57,38 @@ export const MoviePage = () => {
                                             }
                                             key={movie.id}
                                         >
-                                            <MovieCard {...movie} />
+                                            {window.innerWidth >= 767 ? (
+                                                <MovieCard
+                                                    {...movie}
+                                                    key={movie.id}
+                                                />
+                                            ) : (
+                                                <MovieCollectionCard
+                                                    {...movie}
+                                                    key={movie.id}
+                                                />
+                                            )}
                                         </Suspense>
                                     ))}
                                 </div>
                                 <ReactPaginate
-                                    breakLabel='...'
+                                    breakLabel={`... `}
                                     nextLabel={<RightArrowLong />}
                                     onPageChange={(e) => {
                                         setPage(e.selected + 1);
                                     }}
+                                    forcePage={page - 1}
                                     pageRangeDisplayed={2}
                                     marginPagesDisplayed={3}
                                     pageCount={500}
                                     previousLabel={<LeftArrowLong />}
                                     renderOnZeroPageCount={null}
-                                    containerClassName='flex gap-3 text-lg items-center'
+                                    containerClassName='flex text-xl items-center'
+                                    pageClassName='mr-3'
+                                    breakClassName='mr-3'
                                     activeLinkClassName='text-white font-semibold bg-darkBlue px-2 rounded-lg'
                                     disabledLinkClassName='hidden'
+                                    previousClassName='mr-3'
                                 />
                             </div>
                         </div>

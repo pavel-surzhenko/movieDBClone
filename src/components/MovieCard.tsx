@@ -18,7 +18,7 @@ import { tvProps } from '../types/TV';
 import { useGetCircleColor, useGetTrailColor } from '../hooks';
 
 // Other
-import { Context, baseUrlImg } from '../lib';
+import { Context, baseUrlImg, dateOptions } from '../lib';
 
 // CSS
 import 'react-circular-progressbar/dist/styles.css';
@@ -26,12 +26,6 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const { language } = useContext(Context);
-
-    const dateOptions: Intl.DateTimeFormatOptions = {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    };
 
     const release_date = 'release_date' in props ? props.release_date : props.first_air_date;
 

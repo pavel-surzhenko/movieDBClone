@@ -94,6 +94,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                 </div>
             </div>
             <div
+                className='bg-blend-darken'
                 style={
                     window?.innerWidth >= 1024
                         ? {
@@ -105,6 +106,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                 }
             >
                 <div
+                    className='bg-blend-darken'
                     style={
                         window?.innerWidth >= 1024
                             ? {

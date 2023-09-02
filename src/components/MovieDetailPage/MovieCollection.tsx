@@ -1,33 +1,25 @@
 // React & Libraries
 import { Suspense, useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useParams } from 'react-router-dom';
 import { getColor } from 'color-thief-react';
 
 // Components
-import LoadingModel from '../LoadingModel';
 import Container from '../Container';
+import MovieCollectionCard from '../MovieCollectionCard';
 
 // Types
 import { ArrayRGB } from 'color-thief-react/lib/types';
+import { collectionProps } from '../../types/Movie';
 
 // Other
 import { api } from '../../api/api';
 import { Context, baseUrlImg } from '../../lib';
-import { collectionProps } from '../../types/Movie';
 
 const MovieCollection = () => {
     const { id } = useParams();
     const { language } = useContext(Context);
     const [collection, setCollection] = useState<collectionProps>();
     const [dominantColor, setDominantColor] = useState<ArrayRGB>([0, 0, 0]);
-
-    const dateOptions: Intl.DateTimeFormatOptions = {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    };
-    const localLanguage = language.replace(`"`, '').slice(0, 2);
 
     useEffect(() => {
         api.movies.getCollection(Number(id), language).then((data) => {
@@ -142,70 +134,10 @@ const MovieCollection = () => {
                     <div className='px-5 lg:px-10 pt-[30px]'>
                         <Suspense>
                             {collection?.parts.map((movie) => (
-                                <div
+                                <MovieCollectionCard
+                                    {...movie}
                                     key={movie.id}
-                                    className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-delay-100 animate-ease-linear animate-fill-forwards'
-                                >
-                                    <Link
-                                        to={`/movie/${movie.id}`}
-                                        onClick={() => window.scrollTo(0, 0)}
-                                    >
-                                        <div className='max-w-[90px] min-w-[90px] cursor-pointer'>
-                                            {movie.poster_path ? (
-                                                <LazyLoadImage
-                                                    src={`${baseUrlImg}/w200${movie.poster_path}`}
-                                                    alt={movie.title}
-                                                    className='w-full object-cover h-[150px] '
-                                                    effect='blur'
-                                                    placeholder={
-                                                        <LoadingModel
-                                                            width={90}
-                                                            height={150}
-                                                        />
-                                                    }
-                                                    threshold={1}
-                                                    delayMethod='debounce'
-                                                    wrapperClassName={'fix-style'}
-                                                />
-                                            ) : (
-                                                <LazyLoadImage
-                                                    src={'/image.svg'}
-                                                    alt={movie.title}
-                                                    className='w-full object-contain h-[150px]'
-                                                    effect='blur'
-                                                    placeholder={
-                                                        <LoadingModel
-                                                            width={90}
-                                                            height={150}
-                                                        />
-                                                    }
-                                                    threshold={1}
-                                                    delayMethod='debounce'
-                                                    wrapperClassName={'fix-style'}
-                                                />
-                                            )}
-                                        </div>
-                                    </Link>
-                                    <div className='px-4 pt-2'>
-                                        <Link
-                                            to={`/movie/${movie.id}`}
-                                            onClick={() => window.scrollTo(0, 0)}
-                                        >
-                                            <h2 className='text-base lg:text-lg font-bold cursor-pointer hover:text-lightBlue transition-colors duration-300'>
-                                                {movie.title}
-                                            </h2>
-                                        </Link>
-                                        <div className='text-sm opacity-50 mb-2'>
-                                            {new Date(movie.release_date).toLocaleDateString(
-                                                localLanguage,
-                                                dateOptions
-                                            )}
-                                        </div>
-                                        <div className=' text-sm lg:text-base text-ellipsis overflow-hidden line-clamp-3'>
-                                            {movie.overview}
-                                        </div>
-                                    </div>
-                                </div>
+                                />
                             ))}
                         </Suspense>
                     </div>

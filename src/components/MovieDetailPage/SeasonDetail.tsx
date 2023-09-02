@@ -17,7 +17,7 @@ import { tvSeasonDetailProps } from '../../types/TV';
 
 // Other
 import { api } from '../../api/api';
-import { Context, baseUrlImg } from '../../lib';
+import { Context, baseUrlImg, dateOptions } from '../../lib';
 
 const SeasonDetail = () => {
     const { movieData }: OutletContextType = useOutletContext();
@@ -27,11 +27,6 @@ const SeasonDetail = () => {
     const [dominantColor, setDominantColor] = useState<string>();
     const seasonsLength = 'seasons' in movieData ? movieData.seasons.length : 0;
 
-    const dateOptions: Intl.DateTimeFormatOptions = {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-    };
     const localLanguage = language.replace(`"`, '').slice(0, 2);
 
     useEffect(() => {
@@ -48,6 +43,14 @@ const SeasonDetail = () => {
             ).then((color) => setDominantColor(color));
         }
     }, [movieData.id, language, seasonId, seasonData?.poster_path]);
+
+    const isScpecial =
+        'seasons' in movieData && movieData.seasons.find((season) => season.season_number === 0);
+    const isPrevSeason =
+        (isScpecial && Number(seasonId) > 0) || (!isScpecial && Number(seasonId) > 1);
+    const isNextSeason =
+        (isScpecial && Number(seasonId) < seasonsLength - 1) ||
+        (!isScpecial && Number(seasonId) < seasonsLength);
 
     return (
         <section>
@@ -85,7 +88,7 @@ const SeasonDetail = () => {
                 <div className='px-5 lg:px-10 pt-[10px]'>
                     <div className='flex justify-between mb-4 border-b border-[#7d7d7d]'>
                         <div className='flex cursor-pointer'>
-                            {Number(seasonId) > 0 && (
+                            {isPrevSeason && (
                                 <Link
                                     className='inline-flex'
                                     to={`/tv/${movieData.id}/seasons/${Number(seasonId) - 1}`}
@@ -98,7 +101,7 @@ const SeasonDetail = () => {
                             )}
                         </div>
                         <div className='flex cursor-pointer'>
-                            {Number(seasonId) + 1 !== seasonsLength && (
+                            {isNextSeason && (
                                 <Link
                                     to={`/tv/${movieData.id}/seasons/${Number(seasonId) + 1}`}
                                     className='inline-flex'
