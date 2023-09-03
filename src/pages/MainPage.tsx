@@ -4,12 +4,12 @@ import { Helmet } from 'react-helmet';
 
 // Components
 import Container from '../components/Container';
-import Welcome from '../components/Main/Welcome';
+import Welcome from '../components/MainPage/Welcome';
 import Spinner from '../components/Spinner';
 
-const TrendingTV = React.lazy(() => import('../components/Main/TrendingTV'));
-const TrendingMovies = React.lazy(() => import('../components/Main/TrendingMovies'));
-const PopularTrailers = React.lazy(() => import('../components/Main/PopularTrailers'));
+const TrendingTV = React.lazy(() => import('../components/MainPage/TrendingTV'));
+const TrendingMovies = React.lazy(() => import('../components/MainPage/TrendingMovies'));
+const PopularTrailers = React.lazy(() => import('../components/MainPage/PopularTrailers'));
 
 export const MainPage = () => {
     return (

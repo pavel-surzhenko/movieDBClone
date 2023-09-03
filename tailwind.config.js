@@ -18,6 +18,7 @@ export default {
             },
             boxShadow: {
                 custom: '0 2px 8px rgba(0, 0, 0, 0.3)',
+                radio: '0 0 0 2px #01B4E4',
             },
             backgroundImage: {
                 'trending-bg': 'url(/trendingBg.svg)',

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Other
 import { baseUrl } from '../lib';
-import { apiOptions } from './options';
+import { apiOptions, optionsList } from './options';
 
 // Types
 import { videoPropsResponse, keyWordsProps } from '../types';
@@ -23,6 +23,7 @@ import {
     tvSeasonDetailProps,
     tvResponseProps,
 } from '../types/TV';
+import { typeOfLists } from '../types/listsProps';
 
 export const api = {
     async getTrendingAll(language: string): Promise<movieProps[]> {
@@ -34,6 +35,27 @@ export const api = {
         );
 
         return results;
+    },
+
+    async getLists(
+        type: 'movie' | 'tv',
+        lists: typeOfLists,
+        language: string,
+        page: number
+    ): Promise<movieProps[]> {
+        const selectedList = optionsList[type][lists];
+
+        try {
+            const {
+                data: { results },
+            } = await axios.get<movieResponseProps>(
+                `${baseUrl}${type}/${selectedList}?language=${language}&page=${page}`,
+                apiOptions
+            );
+            return results;
+        } catch (error) {
+            throw new Error(`Failed to fetch popular movies: ${error}`);
+        }
     },
     movies: {
         async getTrending(time: string, language: string): Promise<movieProps[]> {

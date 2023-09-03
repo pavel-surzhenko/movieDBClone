@@ -30,3 +30,6 @@
 .fix-style {
     @apply block !important;
 }
+.input-color {
+    @apply checked:bg-lightBlue checked:border-lightBlue appearance-none w-2 h-2 rounded-full shadow-radio !important;
+}

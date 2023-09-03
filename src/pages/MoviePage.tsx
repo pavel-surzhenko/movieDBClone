@@ -10,10 +10,12 @@ import Spinner from '../components/Spinner';
 import LoadingModel from '../components/LoadingModel';
 import MovieCard from '../components/MovieCard';
 import MovieCollectionCard from '../components/MovieCollectionCard';
+import Lists from '../components/MoviePage/Lists';
 
 // Types
 import { movieProps } from '../types/Movie';
 import { tvProps } from '../types/TV';
+import { typeOfLists } from '../types/listsProps';
 
 // Assets
 import { LeftArrowLong, RightArrowLong } from '../assets';
@@ -28,31 +30,36 @@ export const MoviePage = () => {
     const { language } = useContext(Context);
     const [loading, setLoading] = useState(true);
     const { pathname } = useLocation();
-    const movieType = pathname.split('/')[1];
+    const movieType = pathname.split('/')[1] as 'movie' | 'tv';
+    const [listsType, setListsType] = useState<typeOfLists>('popular');
+
+    const handleChange = (newOption: 'popular' | 'now_playing' | 'top_rated' | 'upcoming') => {
+        setListsType(newOption);
+        setPage(1);
+    };
 
     useEffect(() => {
         setLoading(true);
-        if (movieType === 'movie') {
-            api.movies.getPopular(page, language).then((data) => {
-                setMovies(data);
-                setLoading(false);
-            });
-        } else {
-            api.tv.getPopular(page, language).then((data) => {
-                setMovies(data);
-                setLoading(false);
-            });
-        }
-    }, [page, language, movieType]);
+        api.getLists(movieType, listsType, language, page).then((data) => {
+            setMovies(data);
+            setLoading(false);
+        });
+    }, [page, language, listsType, movieType]);
 
     return (
         <>
             <Helmet>
-                <title>Movie -The Movie Data Base (TMDB)</title>
+                <title>{movieType === 'movie' ? 'Movie' : 'TV'} -The Movie Data Base (TMDB)</title>
             </Helmet>
             <Container>
                 <div className='flex my-10 mx-3 flex-col md:flex-row'>
-                    <aside className='flex-none w-[260px]'>side bar</aside>
+                    <aside className='flex-none w-[260px] min-w-[260px] mr-5'>
+                        <Lists
+                            selectedOption={listsType}
+                            onOptionChange={handleChange}
+                            movieType={movieType}
+                        />
+                    </aside>
                     {movies && !loading ? (
                         <div>
                             <div className='flex flex-col items-center f'>
