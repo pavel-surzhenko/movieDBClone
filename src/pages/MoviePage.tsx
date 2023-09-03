@@ -33,10 +33,14 @@ export const MoviePage = () => {
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
     const [listsType, setListsType] = useState<typeOfLists>('popular');
 
-    const handleChange = (newOption: 'popular' | 'now_playing' | 'top_rated' | 'upcoming') => {
+    const handleChange = (newOption: typeOfLists) => {
         setListsType(newOption);
         setPage(1);
     };
+
+    useEffect(() => {
+        setPage(1);
+    }, [movieType]);
 
     useEffect(() => {
         setLoading(true);
