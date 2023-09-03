@@ -280,5 +280,19 @@ export const api = {
                 throw new Error(`Failed to fetch season detail: ${error}`);
             }
         },
+
+        async getPopular(page: number, language: string): Promise<movieProps[]> {
+            try {
+                const {
+                    data: { results },
+                } = await axios.get<movieResponseProps>(
+                    `${baseUrl}tv/popular?language=${language}&page=${page}`,
+                    apiOptions
+                );
+                return results;
+            } catch (error) {
+                throw new Error(`Failed to fetch popular tv: ${error}`);
+            }
+        },
     },
 };

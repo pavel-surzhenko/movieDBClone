@@ -7,6 +7,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 // Components
 import Container from '../Container';
 import LoadingModel from '../LoadingModel';
+import Spinner from '../Spinner';
 
 // Assets
 import { LeftArrow, LeftArrowLong, RightArrowLong, Star } from '../../assets';
@@ -18,7 +19,6 @@ import { tvSeasonDetailProps } from '../../types/TV';
 // Other
 import { api } from '../../api/api';
 import { Context, baseUrlImg, dateOptions } from '../../lib';
-import Spinner from '../Spinner';
 
 const SeasonDetail = () => {
     const { movieData }: OutletContextType = useOutletContext();

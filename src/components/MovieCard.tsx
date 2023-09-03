@@ -38,7 +38,7 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     return (
         <div className='min-w-[150px] min-h-[300px] mr-5'>
             <div className='relative'>
-                <div className='overflow-hidden rounded-lg cursor-pointer'>
+                <div className='overflow-hidden rounded-lg cursor-pointer transform transition-all duration-500 hover:scale-105 hover:rounded-none'>
                     <Link
                         to={`${'title' in props ? `/movie/${props.id}` : `/tv/${props.id}`}`}
                         onClick={() => window.scrollTo(0, 0)}
@@ -47,7 +47,7 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                             <LazyLoadImage
                                 src={`${baseUrlImg}/w200${props.poster_path}`}
                                 alt={title}
-                                className='w-full object-cover h-auto min-h-[225px] rounded-lg'
+                                className='w-full object-cover h-auto min-h-[225px]'
                                 effect='blur'
                                 placeholder={
                                     <LoadingModel

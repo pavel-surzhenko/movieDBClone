@@ -2,6 +2,7 @@
 import { Helmet } from 'react-helmet';
 import { Suspense, useContext, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import { useLocation } from 'react-router-dom';
 
 // Components
 import Container from '../components/Container';
@@ -26,14 +27,23 @@ export const MoviePage = () => {
     const [page, setPage] = useState<number>(1);
     const { language } = useContext(Context);
     const [loading, setLoading] = useState(true);
+    const { pathname } = useLocation();
+    const movieType = pathname.split('/')[1];
 
     useEffect(() => {
         setLoading(true);
-        api.movies.getPopular(page, language).then((data) => {
-            setMovies(data);
-            setLoading(false);
-        });
-    }, [page, language]);
+        if (movieType === 'movie') {
+            api.movies.getPopular(page, language).then((data) => {
+                setMovies(data);
+                setLoading(false);
+            });
+        } else {
+            api.tv.getPopular(page, language).then((data) => {
+                setMovies(data);
+                setLoading(false);
+            });
+        }
+    }, [page, language, movieType]);
 
     return (
         <>
@@ -46,7 +56,7 @@ export const MoviePage = () => {
                     {movies && !loading ? (
                         <div>
                             <div className='flex flex-col items-center f'>
-                                <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-y-4 mb-5'>
+                                <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-y-4 mb-5'>
                                     {movies?.map((movie) => (
                                         <Suspense
                                             fallback={
