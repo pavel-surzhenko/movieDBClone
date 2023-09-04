@@ -13,7 +13,7 @@ import SeasonsCollection from './components/MovieDetailPage/SeasonsCollection';
 import { ContextProvider } from './lib';
 
 // Pages
-import { MainPage, MoviePage, MovieDetailPage, NoFindPage, ErrorPage } from './pages';
+import { MainPage, MoviePage, MovieDetailPage, NoFindPage, ErrorPage, TVPage } from './pages';
 
 // CSS
 import './index.css';
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/tv',
-                element: <MoviePage />,
+                element: <TVPage />,
                 errorElement: <ErrorPage />,
             },
             {

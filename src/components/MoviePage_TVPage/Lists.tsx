@@ -10,6 +10,8 @@ const Lists: React.FC<listsProps> = ({ selectedOption, onOptionChange, movieType
         onOptionChange(event.target.value as typeOfLists);
     };
     const { language } = useContext(Context);
+    const now_playing = movieType === 'movie' ? 'now_playing' : 'airing_today';
+    const upcomming = movieType === 'movie' ? 'upcoming' : 'on_the_air';
 
     return (
         <div className='flex flex-col border px-3 py-2 border-[#e3e3e3] rounded-lg shadow-custom font-light'>
@@ -34,8 +36,12 @@ const Lists: React.FC<listsProps> = ({ selectedOption, onOptionChange, movieType
             <label className='flex items-center cursor-pointer '>
                 <input
                     type='radio'
-                    value={'now_playing'}
-                    checked={selectedOption === 'now_playing'}
+                    value={now_playing}
+                    checked={
+                        movieType === 'movie'
+                            ? selectedOption === 'now_playing'
+                            : selectedOption === 'airing_today'
+                    }
                     onChange={handleOptionChange}
                     className='mr-2 cursor-pointer input-color '
                 />
@@ -58,8 +64,12 @@ const Lists: React.FC<listsProps> = ({ selectedOption, onOptionChange, movieType
             <label className='flex items-center cursor-pointer '>
                 <input
                     type='radio'
-                    value={'upcoming'}
-                    checked={selectedOption === 'upcoming'}
+                    value={upcomming}
+                    checked={
+                        movieType === 'movie'
+                            ? selectedOption === 'upcoming'
+                            : selectedOption === 'on_the_air'
+                    }
                     onChange={handleOptionChange}
                     className='mr-2 cursor-pointer input-color '
                 />

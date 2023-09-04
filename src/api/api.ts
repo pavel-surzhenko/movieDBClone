@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Other
 import { baseUrl } from '../lib';
-import { apiOptions, optionsList } from './options';
+import { apiOptions } from './options';
 
 // Types
 import { videoPropsResponse, keyWordsProps } from '../types';
@@ -36,31 +36,6 @@ export const api = {
         );
 
         return results;
-    },
-
-    async getLists(
-        type: 'movie' | 'tv',
-        lists: typeOfLists,
-        language: string,
-        page: number,
-        genre: number
-    ): Promise<movieProps[] | tvProps[]> {
-        const selectedList = optionsList[type][lists];
-        const baseUrlWithParams = `${baseUrl}${type}/${selectedList}?language=${language}&page=${page}${
-            genre > 0 ? `&with_genres=${genre}` : ''
-        }`;
-
-        try {
-            const {
-                data: { results },
-            } = await axios.get<movieResponseProps | tvResponseProps>(
-                baseUrlWithParams,
-                apiOptions
-            );
-            return results;
-        } catch (error) {
-            throw new Error(`Failed to fetch ${type} list: ${error}`);
-        }
     },
 
     async getGenres(type: 'movie' | 'tv', language: string): Promise<genres[]> {
@@ -101,6 +76,24 @@ export const api = {
                 return results;
             } catch (error) {
                 throw new Error(`Failed to fetch popular movies: ${error}`);
+            }
+        },
+
+        async getListsMovie(
+            lists: typeOfLists,
+            language: string,
+            page: number,
+            genre: number
+        ): Promise<movieResponseProps> {
+            const baseUrlWithParams = `${baseUrl}movie/${lists}?language=${language}&page=${page}${
+                genre > 0 ? `&with_genres=${genre}` : ''
+            }`;
+
+            try {
+                const { data } = await axios.get<movieResponseProps>(baseUrlWithParams, apiOptions);
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch movie list: ${error}`);
             }
         },
 
@@ -254,6 +247,23 @@ export const api = {
                 return results;
             } catch (error) {
                 throw new Error(`Failed to fetch tv recommendations: ${error}`);
+            }
+        },
+        async getListsTV(
+            lists: typeOfLists,
+            language: string,
+            page: number,
+            genre: number
+        ): Promise<tvResponseProps> {
+            const baseUrlWithParams = `${baseUrl}tv/${lists}?language=${language}&page=${page}${
+                genre > 0 ? `&with_genres=${genre}` : ''
+            }`;
+
+            try {
+                const { data } = await axios.get<tvResponseProps>(baseUrlWithParams, apiOptions);
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch tv list: ${error}`);
             }
         },
 

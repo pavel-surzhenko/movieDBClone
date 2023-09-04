@@ -2,7 +2,6 @@
 import { Helmet } from 'react-helmet';
 import { Suspense, useContext, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { useLocation } from 'react-router-dom';
 
 // Components
 import Container from '../components/Container';
@@ -10,7 +9,7 @@ import Spinner from '../components/Spinner';
 import LoadingModel from '../components/LoadingModel';
 import MovieCard from '../components/MovieCard';
 import MovieCollectionCard from '../components/MovieCollectionCard';
-import Lists from '../components/MoviePage/Lists';
+import Lists from '../components/MoviePage_TVPage/Lists';
 
 // Types
 import { genres, movieProps } from '../types/Movie';
@@ -23,15 +22,14 @@ import { LeftArrowLong, RightArrowLong } from '../assets';
 // Other
 import { api } from '../api/api';
 import { Context } from '../lib';
-import GenresLists from '../components/MoviePage/GenresLists';
+import GenresLists from '../components/MoviePage_TVPage/GenresLists';
 
 export const MoviePage = () => {
     const [movies, setMovies] = useState<movieProps[] | tvProps[]>();
     const [page, setPage] = useState<number>(1);
+    const [pageCount, setPageCount] = useState<number>(0);
     const { language } = useContext(Context);
     const [loading, setLoading] = useState(true);
-    const { pathname } = useLocation();
-    const movieType = pathname.split('/')[1] as 'movie' | 'tv';
     const [listsType, setListsType] = useState<typeOfLists>('popular');
     const [genres, setGenres] = useState<genres[]>([]);
     const [selectedGenre, setSelectedGenre] = useState<number>(0);
@@ -47,26 +45,22 @@ export const MoviePage = () => {
     };
 
     useEffect(() => {
-        setPage(1);
-        setSelectedGenre(0);
-    }, [movieType]);
-
-    useEffect(() => {
-        api.getGenres(movieType, language).then((data) => setGenres(data));
-    }, [language, movieType]);
+        api.getGenres('movie', language).then((data) => setGenres(data));
+    }, [language]);
 
     useEffect(() => {
         setLoading(true);
-        api.getLists(movieType, listsType, language, page, selectedGenre).then((data) => {
-            setMovies(data);
+        api.movies.getListsMovie(listsType, language, page, selectedGenre).then((data) => {
+            setMovies(data.results);
+            setPageCount(data.total_pages);
             setLoading(false);
         });
-    }, [page, language, listsType, movieType, selectedGenre]);
+    }, [page, language, listsType, selectedGenre]);
 
     return (
         <>
             <Helmet>
-                <title>{movieType === 'movie' ? 'Movie' : 'TV'} -The Movie Data Base (TMDB)</title>
+                <title>Movie -The Movie Data Base (TMDB)</title>
             </Helmet>
             <Container>
                 <div className='flex my-10 mx-3 flex-col md:flex-row'>
@@ -74,7 +68,7 @@ export const MoviePage = () => {
                         <Lists
                             selectedOption={listsType}
                             onOptionChange={handleChangeList}
-                            movieType={movieType}
+                            movieType={'movie'}
                         />
                         <GenresLists
                             genres={genres}
@@ -119,7 +113,7 @@ export const MoviePage = () => {
                                     forcePage={page - 1}
                                     pageRangeDisplayed={2}
                                     marginPagesDisplayed={3}
-                                    pageCount={500}
+                                    pageCount={pageCount > 500 ? 500 : pageCount}
                                     previousLabel={<LeftArrowLong />}
                                     renderOnZeroPageCount={null}
                                     containerClassName='flex text-xl items-center'
