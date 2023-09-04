@@ -6,7 +6,7 @@ import { baseUrl } from '../lib';
 import { apiOptions } from './options';
 
 // Types
-import { videoPropsResponse, keyWordsProps } from '../types';
+import { videoPropsResponse, keyWordsProps, typeOfLists } from '../types';
 import {
     movieProps,
     movieDetailProps,
@@ -24,7 +24,6 @@ import {
     tvSeasonDetailProps,
     tvResponseProps,
 } from '../types/TV';
-import { typeOfLists } from '../types/listsProps';
 
 export const api = {
     async getTrendingAll(language: string): Promise<movieProps[]> {

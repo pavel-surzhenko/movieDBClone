@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 
 // Types
-import { genreListProps } from '../../types/genreListProps';
+import { genreListProps } from '../../types';
 
 // Other
 import { Context } from '../../lib';

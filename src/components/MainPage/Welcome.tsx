@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { baseUrlImg, Context } from '../../lib';
 
 const Welcome = () => {
-    const [image, setImage] = useState<string>('');
+    const [image, setImage] = useState<string | null>(null);
     const { language, movies } = useContext(Context);
 
     const getRandomImg = () => {

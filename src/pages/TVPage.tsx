@@ -10,11 +10,12 @@ import LoadingModel from '../components/LoadingModel';
 import MovieCard from '../components/MovieCard';
 import MovieCollectionCard from '../components/MovieCollectionCard';
 import Lists from '../components/MoviePage_TVPage/Lists';
+import GenresLists from '../components/MoviePage_TVPage/GenresLists';
 
 // Types
 import { genres, movieProps } from '../types/Movie';
 import { tvProps } from '../types/TV';
-import { typeOfLists } from '../types/listsProps';
+import { typeOfLists } from '../types';
 
 // Assets
 import { LeftArrowLong, RightArrowLong } from '../assets';
@@ -22,7 +23,6 @@ import { LeftArrowLong, RightArrowLong } from '../assets';
 // Other
 import { api } from '../api/api';
 import { Context } from '../lib';
-import GenresLists from '../components/MoviePage_TVPage/GenresLists';
 
 export const TVPage = () => {
     const [movies, setMovies] = useState<movieProps[] | tvProps[]>();

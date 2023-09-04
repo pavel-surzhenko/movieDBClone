@@ -98,9 +98,9 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                 style={
                     window?.innerWidth >= 1024
                         ? {
-                              background: movieDetails
+                              background: movieDetails.backdrop_path
                                   ? `url(${baseUrlImg}/w1280${movieDetails?.backdrop_path}) left calc((50vw - 170px) - 340px) top / cover no-repeat `
-                                  : '',
+                                  : 'center / cover no-repeat linear-gradient(to right, rgba(3, 37, 65, 0.8) 0%, rgba(3, 37, 65, 0.5) 100%)',
                           }
                         : {}
                 }
