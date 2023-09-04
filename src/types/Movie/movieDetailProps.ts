@@ -41,7 +41,7 @@ export type movieCollection = {
     backdrop_path: string | null;
 };
 
-type genres = {
+export type genres = {
     id: number;
     name: string;
 };

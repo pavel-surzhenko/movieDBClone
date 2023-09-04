@@ -14,6 +14,7 @@ import {
     movieProvidersProps,
     collectionProps,
     movieResponseProps,
+    genres,
 } from '../types/Movie';
 import {
     tvLinksProps,
@@ -41,20 +42,37 @@ export const api = {
         type: 'movie' | 'tv',
         lists: typeOfLists,
         language: string,
-        page: number
-    ): Promise<movieProps[]> {
+        page: number,
+        genre: number
+    ): Promise<movieProps[] | tvProps[]> {
         const selectedList = optionsList[type][lists];
+        const baseUrlWithParams = `${baseUrl}${type}/${selectedList}?language=${language}&page=${page}${
+            genre > 0 ? `&with_genres=${genre}` : ''
+        }`;
 
         try {
             const {
                 data: { results },
-            } = await axios.get<movieResponseProps>(
-                `${baseUrl}${type}/${selectedList}?language=${language}&page=${page}`,
+            } = await axios.get<movieResponseProps | tvResponseProps>(
+                baseUrlWithParams,
                 apiOptions
             );
             return results;
         } catch (error) {
-            throw new Error(`Failed to fetch popular movies: ${error}`);
+            throw new Error(`Failed to fetch ${type} list: ${error}`);
+        }
+    },
+
+    async getGenres(type: 'movie' | 'tv', language: string): Promise<genres[]> {
+        try {
+            const { data } = await axios.get<{ genres: genres[] }>(
+                `${baseUrl}genre/${type}/list?language=${language}`,
+                apiOptions
+            );
+
+            return data.genres;
+        } catch (error) {
+            throw new Error(`Failed to fetch genres of ${type}: ${error}`);
         }
     },
     movies: {

@@ -4,6 +4,7 @@ export type {
     movieDetailProps,
     movieDetailsHeaderProps,
     movieCollection,
+    genres,
 } from './movieDetailProps';
 export type { movieProps } from './movieProps';
 export type { movieProvidersProps } from './movieProvidersProps';

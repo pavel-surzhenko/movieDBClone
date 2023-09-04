@@ -12,7 +12,7 @@ const Lists: React.FC<listsProps> = ({ selectedOption, onOptionChange, movieType
     const { language } = useContext(Context);
 
     return (
-        <div className='flex flex-col border px-3 py-2 border-[#e3e3e3] rounded-lg shadow-custom'>
+        <div className='flex flex-col border px-3 py-2 border-[#e3e3e3] rounded-lg shadow-custom font-light'>
             <div className='mb-2 text-lg font-medium'>
                 <h3>
                     {language === 'uk-UA'

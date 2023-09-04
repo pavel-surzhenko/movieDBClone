@@ -25,7 +25,7 @@ import { api } from '../api/api';
 import { Context } from '../lib';
 import GenresLists from '../components/MoviePage/GenresLists';
 
-export const MoviePage = () => {
+export const TVPage = () => {
     const [movies, setMovies] = useState<movieProps[] | tvProps[]>();
     const [page, setPage] = useState<number>(1);
     const { language } = useContext(Context);
@@ -142,4 +142,4 @@ export const MoviePage = () => {
     );
 };
 
-export default MoviePage;
+export default TVPage;
