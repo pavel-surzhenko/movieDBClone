@@ -10,3 +10,4 @@ export { MoreInfoIcon } from './MoreInfoIcon';
 export { RightArrowLong } from './RightArrowLong';
 export { Star } from './Star';
 export { Twitter } from './Twitter';
+export { RightArrow } from './RightArrow';

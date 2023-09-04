@@ -64,7 +64,7 @@ export const TVPage = () => {
             </Helmet>
             <Container>
                 <div className='flex my-10 mx-3 flex-col md:flex-row'>
-                    <aside className='flex-none w-[260px] min-w-[260px] mr-5'>
+                    <aside className='w-full lg:w-[260px] lg:min-w-[260px] mr-5'>
                         <Lists
                             selectedOption={listsType}
                             onOptionChange={handleChangeList}
