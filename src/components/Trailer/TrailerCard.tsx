@@ -17,7 +17,9 @@ const TrailerCard: React.FC<trailerProps> = ({ movieDetails, handleHover, handle
                 <div
                     className={`overflow-hidden rounded-lg min-h-[168px] relative  transition-transform duration-300`}
                     onMouseEnter={() => {
-                        handleHover(movieDetails!.backdrop_path);
+                        if (movieDetails.backdrop_path) {
+                            handleHover(movieDetails!.backdrop_path);
+                        }
                     }}
                     onClick={(e) => {
                         handleClick(String(movieDetails.id));

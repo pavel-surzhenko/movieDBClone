@@ -28,5 +28,5 @@ If you are developing a production application, we recommend updating the config
 
 переробити апі p з більшим пошуком
 пошук
-зробити якщо фільтр не дав результат
+при повторному кліку на жанр знімати фільтр
 персони
