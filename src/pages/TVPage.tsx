@@ -63,7 +63,7 @@ export const TVPage = () => {
                 <title>TV -The Movie Data Base (TMDB)</title>
             </Helmet>
             <Container>
-                <div className='flex my-10 mx-3 flex-col md:flex-row'>
+                <div className='flex my-10 mx-3 flex-col lg:flex-row'>
                     <aside className='w-full lg:w-[260px] lg:min-w-[260px] mr-5'>
                         <Lists
                             selectedOption={listsType}
@@ -79,7 +79,7 @@ export const TVPage = () => {
                     {movies && !loading ? (
                         <div>
                             <div className='flex flex-col items-center f'>
-                                <div className='grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-y-4 mb-5'>
+                                <div className='grid md:grid-cols-5 lg:grid-cols-4 xl:grid-cols-5 md:gap-y-4 mb-5'>
                                     {movies?.map((movie) => (
                                         <Suspense
                                             fallback={
@@ -128,6 +128,13 @@ export const TVPage = () => {
                     ) : (
                         <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
                             <Spinner />
+                        </div>
+                    )}
+                    {movies?.length === 0 && (
+                        <div>
+                            {language === 'uk-UA'
+                                ? 'Не знайдено елементів, що відповідають вашому запиту.'
+                                : 'No items were found that match your query.'}
                         </div>
                     )}
                 </div>

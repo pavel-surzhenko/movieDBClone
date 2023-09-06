@@ -37,7 +37,7 @@ const SeasonsCollection = () => {
     return (
         <section>
             <div
-                className='p-4'
+                className='p-5'
                 style={{ backgroundColor: `${dominantColor}` }}
             >
                 <Container>
@@ -64,7 +64,7 @@ const SeasonsCollection = () => {
                 </Container>
             </div>
             <Container>
-                <div className='px-5 lg:px-10 pt-[30px]'>
+                <div className='px-5 xl:px-0 pt-[30px]'>
                     <Suspense>
                         {seasons?.map((season) => (
                             <div

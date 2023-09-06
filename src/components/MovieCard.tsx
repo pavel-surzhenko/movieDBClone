@@ -36,7 +36,7 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
     const title = 'title' in props ? props.title : props.name;
 
     return (
-        <div className='min-w-[150px] min-h-[300px] mr-5'>
+        <div className='min-w-[150px] w-[150px] min-h-[300px] mr-5 '>
             <div className='relative'>
                 <div className='overflow-hidden rounded-lg cursor-pointer transform transition-all duration-500 hover:scale-105 hover:rounded-none'>
                     <Link
@@ -47,7 +47,7 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                             <LazyLoadImage
                                 src={`${baseUrlImg}/w200${props.poster_path}`}
                                 alt={title}
-                                className='w-full object-cover h-auto min-h-[225px]'
+                                className='w-[150px] object-cover h-[225px]'
                                 effect='blur'
                                 placeholder={
                                     <LoadingModel
@@ -63,7 +63,7 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                             <LazyLoadImage
                                 src={'/image.svg'}
                                 alt={title}
-                                className='w-full object-contain h-auto min-h-[225px]'
+                                className='w-[150px] object-contain h-[225px] '
                                 effect='blur'
                                 placeholder={
                                     <LoadingModel
@@ -98,7 +98,7 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                     <MoreInfoIcon />
                 </div>
             </div>
-            <div className='pt-6 px-2'>
+            <div className='pt-6 px-2 '>
                 <div>
                     <Link
                         to={`${'title' in props ? `/movie/${props.id}` : `/tv/${props.id}`}`}

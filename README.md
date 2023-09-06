@@ -28,6 +28,5 @@ If you are developing a production application, we recommend updating the config
 
 переробити апі p з більшим пошуком
 пошук
-муві
-тв
+зробити якщо фільтр не дав результат
 персони
