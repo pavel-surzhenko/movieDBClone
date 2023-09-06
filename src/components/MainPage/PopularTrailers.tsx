@@ -34,7 +34,7 @@ const PopularTrailers = () => {
 
     useEffect(() => {
         if (movies.length > 0) {
-            setBackImg(movies[0]?.backdrop_path);
+            setBackImg(movies[0]?.backdrop_path || '');
         }
     }, [movies]);
 
