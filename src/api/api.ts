@@ -24,6 +24,7 @@ import {
     tvSeasonDetailProps,
     tvResponseProps,
 } from '../types/TV';
+import { peopleResponseProps } from '../types/People/peopleResponseProps';
 
 export const api = {
     async getTrendingAll(language: string): Promise<movieProps[]> {
@@ -341,6 +342,19 @@ export const api = {
                 return results;
             } catch (error) {
                 throw new Error(`Failed to fetch popular tv: ${error}`);
+            }
+        },
+    },
+    people: {
+        async getPopular(language: string, page: number): Promise<peopleResponseProps> {
+            try {
+                const { data } = await axios.get(
+                    `${baseUrl}person/popular?language=${language}&page=${page}`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch people list: ${error}`);
             }
         },
     },
