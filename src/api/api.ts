@@ -25,6 +25,7 @@ import {
     tvResponseProps,
 } from '../types/TV';
 import { peopleResponseProps } from '../types/People/peopleResponseProps';
+import { peopleDetailsProps } from '../types/People/peopleDetailsProps';
 
 export const api = {
     async getTrendingAll(language: string): Promise<movieProps[]> {
@@ -355,6 +356,18 @@ export const api = {
                 return data;
             } catch (error) {
                 throw new Error(`Failed to fetch people list: ${error}`);
+            }
+        },
+
+        async getPerson(id: number, language: string): Promise<peopleDetailsProps> {
+            try {
+                const { data } = await axios.get(
+                    `${baseUrl}person/${id}?language=${language}&append_to_response=combined_credits`,
+                    apiOptions
+                );
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch person details: ${error}`);
             }
         },
     },
