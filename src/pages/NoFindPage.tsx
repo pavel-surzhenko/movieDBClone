@@ -14,5 +14,3 @@ export const NoFindPage = () => {
         </Container>
     );
 };
-
-export default NoFindPage;

@@ -13,7 +13,15 @@ import SeasonsCollection from './components/MovieDetailPage/SeasonsCollection';
 import { ContextProvider } from './lib';
 
 // Pages
-import { MainPage, MoviePage, MovieDetailPage, NoFindPage, ErrorPage, TVPage } from './pages';
+import {
+    MainPage,
+    MoviePage,
+    MovieDetailPage,
+    NoFindPage,
+    ErrorPage,
+    TVPage,
+    PeoplePage,
+} from './pages';
 
 // CSS
 import './index.css';
@@ -66,6 +74,11 @@ const router = createBrowserRouter([
                         errorElement: <ErrorPage />,
                     },
                 ],
+            },
+            {
+                path: '/people',
+                element: <PeoplePage />,
+                errorElement: <ErrorPage />,
             },
             {
                 path: '*',

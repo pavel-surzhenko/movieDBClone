@@ -24,7 +24,7 @@ import { LeftArrowLong, RightArrowLong } from '../assets';
 import { api } from '../api/api';
 import { Context } from '../lib';
 
-export const MoviePage = () => {
+export const MoviePage: React.FC = () => {
     const [movies, setMovies] = useState<movieProps[] | tvProps[]>();
     const [page, setPage] = useState<number>(1);
     const [pageCount, setPageCount] = useState<number>(0);
@@ -140,5 +140,3 @@ export const MoviePage = () => {
         </>
     );
 };
-
-export default MoviePage;

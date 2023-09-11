@@ -14,5 +14,3 @@ export const ErrorPage = () => {
         </Container>
     );
 };
-
-export default ErrorPage;
