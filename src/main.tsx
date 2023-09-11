@@ -21,6 +21,7 @@ import {
     ErrorPage,
     TVPage,
     PeoplePage,
+    PeopleDetailPage,
 } from './pages';
 
 // CSS
@@ -78,6 +79,11 @@ const router = createBrowserRouter([
             {
                 path: '/people',
                 element: <PeoplePage />,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: '/people/:peopleId',
+                element: <PeopleDetailPage />,
                 errorElement: <ErrorPage />,
             },
             {
