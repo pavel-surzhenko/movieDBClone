@@ -40,8 +40,13 @@ export const TVPage = () => {
     };
 
     const handleChangeGenre = (newGenre: number) => {
-        setSelectedGenre(newGenre);
-        setPage(1);
+        if (newGenre === selectedGenre) {
+            setSelectedGenre(0);
+            setPage(1);
+        } else {
+            setSelectedGenre(newGenre);
+            setPage(1);
+        }
     };
 
     useEffect(() => {
