@@ -349,7 +349,7 @@ export const api = {
     people: {
         async getPopular(language: string, page: number): Promise<peopleResponseProps> {
             try {
-                const { data } = await axios.get(
+                const { data } = await axios.get<peopleResponseProps>(
                     `${baseUrl}person/popular?language=${language}&page=${page}`,
                     apiOptions
                 );
@@ -361,7 +361,7 @@ export const api = {
 
         async getPerson(id: number, language: string): Promise<peopleDetailsProps> {
             try {
-                const { data } = await axios.get(
+                const { data } = await axios.get<peopleDetailsProps>(
                     `${baseUrl}person/${id}?language=${language}&append_to_response=combined_credits`,
                     apiOptions
                 );
