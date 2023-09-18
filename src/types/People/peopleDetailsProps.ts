@@ -5,10 +5,10 @@ export interface peopleDetailsProps {
     adult: boolean;
     also_known_as: string[];
     biography: string;
-    birthday: string;
+    birthday: string | null;
     combined_credits: combined_credits;
     deathday: null | string;
-    gender: number;
+    gender: 0 | 1 | 2 | 3;
     homepage: null | string;
     id: number;
     imdb_id: string;

@@ -11,12 +11,12 @@ export const Context = createContext<contextProps>({
 
 export const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     const ls: Storage = window.localStorage;
-    const storageLanguage = ls?.getItem('language');
+    const storageLanguage = ls?.getItem('language') as 'en-US' | 'uk-UA';
 
-    const [language, setLanguage] = useState<string>(storageLanguage || 'en-US');
+    const [language, setLanguage] = useState<'en-US' | 'uk-UA'>(storageLanguage || 'en-US');
     const [movies, setMovies] = useState<movieProps[]>([]);
 
-    const handleLanguageChange = (newLanguage: string) => {
+    const handleLanguageChange = (newLanguage: 'en-US' | 'uk-UA') => {
         startTransition(() => {
             setLanguage(newLanguage);
             ls?.setItem('language', newLanguage);

@@ -1,7 +1,7 @@
 import { movieProps } from './Movie';
 
 export interface contextProps {
-    language: string;
-    setLanguage: (newLanguage: string) => void;
+    language: 'en-US' | 'uk-UA';
+    setLanguage: (newLanguage: 'en-US' | 'uk-UA') => void;
     movies: movieProps[];
 }

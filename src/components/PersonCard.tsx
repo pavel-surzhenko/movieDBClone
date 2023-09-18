@@ -9,6 +9,7 @@ import { cast, crew } from '../types/Movie';
 
 // Other
 import { baseUrlImg } from '../lib';
+import { Link } from 'react-router-dom';
 
 const PersonCard: React.FC<cast | crew> = (props) => {
     const person_role = 'character' in props ? props.character : props.job;
@@ -20,7 +21,7 @@ const PersonCard: React.FC<cast | crew> = (props) => {
         >
             <div className='relative'>
                 <div className='overflow-hidden rounded-lg cursor-pointer '>
-                    <div>
+                    <Link to={`/people/${props.id}`}>
                         {props.profile_path ? (
                             <LazyLoadImage
                                 src={`${baseUrlImg}/w200${props.profile_path}`}
@@ -52,15 +53,17 @@ const PersonCard: React.FC<cast | crew> = (props) => {
                                 wrapperClassName={'fix-style'}
                             />
                         )}
-                    </div>
+                    </Link>
                 </div>
             </div>
             <div className='pt-3 px-2'>
                 <div>
                     <div>
-                        <h2 className='font-bold hover:text-lightBlue cursor-pointer transition-colors duration-300'>
-                            {props.name}
-                        </h2>
+                        <Link to={`/people/${props.id}`}>
+                            <h2 className='font-bold hover:text-lightBlue transition-colors duration-300'>
+                                {props.name}
+                            </h2>
+                        </Link>
                     </div>
                 </div>
                 <div className='pb-2'>

@@ -2,10 +2,12 @@
 import { useState, useContext } from 'react';
 
 // Other
-import { Context, baseUrlImg } from '../../lib';
+import { Context, baseUrlImg, genders } from '../../lib';
 
 // Types
 import { peopleDetailsProps } from '../../types/People/peopleDetailsProps';
+import { Link } from 'react-router-dom';
+import { CustomLink } from '../../assets';
 
 const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = ({
     personData,
@@ -13,8 +15,11 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
     const [showAllParagraphs, setShowAllParagraphs] = useState(false);
     const { language } = useContext(Context);
 
-    const MAX_PARAGRAPHS_TO_SHOW = 3;
+    const age =
+        personData?.birthday &&
+        new Date().getFullYear() - new Date(personData.birthday).getFullYear();
 
+    const MAX_PARAGRAPHS_TO_SHOW = 2;
     const paragraphs = personData?.biography
         .split('\n')
         .filter((paragraph) => paragraph.trim() !== '');
@@ -23,17 +28,62 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
         : paragraphs?.slice(0, MAX_PARAGRAPHS_TO_SHOW);
 
     return (
-        <section className='mt-5 flex'>
-            <div className='min-w-[300px] w-[300px] rounded-md overflow-hidden mr-10'>
-                <img
-                    src={
-                        personData?.profile_path
-                            ? `${baseUrlImg}/w1280${personData?.profile_path}`
-                            : ``
-                    }
-                    alt={personData?.name}
-                    className='w-full object-contain'
-                />
+        <section className='mt-5 flex px-5'>
+            <div>
+                <div className='min-w-[300px] w-[300px] rounded-md overflow-hidden mr-10'>
+                    <img
+                        src={
+                            personData?.profile_path
+                                ? `${baseUrlImg}/w1280${personData?.profile_path}`
+                                : ``
+                        }
+                        alt={personData?.name}
+                        className='w-full object-contain'
+                    />
+                </div>
+                <div className='my-3'>
+                    {personData?.homepage && (
+                        <div className='mb-2'>
+                            <Link
+                                to={personData?.homepage}
+                                target='_blank'
+                            >
+                                <CustomLink />
+                            </Link>
+                        </div>
+                    )}
+                    <h3 className='mb-2 text-xl font-semibold'>Personal info</h3>
+                    {personData?.known_for_department && (
+                        <div className='mb-2'>
+                            <span className='font-semibold'>Known For: </span>
+                            <span>{personData?.known_for_department}</span>
+                        </div>
+                    )}
+                    {personData?.gender && (
+                        <div className='mb-2'>
+                            <span className='font-semibold'>Gender: </span>
+                            <span>
+                                {personData?.gender && genders[language][personData?.gender]}
+                            </span>
+                        </div>
+                    )}
+                    {personData?.place_of_birth && (
+                        <div className='mb-2'>
+                            <span className='font-semibold'>Place of Birth: </span>
+                            <span>{personData?.place_of_birth}</span>
+                        </div>
+                    )}
+                    {personData?.also_known_as && (
+                        <div className='mb-2'>
+                            <span className='font-semibold'>Also Known As: </span>
+                            <span>
+                                {personData?.also_known_as.map((name, index) => (
+                                    <p key={index}>{name}</p>
+                                ))}
+                            </span>
+                        </div>
+                    )}
+                </div>
             </div>
             <div>
                 <h1 className='text-3xl font-bold mb-5'>{personData?.name}</h1>
