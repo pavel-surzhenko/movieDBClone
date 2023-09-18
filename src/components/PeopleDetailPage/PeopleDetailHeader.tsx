@@ -28,9 +28,9 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
         : paragraphs?.slice(0, MAX_PARAGRAPHS_TO_SHOW);
 
     return (
-        <section className='mt-5 flex px-5'>
-            <div>
-                <div className='min-w-[300px] w-[300px] rounded-md overflow-hidden mr-10'>
+        <section className='mt-5 flex flex-col md:flex-row px-5'>
+            <div className='w-full '>
+                <div className='mx-auto min-w-[180px] w-[180px] md:min-w-[300px] md:w-[300px] rounded-md overflow-hidden md:mr-10'>
                     <img
                         src={
                             personData?.profile_path
@@ -43,7 +43,7 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                 </div>
                 <div className='my-3'>
                     {personData?.homepage && (
-                        <div className='mb-2'>
+                        <div className='mb-1 md:mb-2'>
                             <Link
                                 to={personData?.homepage}
                                 target='_blank'
@@ -54,27 +54,35 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                     )}
                     <h3 className='mb-2 text-xl font-semibold'>Personal info</h3>
                     {personData?.known_for_department && (
-                        <div className='mb-2'>
+                        <div className='mb-1 md:mb-2'>
                             <span className='font-semibold'>Known For: </span>
                             <span>{personData?.known_for_department}</span>
                         </div>
                     )}
                     {personData?.gender && (
-                        <div className='mb-2'>
+                        <div className='mb-1 md:mb-2'>
                             <span className='font-semibold'>Gender: </span>
                             <span>
                                 {personData?.gender && genders[language][personData?.gender]}
                             </span>
                         </div>
                     )}
+                    {personData?.birthday && (
+                        <div className='mb-1 md:mb-2'>
+                            <span className='font-semibold'>Birthday: </span>
+                            <span>
+                                {personData?.birthday} ({age} years old)
+                            </span>
+                        </div>
+                    )}
                     {personData?.place_of_birth && (
-                        <div className='mb-2'>
+                        <div className='mb-1 md:mb-2'>
                             <span className='font-semibold'>Place of Birth: </span>
                             <span>{personData?.place_of_birth}</span>
                         </div>
                     )}
                     {personData?.also_known_as && (
-                        <div className='mb-2'>
+                        <div className='mb-1 md:mb-2 hidden md:block'>
                             <span className='font-semibold'>Also Known As: </span>
                             <span>
                                 {personData?.also_known_as.map((name, index) => (
@@ -86,9 +94,11 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                 </div>
             </div>
             <div>
-                <h1 className='text-3xl font-bold mb-5'>{personData?.name}</h1>
+                <h1 className='text-2xl md:text-3xl font-bold mb-3 md:mb-5 text-center md:text-left'>
+                    {personData?.name}
+                </h1>
                 <div>
-                    <h3 className='text-xl font-semibold mb-2'>
+                    <h3 className='text-xl font-semibold mb-2 '>
                         {language === 'uk-UA' ? 'Біографія' : 'Biography'}
                     </h3>
                     <div className='mb-5'>
