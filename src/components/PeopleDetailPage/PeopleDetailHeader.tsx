@@ -29,13 +29,13 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
 
     return (
         <section className='mt-5 flex flex-col md:flex-row px-5'>
-            <div className='w-full '>
-                <div className='mx-auto min-w-[180px] w-[180px] md:min-w-[300px] md:w-[300px] rounded-md overflow-hidden md:mr-10'>
+            <div className='w-full md:w-[300px] md:mr-10'>
+                <div className='mx-auto min-w-[180px] w-[180px] md:min-w-[300px] md:w-[300px] rounded-md overflow-hidden'>
                     <img
                         src={
                             personData?.profile_path
                                 ? `${baseUrlImg}/w1280${personData?.profile_path}`
-                                : ``
+                                : `/user.svg`
                         }
                         alt={personData?.name}
                         className='w-full object-contain'

@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 
 // Components
 import Container from '../components/Container';
+import PeopleDetailHeader from '../components/PeopleDetailPage/PeopleDetailHeader';
+import Spinner from '../components/Spinner';
 
 // Other
 import { api } from '../api/api';
@@ -12,7 +14,6 @@ import { Context } from '../lib';
 
 // Types
 import { peopleDetailsProps } from '../types/People/peopleDetailsProps';
-import PeopleDetailHeader from '../components/PeopleDetailPage/PeopleDetailHeader';
 
 export const PeopleDetailPage = () => {
     const { peopleId } = useParams<'peopleId'>();
@@ -31,7 +32,13 @@ export const PeopleDetailPage = () => {
                 </Helmet>
             )}
             <Container>
-                <PeopleDetailHeader personData={personData} />
+                {personData ? (
+                    <PeopleDetailHeader personData={personData} />
+                ) : (
+                    <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
+                        <Spinner />
+                    </div>
+                )}
             </Container>
         </>
     );
