@@ -19,7 +19,7 @@ const TabsContainer: React.FC<tabContainerProps> = ({ movies }) => {
         <>
             <div className='relative flex flex-col break-words w-full py-5 white-shadow '>
                 <div className='flex flex-nowrap overflow-x-auto snap-x'>
-                    {movies?.map((movie: movieProps | tvProps) => (
+                    {movies?.map((movie: movieProps | tvProps, index) => (
                         <Suspense
                             fallback={
                                 <LoadingModel
@@ -27,7 +27,7 @@ const TabsContainer: React.FC<tabContainerProps> = ({ movies }) => {
                                     height={225}
                                 />
                             }
-                            key={movie.id}
+                            key={movie.id + index}
                         >
                             <MovieCard {...movie} />
                         </Suspense>

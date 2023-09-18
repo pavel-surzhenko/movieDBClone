@@ -131,22 +131,32 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                         )}
                     </div>
                 </div>
-                {personData?.combined_credits.cast && (
-                    <>
-                        <h3 className='text-xl font-semibold'>
-                            Movie Cast ({personData?.combined_credits.cast.length})
-                        </h3>
-                        <TabsContainer movies={personData?.combined_credits.cast} />
-                    </>
-                )}
-                {personData?.combined_credits.cast && (
-                    <>
-                        <h3 className='text-xl font-semibold'>
-                            Crew Cast ({personData?.combined_credits.crew.length})
-                        </h3>
-                        <TabsContainer movies={personData?.combined_credits.crew} />
-                    </>
-                )}
+                {personData?.combined_credits.cast &&
+                    personData?.combined_credits.cast.length > 0 && (
+                        <>
+                            <h3 className='text-xl font-semibold'>
+                                Movie Cast ({personData?.combined_credits.cast.length})
+                            </h3>
+                            <TabsContainer
+                                movies={personData?.combined_credits.cast.sort(
+                                    (a, b) => b.vote_average - a.vote_average
+                                )}
+                            />
+                        </>
+                    )}
+                {personData?.combined_credits.crew &&
+                    personData?.combined_credits.crew.length > 0 && (
+                        <>
+                            <h3 className='text-xl font-semibold'>
+                                Crew Cast ({personData?.combined_credits.crew.length})
+                            </h3>
+                            <TabsContainer
+                                movies={personData?.combined_credits.crew.sort(
+                                    (a, b) => b.vote_average - a.vote_average
+                                )}
+                            />
+                        </>
+                    )}
             </div>
         </section>
     );
