@@ -8,6 +8,7 @@ import { Context, baseUrlImg, genders } from '../../lib';
 import { peopleDetailsProps } from '../../types/People/peopleDetailsProps';
 import { Link } from 'react-router-dom';
 import { CustomLink } from '../../assets';
+import TabsContainer from '../TabsContainer';
 
 const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = ({
     personData,
@@ -28,7 +29,7 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
         : paragraphs?.slice(0, MAX_PARAGRAPHS_TO_SHOW);
 
     return (
-        <section className='mt-5 flex flex-col md:flex-row px-5'>
+        <section className='my-5 flex flex-col md:flex-row px-5 relative'>
             <div className='w-full md:w-[300px] md:mr-10'>
                 <div className='mx-auto min-w-[180px] w-[180px] md:min-w-[300px] md:w-[300px] rounded-md overflow-hidden'>
                     <img
@@ -93,18 +94,18 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                     )}
                 </div>
             </div>
-            <div>
-                <h1 className='text-2xl md:text-3xl font-bold mb-3 md:mb-5 text-center md:text-left'>
+            <div className='overflow-x-auto'>
+                <h1 className='text-2xl md:text-3xl font-bold mb-3 md:mb-5 text-center md:text-left animate-fade-down animate-once animate-duration-500 animate-ease-linear'>
                     {personData?.name}
                 </h1>
                 <div>
-                    <h3 className='text-xl font-semibold mb-2 '>
+                    <h3 className='text-xl font-semibold mb-2 animate-fade-down animate-once animate-duration-500 animate-delay-100 animate-ease-linear'>
                         {language === 'uk-UA' ? 'Біографія' : 'Biography'}
                     </h3>
                     <div className='mb-5'>
                         {displayedParagraphs?.map((paragraph, index) => (
                             <p
-                                className={`mb-5 ${
+                                className={`mb-5 animate-fade-down animate-once animate-duration-500 animate-delay-300 animate-ease-linear ${
                                     index === displayedParagraphs.length - 1 ? 'mb-0' : ''
                                 }`}
                                 key={index}
@@ -130,6 +131,22 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                         )}
                     </div>
                 </div>
+                {personData?.combined_credits.cast && (
+                    <>
+                        <h3 className='text-xl font-semibold'>
+                            Movie Cast ({personData?.combined_credits.cast.length})
+                        </h3>
+                        <TabsContainer movies={personData?.combined_credits.cast} />
+                    </>
+                )}
+                {personData?.combined_credits.cast && (
+                    <>
+                        <h3 className='text-xl font-semibold'>
+                            Crew Cast ({personData?.combined_credits.crew.length})
+                        </h3>
+                        <TabsContainer movies={personData?.combined_credits.crew} />
+                    </>
+                )}
             </div>
         </section>
     );
