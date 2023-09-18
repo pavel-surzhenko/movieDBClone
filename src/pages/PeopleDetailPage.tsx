@@ -14,30 +14,21 @@ import Container from '../components/Container';
 export const PeopleDetailPage = () => {
     const { peopleId } = useParams<'peopleId'>();
     const [personData, setPersonData] = useState<peopleDetailsProps | null>(null);
+    const [showAllParagraphs, setShowAllParagraphs] = useState(false);
     const { language } = useContext(Context);
 
     useEffect(() => {
         api.people.getPerson(Number(peopleId), language).then((data) => setPersonData(data));
     }, [language, peopleId]);
 
-    const paragraphs = personData?.biography ? (
-        personData.biography.split('\n').map((paragraph, index) => (
-            <p
-                className='mb-5'
-                key={index}
-            >
-                {paragraph}
-            </p>
-        ))
-    ) : (
-        <p>
-            {language === 'uk-UA'
-                ? 'Вибачте, немає достатньо інформації українською'
-                : 'Sorry, not enough information'}
-        </p>
-    );
+    const MAX_PARAGRAPHS_TO_SHOW = 3;
 
-    console.log(paragraphs);
+    const paragraphs = personData?.biography
+        .split('\n')
+        .filter((paragraph) => paragraph.trim() !== '');
+    const displayedParagraphs = showAllParagraphs
+        ? paragraphs
+        : paragraphs?.slice(0, MAX_PARAGRAPHS_TO_SHOW);
 
     return (
         <>
@@ -65,7 +56,27 @@ export const PeopleDetailPage = () => {
                             <h3 className='text-xl font-semibold mb-2'>
                                 {language === 'uk-UA' ? 'Біографія' : 'Biography'}
                             </h3>
-                            <div>{paragraphs}</div>
+                            <div className='mb-5'>
+                                {displayedParagraphs?.map((paragraph, index) => (
+                                    <p
+                                        className={`mb-5 ${
+                                            index === displayedParagraphs.length - 1 ? 'mb-0' : ''
+                                        }`}
+                                        key={index}
+                                    >
+                                        {paragraph}
+                                    </p>
+                                ))}
+                                {paragraphs && paragraphs?.length > MAX_PARAGRAPHS_TO_SHOW && (
+                                    <button
+                                        onClick={() => setShowAllParagraphs(!showAllParagraphs)}
+                                        className='text-lightBlue'
+                                    >
+                                        {!showAllParagraphs &&
+                                            (language === 'uk-UA' ? 'Читати більше' : 'Read more')}
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </section>
