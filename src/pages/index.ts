@@ -6,3 +6,4 @@ export { TVPage } from './TVPage';
 export { NoFindPage } from './NoFindPage';
 export { PeoplePage } from './PeoplePage';
 export { PeopleDetailPage } from './PeopleDetailPage';
+export { SearchPage } from './SearchPage';

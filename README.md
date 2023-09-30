@@ -28,5 +28,4 @@ If you are developing a production application, we recommend updating the config
 
 переробити апі p з більшим пошуком
 пошук
-при повторному кліку на жанр знімати фільтр
-персони
+додати сортировку до фільмів і тв на начальній сторінці

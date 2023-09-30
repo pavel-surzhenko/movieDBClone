@@ -10,6 +10,8 @@ import MovieDetails from './components/MovieDetailPage/MovieDetails';
 import RootLayout from './components/RootLayout';
 import SeasonDetail from './components/MovieDetailPage/SeasonDetail';
 import SeasonsCollection from './components/MovieDetailPage/SeasonsCollection';
+
+// Other
 import { ContextProvider } from './lib';
 
 // Pages
@@ -22,6 +24,7 @@ import {
     TVPage,
     PeoplePage,
     PeopleDetailPage,
+    SearchPage,
 } from './pages';
 
 // CSS
@@ -84,6 +87,11 @@ const router = createBrowserRouter([
             {
                 path: '/people/:peopleId',
                 element: <PeopleDetailPage />,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: '/search',
+                element: <SearchPage />,
                 errorElement: <ErrorPage />,
             },
             {

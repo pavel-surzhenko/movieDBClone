@@ -3,14 +3,23 @@ import { useContext, useEffect, useState } from 'react';
 
 // Other
 import { baseUrlImg, Context } from '../../lib';
+import { useNavigate } from 'react-router-dom';
 
 const Welcome = () => {
     const [image, setImage] = useState<string | null>(null);
+    const [search, setSearch] = useState<string>('');
+
     const { language, movies } = useContext(Context);
+    const navigate = useNavigate();
 
     const getRandomImg = () => {
         const randomIndex: number = Math.floor(Math.random() * movies.length);
         setImage(movies[randomIndex].backdrop_path);
+    };
+
+    const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        navigate(`/search?query=${search}`);
     };
 
     useEffect(() => {
@@ -44,6 +53,7 @@ const Welcome = () => {
                     <form
                         action=''
                         className='flex relative z-0'
+                        onSubmit={handlerSubmit}
                     >
                         <input
                             className='w-full rounded-[30px] px-[20px] py-[10px] text-lg text-black/50 outline-none'
@@ -57,6 +67,8 @@ const Welcome = () => {
                                     ? 'Search'
                                     : 'Пошук'
                             }`}
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
                         />
                         <button
                             className='px-[26px] py-[12px] bg-gradient-to-r from-lightGreen to-lightBlue rounded-[30px] absolute right-0'
