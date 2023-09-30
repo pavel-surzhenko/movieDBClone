@@ -132,7 +132,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                     className='w-full object-contain'
                                 />
                             </div>
-                            <div className=' pl-0 lg:pl-10 text-white'>
+                            <div className=' pl-0 lg:pl-10 text-white w-full'>
                                 <h1 className=' font-semibold text-xl lg:text-4xl text-center mb-4 lg:mb-0 lg:text-left animate-fade-down animate-once animate-duration-500 animate-ease-linear'>
                                     {title + ' '}
                                     <span className='opacity-60 font-normal'>

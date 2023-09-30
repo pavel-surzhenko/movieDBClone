@@ -19,7 +19,7 @@ const Welcome = () => {
 
     const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        navigate(`/search?query=${search}`);
+        navigate(`/search/movie?query=${search}`);
     };
 
     useEffect(() => {

@@ -51,6 +51,27 @@ export const api = {
             throw new Error(`Failed to fetch genres of ${type}: ${error}`);
         }
     },
+
+    async getSearch(
+        type: string | undefined,
+        query: string | null,
+        language: string,
+        page: number
+    ): Promise<movieResponseProps | tvResponseProps | peopleResponseProps> {
+        try {
+            const { data } = await axios.get<
+                movieResponseProps | tvResponseProps | peopleResponseProps
+            >(
+                `${baseUrl}search/${type}?query=${query}&include_adult=true&language=${language}&page=${page}`,
+                apiOptions
+            );
+            console.log(data);
+
+            return data;
+        } catch (error) {
+            throw new Error(`Failed to fetch search: ${error}`);
+        }
+    },
     movies: {
         async getTrending(time: string, language: string): Promise<movieProps[]> {
             try {

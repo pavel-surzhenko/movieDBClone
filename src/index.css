@@ -33,20 +33,6 @@
 .input-color {
     @apply checked:bg-lightBlue checked:border-lightBlue appearance-none w-2 h-2 rounded-full shadow-radio !important;
 }
-.your-animation-enter {
-    opacity: 0;
-}
-
-.your-animation-enter-active {
-    opacity: 1;
-    transition: opacity 300ms;
-}
-
-.your-animation-exit {
-    opacity: 1;
-}
-
-.your-animation-exit-active {
-    opacity: 0;
-    transition: opacity 300ms;
+.active {
+    @apply font-semibold bg-black/5;
 }

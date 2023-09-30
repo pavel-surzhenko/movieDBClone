@@ -11,6 +11,7 @@ export default {
             black: '#000',
             white: '#fff',
             lightBlack: 'rgba(0,0,0, 0.4)',
+            lightGray: 'rgb(227,227,227)',
         },
         extend: {
             fontFamily: {
