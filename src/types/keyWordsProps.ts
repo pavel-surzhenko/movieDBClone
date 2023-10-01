@@ -1,9 +1,9 @@
-export interface keyWordsProps {
+export interface keywordsProps {
     id: 335977;
-    keywords: keyWords[];
+    keywords: keywords[];
 }
 
-type keyWords = {
+export type keywords = {
     id: number;
     name: string;
 };

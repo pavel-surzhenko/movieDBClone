@@ -6,7 +6,7 @@ import { baseUrl } from '../lib';
 import { apiOptions } from './options';
 
 // Types
-import { videoPropsResponse, keyWordsProps, typeOfLists } from '../types';
+import { videoPropsResponse, keywordsProps, typeOfLists } from '../types';
 import {
     movieProps,
     movieDetailProps,
@@ -26,6 +26,7 @@ import {
 } from '../types/TV';
 import { peopleResponseProps } from '../types/People/peopleResponseProps';
 import { peopleDetailsProps } from '../types/People/peopleDetailsProps';
+import { companyResponseProps, keywordsResponseProps } from '../types/Search';
 
 export const api = {
     async getTrendingAll(language: string): Promise<movieProps[]> {
@@ -57,7 +58,13 @@ export const api = {
         query: string | null,
         language: string,
         page: number
-    ): Promise<movieResponseProps | tvResponseProps | peopleResponseProps> {
+    ): Promise<
+        | movieResponseProps
+        | tvResponseProps
+        | peopleResponseProps
+        | companyResponseProps
+        | keywordsResponseProps
+    > {
         try {
             const { data } = await axios.get<
                 movieResponseProps | tvResponseProps | peopleResponseProps
@@ -65,7 +72,6 @@ export const api = {
                 `${baseUrl}search/${type}?query=${query}&include_adult=true&language=${language}&page=${page}`,
                 apiOptions
             );
-            console.log(data);
 
             return data;
         } catch (error) {
@@ -194,12 +200,13 @@ export const api = {
             }
         },
 
-        async getKeyWords(id: number): Promise<keyWordsProps> {
+        async getKeyWords(id: number): Promise<keywordsProps> {
             try {
-                const { data } = await axios.get<keyWordsProps>(
+                const { data } = await axios.get<keywordsProps>(
                     `${baseUrl}movie/${id}/keywords`,
                     apiOptions
                 );
+
                 return data;
             } catch (error) {
                 throw new Error(`Failed to fetch keywords: ${error}`);
@@ -325,9 +332,9 @@ export const api = {
             }
         },
 
-        async getKeyWords(id: number): Promise<keyWordsProps> {
+        async getKeyWords(id: number): Promise<keywordsProps> {
             try {
-                const { data } = await axios.get<keyWordsProps>(
+                const { data } = await axios.get<keywordsProps>(
                     `${baseUrl}tv/${id}/keywords`,
                     apiOptions
                 );

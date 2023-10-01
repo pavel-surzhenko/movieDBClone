@@ -73,9 +73,11 @@ const MovieCollectionCard: React.FC<movieProps | tvProps> = (movie) => {
                         {title}
                     </h2>
                 </Link>
-                <div className='text-sm opacity-50 mb-2'>
-                    {new Date(release_date).toLocaleDateString(localLanguage, dateOptions)}
-                </div>
+                {release_date && (
+                    <div className='text-sm opacity-50 mb-2'>
+                        {new Date(release_date).toLocaleDateString(localLanguage, dateOptions)}
+                    </div>
+                )}
                 <div className=' text-sm lg:text-base text-ellipsis overflow-hidden line-clamp-3'>
                     {movie.overview}
                 </div>

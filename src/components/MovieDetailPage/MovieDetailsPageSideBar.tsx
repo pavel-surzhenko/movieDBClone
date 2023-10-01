@@ -8,7 +8,7 @@ import { Instagram, Twitter, Facebook, IMDB, CustomLink } from '../../assets';
 // Types
 import { movieDetailProps } from '../../types/Movie';
 import { tvDetailProps, tvLinksProps } from '../../types/TV';
-import { keyWordsProps } from '../../types/keyWordsProps';
+import { keywordsProps } from '../../types/keywordsProps';
 
 // Other
 import { api } from '../../api/api';
@@ -16,7 +16,7 @@ import { Context } from '../../lib';
 
 const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (props) => {
     const [links, setLinks] = useState<tvLinksProps>();
-    const [words, setWords] = useState<keyWordsProps>();
+    const [words, setWords] = useState<keywordsProps>();
     const { pathname } = useLocation();
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
     const { language } = useContext(Context);

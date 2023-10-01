@@ -26,13 +26,19 @@ import MovieCollectionCard from '../components/MovieCollectionCard';
 import { RightArrowLong, LeftArrowLong } from '../assets';
 import { peopleProps } from '../types/People/peopleProps';
 import PeopleList from '../components/Search/PeopleList';
+import { companyProps } from '../types/Search';
+import CompanyList from '../components/Search/CompanyList';
+import { keywords } from '../types';
+import KeywordsList from '../components/Search/ KeywordsList';
 
 export const SearchPage = () => {
     const query = useQuery().get('query');
     const { language } = useContext(Context);
     const [page, setPage] = useState<number>(1);
     const [pageCount, setPageCount] = useState<number>(0);
-    const [data, setData] = useState<movieProps[] | tvProps[] | peopleProps[]>([]);
+    const [data, setData] = useState<
+        movieProps[] | tvProps[] | peopleProps[] | companyProps[] | keywords[]
+    >([]);
     const [loading, setLoading] = useState(true);
     const { type } = useParams();
 
@@ -45,6 +51,10 @@ export const SearchPage = () => {
         });
     }, [query, language, page, type]);
 
+    useEffect(() => {
+        setPage(1);
+    }, [type]);
+
     return (
         <>
             <Helmet>
@@ -54,10 +64,10 @@ export const SearchPage = () => {
                 <div className='flex m-5 relative'>
                     <SearchBar query={query} />
                     {!loading ? (
-                        <>
+                        <div className='w-full'>
                             {data.length !== 0 ? (
                                 <div className='flex flex-col items-center'>
-                                    <div className='flex flex-col '>
+                                    <div className='flex flex-col w-full mb-5'>
                                         {data.map((item) => (
                                             <Suspense
                                                 fallback={
@@ -83,28 +93,45 @@ export const SearchPage = () => {
                                                 {type === 'person' && (
                                                     <PeopleList {...(item as peopleProps)} />
                                                 )}
+                                                {type === 'collection' && (
+                                                    <MovieCollectionCard
+                                                        {...(item as tvProps)}
+                                                        key={item.id}
+                                                    />
+                                                )}
+                                                {type === 'company' && (
+                                                    <CompanyList
+                                                        {...(item as companyProps)}
+                                                        key={item.id}
+                                                    />
+                                                )}
+                                                {type === 'keyword' && (
+                                                    <KeywordsList {...(item as keywords)} />
+                                                )}
                                             </Suspense>
                                         ))}
                                     </div>
-                                    <ReactPaginate
-                                        breakLabel={`... `}
-                                        nextLabel={<RightArrowLong />}
-                                        onPageChange={(e) => {
-                                            setPage(e.selected + 1);
-                                        }}
-                                        forcePage={page - 1}
-                                        pageRangeDisplayed={2}
-                                        marginPagesDisplayed={3}
-                                        pageCount={pageCount > 500 ? 500 : pageCount}
-                                        previousLabel={<LeftArrowLong />}
-                                        renderOnZeroPageCount={null}
-                                        containerClassName='flex text-xl items-center'
-                                        pageClassName='mr-3'
-                                        breakClassName='mr-3'
-                                        activeLinkClassName='text-white font-semibold bg-darkBlue px-2 rounded-lg'
-                                        disabledLinkClassName='hidden'
-                                        previousClassName='mr-3'
-                                    />
+                                    {pageCount > 1 && (
+                                        <ReactPaginate
+                                            breakLabel={`... `}
+                                            nextLabel={<RightArrowLong />}
+                                            onPageChange={(e) => {
+                                                setPage(e.selected + 1);
+                                            }}
+                                            forcePage={page - 1}
+                                            pageRangeDisplayed={2}
+                                            marginPagesDisplayed={3}
+                                            pageCount={pageCount > 500 ? 500 : pageCount}
+                                            previousLabel={<LeftArrowLong />}
+                                            renderOnZeroPageCount={null}
+                                            containerClassName='flex text-xl items-center'
+                                            pageClassName='mr-3'
+                                            breakClassName='mr-3'
+                                            activeLinkClassName='text-white font-semibold bg-darkBlue px-2 rounded-lg'
+                                            disabledLinkClassName='hidden'
+                                            previousClassName='mr-3'
+                                        />
+                                    )}
                                 </div>
                             ) : (
                                 <div>
@@ -113,7 +140,7 @@ export const SearchPage = () => {
                                         : 'No items were found that match your query.'}
                                 </div>
                             )}
-                        </>
+                        </div>
                     ) : (
                         <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
                             <Spinner />
