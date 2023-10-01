@@ -1,8 +1,7 @@
 // §react
-import { Suspense, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
 
 // Hooks
 import { useQuery } from '../hooks';
@@ -19,17 +18,13 @@ import { tvProps } from '../types/TV';
 import SearchBar from '../components/Search/SearchBar';
 import Container from '../components/Container';
 import Spinner from '../components/Spinner';
-import LoadingModel from '../components/LoadingModel';
-import MovieCollectionCard from '../components/MovieCollectionCard';
 
 // Assets
-import { RightArrowLong, LeftArrowLong } from '../assets';
 import { peopleProps } from '../types/People/peopleProps';
-import PeopleList from '../components/Search/PeopleList';
 import { companyProps } from '../types/Search';
-import CompanyList from '../components/Search/CompanyList';
 import { keywords } from '../types';
-import KeywordsList from '../components/Search/ KeywordsList';
+
+import Results from '../components/Search/Results';
 
 export const SearchPage = () => {
     const query = useQuery().get('query');
@@ -41,19 +36,24 @@ export const SearchPage = () => {
     >([]);
     const [loading, setLoading] = useState(true);
     const { type } = useParams();
+    const [currentPageType, setCurrentPageType] = useState<string | undefined>(type);
 
+    const handlePageChange = (newPage: number) => {
+        setPage(newPage);
+    };
     useEffect(() => {
         setLoading(true);
-        api.getSearch(type, query, language, page).then((data) => {
+        api.getSearch(currentPageType, type, query, language, page).then((data) => {
+            if (currentPageType !== type) {
+                setCurrentPageType(type);
+            }
             setData(data.results);
             setPageCount(data.total_pages);
+            setPage(data.page);
             setLoading(false);
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query, language, page, type]);
-
-    useEffect(() => {
-        setPage(1);
-    }, [type]);
 
     return (
         <>
@@ -61,86 +61,16 @@ export const SearchPage = () => {
                 <title>{query} - The Movie Data Base (TMDB)</title>
             </Helmet>
             <Container>
-                <div className='flex m-5 relative'>
+                <div className='flex flex-col md:flex-row m-5 relative'>
                     <SearchBar query={query} />
                     {!loading ? (
-                        <div className='w-full'>
-                            {data.length !== 0 ? (
-                                <div className='flex flex-col items-center'>
-                                    <div className='flex flex-col w-full mb-5'>
-                                        {data.map((item) => (
-                                            <Suspense
-                                                fallback={
-                                                    <LoadingModel
-                                                        width={150}
-                                                        height={150}
-                                                    />
-                                                }
-                                                key={item.id}
-                                            >
-                                                {type === 'movie' && (
-                                                    <MovieCollectionCard
-                                                        {...(item as movieProps)}
-                                                        key={item.id}
-                                                    />
-                                                )}
-                                                {type === 'tv' && (
-                                                    <MovieCollectionCard
-                                                        {...(item as tvProps)}
-                                                        key={item.id}
-                                                    />
-                                                )}
-                                                {type === 'person' && (
-                                                    <PeopleList {...(item as peopleProps)} />
-                                                )}
-                                                {type === 'collection' && (
-                                                    <MovieCollectionCard
-                                                        {...(item as tvProps)}
-                                                        key={item.id}
-                                                    />
-                                                )}
-                                                {type === 'company' && (
-                                                    <CompanyList
-                                                        {...(item as companyProps)}
-                                                        key={item.id}
-                                                    />
-                                                )}
-                                                {type === 'keyword' && (
-                                                    <KeywordsList {...(item as keywords)} />
-                                                )}
-                                            </Suspense>
-                                        ))}
-                                    </div>
-                                    {pageCount > 1 && (
-                                        <ReactPaginate
-                                            breakLabel={`... `}
-                                            nextLabel={<RightArrowLong />}
-                                            onPageChange={(e) => {
-                                                setPage(e.selected + 1);
-                                            }}
-                                            forcePage={page - 1}
-                                            pageRangeDisplayed={2}
-                                            marginPagesDisplayed={3}
-                                            pageCount={pageCount > 500 ? 500 : pageCount}
-                                            previousLabel={<LeftArrowLong />}
-                                            renderOnZeroPageCount={null}
-                                            containerClassName='flex text-xl items-center'
-                                            pageClassName='mr-3'
-                                            breakClassName='mr-3'
-                                            activeLinkClassName='text-white font-semibold bg-darkBlue px-2 rounded-lg'
-                                            disabledLinkClassName='hidden'
-                                            previousClassName='mr-3'
-                                        />
-                                    )}
-                                </div>
-                            ) : (
-                                <div>
-                                    {language === 'uk-UA'
-                                        ? 'Не знайдено елементів, що відповідають вашому запиту.'
-                                        : 'No items were found that match your query.'}
-                                </div>
-                            )}
-                        </div>
+                        <Results
+                            data={data}
+                            type={type}
+                            pageCount={pageCount}
+                            handlePageChange={handlePageChange}
+                            page={page}
+                        />
                     ) : (
                         <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
                             <Spinner />

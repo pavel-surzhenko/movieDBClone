@@ -60,7 +60,7 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                             <span>{personData?.known_for_department}</span>
                         </div>
                     )}
-                    {personData?.gender && (
+                    {personData?.gender !== 0 && (
                         <div className='mb-1 md:mb-2'>
                             <span className='font-semibold'>Gender: </span>
                             <span>
@@ -82,7 +82,7 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                             <span>{personData?.place_of_birth}</span>
                         </div>
                     )}
-                    {personData?.also_known_as && (
+                    {personData?.also_known_as.length !== 0 && (
                         <div className='mb-1 md:mb-2 hidden md:block'>
                             <span className='font-semibold'>Also Known As: </span>
                             <span>

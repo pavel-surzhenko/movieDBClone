@@ -26,7 +26,8 @@ import {
 } from '../types/TV';
 import { peopleResponseProps } from '../types/People/peopleResponseProps';
 import { peopleDetailsProps } from '../types/People/peopleDetailsProps';
-import { companyResponseProps, keywordsResponseProps } from '../types/Search';
+import { companyResponseProps } from '../types/Search';
+import { keywordsResponseProps } from '../types/keywordsResponseProps';
 
 export const api = {
     async getTrendingAll(language: string): Promise<movieProps[]> {
@@ -54,6 +55,7 @@ export const api = {
     },
 
     async getSearch(
+        currentType: string | undefined,
         type: string | undefined,
         query: string | null,
         language: string,
@@ -66,14 +68,33 @@ export const api = {
         | keywordsResponseProps
     > {
         try {
-            const { data } = await axios.get<
-                movieResponseProps | tvResponseProps | peopleResponseProps
-            >(
-                `${baseUrl}search/${type}?query=${query}&include_adult=true&language=${language}&page=${page}`,
-                apiOptions
-            );
+            if (currentType === type) {
+                const { data } = await axios.get<
+                    | movieResponseProps
+                    | tvResponseProps
+                    | peopleResponseProps
+                    | companyResponseProps
+                    | keywordsResponseProps
+                >(
+                    `${baseUrl}search/${type}?query=${query}&include_adult=true&language=${language}&page=${page}`,
+                    apiOptions
+                );
 
-            return data;
+                return data;
+            } else {
+                const { data } = await axios.get<
+                    | movieResponseProps
+                    | tvResponseProps
+                    | peopleResponseProps
+                    | companyResponseProps
+                    | keywordsResponseProps
+                >(
+                    `${baseUrl}search/${type}?query=${query}&include_adult=true&language=${language}&page=${1}`,
+                    apiOptions
+                );
+
+                return data;
+            }
         } catch (error) {
             throw new Error(`Failed to fetch search: ${error}`);
         }

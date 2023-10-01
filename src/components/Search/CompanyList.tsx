@@ -6,7 +6,7 @@ const CompanyList: React.FC<companyProps> = (props) => {
     return (
         <div
             key={props.id}
-            className='flex items-center text-lg border-b border-lightGray py-2'
+            className='flex items-center text-lg border-b border-lightGray py-2 animate-fade-left animate-once animate-duration-500 animate-ease-linear animate-fill-forwards'
         >
             {props.logo_path && (
                 <div>

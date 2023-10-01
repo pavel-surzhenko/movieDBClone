@@ -13,14 +13,14 @@ const PeopleList: React.FC<peopleProps> = (props) => {
     return (
         <div
             key={props.id}
-            className='flex pb-4'
+            className='flex pb-4 animate-jump-in animate-once animate-duration-500 animate-ease-linear animate-fill-forwards'
         >
-            <div className='w-16 h-[70px] mr-5 rounded-md overflow-hidden  cursor-pointer'>
+            <div className='min-w-[64px] max-w-[64px] h-[96px] mr-5 overflow-hidden  cursor-pointer bg-lightGray rounded-md'>
                 {props.profile_path ? (
                     <LazyLoadImage
                         src={`${baseUrlImg}/w200${props.profile_path}`}
                         alt={props.name}
-                        className='w-full h-auto object-contain '
+                        className='w-full h-auto object-contain rounded-md overflow-hidden '
                         effect='blur'
                         height={70}
                         width={64}
@@ -35,7 +35,7 @@ const PeopleList: React.FC<peopleProps> = (props) => {
                     <img
                         src='/user.svg'
                         alt={props.name}
-                        className='w-full h-[70px] object-contain bg-lightGray'
+                        className='w-[64px] h-[96px]'
                     />
                 )}
             </div>

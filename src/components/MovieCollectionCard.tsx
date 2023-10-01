@@ -22,7 +22,7 @@ const MovieCollectionCard: React.FC<movieProps | tvProps> = (movie) => {
     return (
         <div
             key={movie.id}
-            className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-delay-100 animate-ease-linear animate-fill-forwards'
+            className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-ease-linear animate-fill-forwards'
         >
             <Link
                 to={`${'title' in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`}`}

@@ -1,7 +1,7 @@
-import { keywordsProps } from '.';
+import { keywords } from '.';
 
 export interface keywordsResponseProps {
-    results: keywordsProps[];
+    results: keywords[];
     page: number;
     total_pages: number;
     total_results: number;
