@@ -61,7 +61,7 @@ export const SearchPage = () => {
                 <title>{query} - The Movie Data Base (TMDB)</title>
             </Helmet>
             <Container>
-                <div className='flex flex-col md:flex-row m-5 relative'>
+                <div className='flex flex-col md:flex-row m-5 md:relative'>
                     <SearchBar query={query} />
                     {!loading ? (
                         <Results

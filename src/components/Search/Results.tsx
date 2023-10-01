@@ -56,7 +56,7 @@ const Results: React.FC<resultsProps> = ({ data, type, pageCount, page, handlePa
                                     {type === 'person' && <PeopleList {...(item as peopleProps)} />}
                                     {type === 'collection' && (
                                         <MovieCollectionCard
-                                            {...(item as tvProps)}
+                                            {...(item as movieProps | tvProps)}
                                             key={item.id}
                                         />
                                     )}

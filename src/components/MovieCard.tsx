@@ -63,7 +63,7 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                             <LazyLoadImage
                                 src={'/image.svg'}
                                 alt={title}
-                                className='w-[150px] object-contain h-[225px] '
+                                className='w-[150px] object-contain h-[225px] bg-lightGray'
                                 effect='blur'
                                 placeholder={
                                     <LoadingModel

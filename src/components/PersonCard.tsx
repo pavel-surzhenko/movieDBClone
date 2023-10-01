@@ -40,7 +40,7 @@ const PersonCard: React.FC<cast | crew> = (props) => {
                             <LazyLoadImage
                                 src={'/user.svg'}
                                 alt={props.name}
-                                className='w-[150px] object-contain h-[225px] '
+                                className='w-[150px] object-contain h-[225px] bg-lightGray'
                                 effect='blur'
                                 placeholder={
                                     <LoadingModel
