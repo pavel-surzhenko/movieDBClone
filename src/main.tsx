@@ -95,6 +95,11 @@ const router = createBrowserRouter([
                 errorElement: <ErrorPage />,
             },
             {
+                path: '/collection/:id',
+                element: <MovieCollection />,
+                errorElement: <ErrorPage />,
+            },
+            {
                 path: '*',
                 element: <NoFindPage />,
             },
