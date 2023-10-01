@@ -8,7 +8,7 @@ import { Instagram, Twitter, Facebook, IMDB, CustomLink } from '../../assets';
 // Types
 import { movieDetailProps } from '../../types/Movie';
 import { tvDetailProps, tvLinksProps } from '../../types/TV';
-import { keywordsProps } from '../../types/keywordsProps';
+import { keywordsProps } from '../../types/keywordsProps_old';
 
 // Other
 import { api } from '../../api/api';
