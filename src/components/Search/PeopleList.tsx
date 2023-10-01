@@ -35,7 +35,7 @@ const PeopleList: React.FC<peopleProps> = (props) => {
                     <img
                         src='/user.svg'
                         alt={props.name}
-                        className='w-full h-[70px] object-contain '
+                        className='w-full h-[70px] object-contain bg-lightGray'
                     />
                 )}
             </div>

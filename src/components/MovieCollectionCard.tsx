@@ -25,7 +25,7 @@ const MovieCollectionCard: React.FC<movieProps | tvProps> = (movie) => {
             className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-delay-100 animate-ease-linear animate-fill-forwards'
         >
             <Link
-                to={`/movie/${movie.id}`}
+                to={`${'title' in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`}`}
                 onClick={() => window.scrollTo(0, 0)}
             >
                 <div className='max-w-[90px] min-w-[90px] cursor-pointer'>
@@ -49,7 +49,7 @@ const MovieCollectionCard: React.FC<movieProps | tvProps> = (movie) => {
                         <LazyLoadImage
                             src={'/image.svg'}
                             alt={title}
-                            className='w-full object-contain h-[150px]'
+                            className='w-full object-contain h-[150px] bg-lightGray'
                             effect='blur'
                             placeholder={
                                 <LoadingModel
@@ -66,7 +66,7 @@ const MovieCollectionCard: React.FC<movieProps | tvProps> = (movie) => {
             </Link>
             <div className='px-4 pt-2'>
                 <Link
-                    to={`/movie/${movie.id}`}
+                    to={`${'title' in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`}`}
                     onClick={() => window.scrollTo(0, 0)}
                 >
                     <h2 className='text-base lg:text-lg font-bold cursor-pointer hover:text-lightBlue transition-colors duration-300'>

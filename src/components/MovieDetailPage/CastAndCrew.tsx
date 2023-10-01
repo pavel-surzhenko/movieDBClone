@@ -101,7 +101,7 @@ const CastAndCrew = () => {
                                 </div>
                                 <div className=''>
                                     <h2 className='text-lg font-semibold cursor-pointer'>
-                                        {person.name}
+                                        <Link to={`/people/${person.id}`}>{person.name}</Link>
                                     </h2>
                                     <h3 className='text-sm'>{person.character}</h3>
                                 </div>
@@ -144,7 +144,7 @@ const CastAndCrew = () => {
                                 </div>
                                 <div className=''>
                                     <h2 className='text-lg font-semibold  cursor-pointer'>
-                                        {person.name}
+                                        <Link to={`/people/${person.id}`}>{person.name}</Link>
                                     </h2>
                                     <h3 className='text-sm'>{person.job}</h3>
                                 </div>

@@ -56,34 +56,36 @@ export const SearchPage = () => {
                     {!loading ? (
                         <>
                             {data.length !== 0 ? (
-                                <div>
-                                    {data.map((item) => (
-                                        <Suspense
-                                            fallback={
-                                                <LoadingModel
-                                                    width={150}
-                                                    height={150}
-                                                />
-                                            }
-                                            key={item.id}
-                                        >
-                                            {type === 'movie' && (
-                                                <MovieCollectionCard
-                                                    {...(item as movieProps)}
-                                                    key={item.id}
-                                                />
-                                            )}
-                                            {type === 'tv' && (
-                                                <MovieCollectionCard
-                                                    {...(item as tvProps)}
-                                                    key={item.id}
-                                                />
-                                            )}
-                                            {type === 'person' && (
-                                                <PeopleList {...(item as peopleProps)} />
-                                            )}
-                                        </Suspense>
-                                    ))}
+                                <div className='flex flex-col items-center'>
+                                    <div className='flex flex-col '>
+                                        {data.map((item) => (
+                                            <Suspense
+                                                fallback={
+                                                    <LoadingModel
+                                                        width={150}
+                                                        height={150}
+                                                    />
+                                                }
+                                                key={item.id}
+                                            >
+                                                {type === 'movie' && (
+                                                    <MovieCollectionCard
+                                                        {...(item as movieProps)}
+                                                        key={item.id}
+                                                    />
+                                                )}
+                                                {type === 'tv' && (
+                                                    <MovieCollectionCard
+                                                        {...(item as tvProps)}
+                                                        key={item.id}
+                                                    />
+                                                )}
+                                                {type === 'person' && (
+                                                    <PeopleList {...(item as peopleProps)} />
+                                                )}
+                                            </Suspense>
+                                        ))}
+                                    </div>
                                     <ReactPaginate
                                         breakLabel={`... `}
                                         nextLabel={<RightArrowLong />}
