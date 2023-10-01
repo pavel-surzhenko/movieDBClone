@@ -43,21 +43,22 @@ const Results: React.FC<resultsProps> = ({ data, type, pageCount, page, handlePa
                                 >
                                     {type === 'movie' && (
                                         <MovieCollectionCard
-                                            {...(item as movieProps)}
+                                            movie={item as movieProps}
                                             key={item.id}
                                         />
                                     )}
                                     {type === 'tv' && (
                                         <MovieCollectionCard
-                                            {...(item as tvProps)}
+                                            movie={item as tvProps}
                                             key={item.id}
                                         />
                                     )}
                                     {type === 'person' && <PeopleList {...(item as peopleProps)} />}
                                     {type === 'collection' && (
                                         <MovieCollectionCard
-                                            {...(item as movieProps | tvProps)}
+                                            movie={item as movieProps | tvProps}
                                             key={item.id}
+                                            collection={item.id}
                                         />
                                     )}
                                     {type === 'company' && (

@@ -135,7 +135,7 @@ const MovieCollection = () => {
                         <Suspense>
                             {collection?.parts.map((movie) => (
                                 <MovieCollectionCard
-                                    {...movie}
+                                    movie={movie}
                                     key={movie.id}
                                 />
                             ))}

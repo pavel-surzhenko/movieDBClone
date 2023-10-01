@@ -10,10 +10,9 @@ import LoadingModel from './LoadingModel';
 import { Context, baseUrlImg, dateOptions } from '../lib';
 
 // Types
-import { movieProps } from '../types/Movie';
-import { tvProps } from '../types/TV';
+import { movieCollectionProps } from '../types';
 
-const MovieCollectionCard: React.FC<movieProps | tvProps> = (movie) => {
+const MovieCollectionCard: React.FC<movieCollectionProps> = ({ movie, collection }) => {
     const { language } = useContext(Context);
     const localLanguage = language.replace(`"`, '').slice(0, 2);
     const title = 'title' in movie ? movie.title : movie.name;
@@ -25,7 +24,11 @@ const MovieCollectionCard: React.FC<movieProps | tvProps> = (movie) => {
             className='mb-5 rounded-md overflow-hidden shadow-custom border border-solid border-[#d7d7d7] flex animate-jump-in animate-once animate-duration-500 animate-ease-linear animate-fill-forwards'
         >
             <Link
-                to={`${'title' in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`}`}
+                to={`${
+                    collection
+                        ? `/collection/${collection}`
+                        : `${'title' in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`}`
+                } `}
                 onClick={() => window.scrollTo(0, 0)}
             >
                 <div className='max-w-[90px] min-w-[90px] cursor-pointer'>
@@ -66,7 +69,11 @@ const MovieCollectionCard: React.FC<movieProps | tvProps> = (movie) => {
             </Link>
             <div className='px-4 pt-2'>
                 <Link
-                    to={`${'title' in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`}`}
+                    to={`${
+                        collection
+                            ? `/collection/${collection}`
+                            : `${'title' in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`}`
+                    } `}
                     onClick={() => window.scrollTo(0, 0)}
                 >
                     <h2 className='text-base lg:text-lg font-bold cursor-pointer hover:text-lightBlue transition-colors duration-300'>
