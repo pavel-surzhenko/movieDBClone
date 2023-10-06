@@ -1,8 +1,8 @@
 import { movieCreditsProps, movieDetailProps, movieProps } from './Movie';
-import { tvCreditsProps, tvDetailProps, tvProps } from './TV';
+import { tvDetailProps, tvProps } from './TV';
 
 export interface OutletContextType {
-    movieCredits: movieCreditsProps | tvCreditsProps;
+    movieCredits: movieCreditsProps;
     movieData: movieDetailProps | tvDetailProps;
     recommendations: movieProps[] | tvProps[];
 }
