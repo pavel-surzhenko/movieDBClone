@@ -13,18 +13,18 @@ import { Context } from '../lib';
 // Types
 import { movieProps } from '../types/Movie';
 import { tvProps } from '../types/TV';
+import { peopleProps } from '../types/People/peopleProps';
+import { companyProps } from '../types/Search';
+import { keywords } from '../types';
 
 // Components
 import SearchBar from '../components/Search/SearchBar';
 import Container from '../components/Container';
 import Spinner from '../components/Spinner';
+import Results from '../components/Search/Results';
+import Form from '../components/Search/Form';
 
 // Assets
-import { peopleProps } from '../types/People/peopleProps';
-import { companyProps } from '../types/Search';
-import { keywords } from '../types';
-
-import Results from '../components/Search/Results';
 
 export const SearchPage = () => {
     const query = useQuery().get('query');
@@ -37,10 +37,12 @@ export const SearchPage = () => {
     const [loading, setLoading] = useState(true);
     const { type } = useParams();
     const [currentPageType, setCurrentPageType] = useState<string | undefined>(type);
+    // const [search, setSearch] = useState(query);
 
     const handlePageChange = (newPage: number) => {
         setPage(newPage);
     };
+
     useEffect(() => {
         setLoading(true);
         api.getSearch(currentPageType, type, query, language, page).then((data) => {
@@ -61,6 +63,7 @@ export const SearchPage = () => {
                 <title>{query} - The Movie Data Base (TMDB)</title>
             </Helmet>
             <Container>
+                <Form search={query} />
                 <div className='flex flex-col md:flex-row m-5 md:relative'>
                     <SearchBar query={query} />
                     {!loading ? (
