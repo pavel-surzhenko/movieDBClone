@@ -15,7 +15,8 @@ const Form: React.FC<formProps> = ({ search }) => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (value.length) {
-            navigate(`/search/movie?query=${value}`);
+            const query = value.split(' ').join('+');
+            navigate(`/search/movie?query=${query}`);
         }
     };
 

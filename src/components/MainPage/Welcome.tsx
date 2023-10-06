@@ -20,7 +20,8 @@ const Welcome = () => {
     const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (search.length) {
-            navigate(`/search/movie?query=${search}`);
+            const query = search.split(' ').join('+');
+            navigate(`/search/movie?query=${query}`);
         }
     };
 
