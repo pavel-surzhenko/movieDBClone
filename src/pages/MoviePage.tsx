@@ -102,7 +102,7 @@ export const MoviePage: React.FC = () => {
                                                 />
                                             ) : (
                                                 <MovieCollectionCard
-                                                    {...movie}
+                                                    movie={movie}
                                                     key={movie.id}
                                                 />
                                             )}
