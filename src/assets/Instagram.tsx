@@ -10,7 +10,7 @@ export const Instagram = () => {
             strokeWidth='2'
             strokeLinecap='round'
             strokeLinejoin='round'
-            className='feather feather-instagram w-10 h-10  lg:w-[30px] lg:h-[30px]'
+            className='feather feather-instagram w-10 h-10  lg:w-[30px] lg:h-[30px] hover:text-lightBlue hover:-translate-y-1 transition-all duration-300'
         >
             <rect
                 x='2'

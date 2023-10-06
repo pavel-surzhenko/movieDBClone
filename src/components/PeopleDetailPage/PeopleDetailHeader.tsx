@@ -53,16 +53,22 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                             </Link>
                         </div>
                     )}
-                    <h3 className='mb-2 text-xl font-semibold'>Personal info</h3>
+                    <h3 className='mb-2 text-xl font-semibold'>
+                        {language === 'uk-UA' ? 'Персональна інформація' : 'Personal info'}
+                    </h3>
                     {personData?.known_for_department && (
                         <div className='mb-1 md:mb-2'>
-                            <span className='font-semibold'>Known For: </span>
+                            <span className='font-semibold'>
+                                {language === 'uk-UA' ? 'Відомий за: ' : 'Known for: '}
+                            </span>
                             <span>{personData?.known_for_department}</span>
                         </div>
                     )}
                     {personData?.gender !== 0 && (
                         <div className='mb-1 md:mb-2'>
-                            <span className='font-semibold'>Gender: </span>
+                            <span className='font-semibold'>
+                                {language === 'uk-UA' ? 'Стать: ' : 'Gender: '}
+                            </span>
                             <span>
                                 {personData?.gender && genders[language][personData?.gender]}
                             </span>
@@ -70,21 +76,28 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                     )}
                     {personData?.birthday && (
                         <div className='mb-1 md:mb-2'>
-                            <span className='font-semibold'>Birthday: </span>
+                            <span className='font-semibold'>
+                                {language === 'uk-UA' ? 'Дата народження: ' : 'Birthday: '}
+                            </span>
                             <span>
-                                {personData?.birthday} ({age} years old)
+                                {personData?.birthday} ({age}{' '}
+                                {language === 'uk-UA' ? 'років' : 'years old'})
                             </span>
                         </div>
                     )}
                     {personData?.place_of_birth && (
                         <div className='mb-1 md:mb-2'>
-                            <span className='font-semibold'>Place of Birth: </span>
+                            <span className='font-semibold'>
+                                {language === 'uk-UA' ? 'Місце народження: ' : 'Place of Birth: '}
+                            </span>
                             <span>{personData?.place_of_birth}</span>
                         </div>
                     )}
                     {personData?.also_known_as.length !== 0 && (
                         <div className='mb-1 md:mb-2 hidden md:block'>
-                            <span className='font-semibold'>Also Known As: </span>
+                            <span className='font-semibold'>
+                                {language === 'uk-UA' ? 'Також відомий як: ' : 'Also Known As: '}
+                            </span>
                             <span>
                                 {personData?.also_known_as.map((name, index) => (
                                     <p key={index}>{name}</p>
@@ -135,7 +148,8 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                     personData?.combined_credits.cast.length > 0 && (
                         <>
                             <h3 className='text-xl font-semibold'>
-                                Movie Cast ({personData?.combined_credits.cast.length})
+                                {language === 'uk-UA' ? 'Фільми' : 'Movie Cast'} (
+                                {personData?.combined_credits.cast.length})
                             </h3>
                             <TabsContainer
                                 movies={personData?.combined_credits.cast.sort(
@@ -148,7 +162,8 @@ const PeopleDetailHeader: React.FC<{ personData: peopleDetailsProps | null }> = 
                     personData?.combined_credits.crew.length > 0 && (
                         <>
                             <h3 className='text-xl font-semibold'>
-                                Crew Cast ({personData?.combined_credits.crew.length})
+                                {language === 'uk-UA' ? 'Знімальна команда' : 'Crew Cast'} (
+                                {personData?.combined_credits.crew.length})
                             </h3>
                             <TabsContainer
                                 movies={personData?.combined_credits.crew.sort(

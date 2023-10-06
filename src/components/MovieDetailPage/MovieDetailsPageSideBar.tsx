@@ -92,9 +92,6 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (pro
                 )}
             </div>
             <div>
-                <p className='text-lg font-semibold mb-4'>
-                    {language === 'uk-UA' ? 'Факти' : 'Facts'}
-                </p>
                 <div className='mb-3'>
                     <div className='font-semibold'>
                         {language === 'uk-UA' ? 'Статус' : 'Status'}
@@ -144,7 +141,10 @@ const MovieDetailsPageSideBar: React.FC<movieDetailProps | tvDetailProps> = (pro
                     <div className='font-semibold'>
                         {language === 'uk-UA' ? 'Мова оригінала' : 'Original Language'}
                     </div>
-                    <div className='font-light'>{props.original_language}</div>
+                    <div className='font-light'>
+                        {props.original_language.charAt(0).toUpperCase() +
+                            props.original_language.substring(1)}
+                    </div>
                 </div>
                 {words && words.keywords?.length > 0 && (
                     <div className='mb-3'>
