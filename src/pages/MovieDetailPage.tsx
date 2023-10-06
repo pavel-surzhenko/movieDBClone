@@ -8,8 +8,14 @@ import { Helmet } from 'react-helmet';
 import Spinner from '../components/Spinner';
 
 // Types
-import { movieCreditsProps, movieDetailProps, movieProps } from '../types/Movie';
+import {
+    movieCreditsProps,
+    movieDetailProps,
+    movieProps,
+    movieProvidersProps,
+} from '../types/Movie';
 import { tvDetailProps, tvProps } from '../types/TV';
+import { keywordsProps, linksProps } from '../types';
 
 // Other
 import { api } from '../api/api';
@@ -27,6 +33,9 @@ export const MovieDetailPage: React.FC = () => {
     const [movieData, setMovieData] = useState<movieDetailProps | tvDetailProps | null>(null);
     const [movieCredits, setMovieCredits] = useState<movieCreditsProps | null>(null);
     const [recommendations, setRecommendations] = useState<movieProps[] | tvProps[]>([]);
+    const [watchProviders, setWatchProviders] = useState<movieProvidersProps | null>(null);
+    const [keywords, setKeywords] = useState<keywordsProps | null>(null);
+    const [links, setLinks] = useState<linksProps | null>(null);
 
     useEffect(() => {
         if (movieType === 'movie') {
@@ -34,12 +43,18 @@ export const MovieDetailPage: React.FC = () => {
                 setMovieData(data);
                 setMovieCredits(data.credits);
                 setRecommendations(data.recommendations.results);
+                setWatchProviders(data['watch/providers']);
+                setKeywords(data.keywords);
+                setLinks(data.external_ids);
             });
         } else {
             api.tv.getAllDetails(Number(movieId), language).then((data) => {
                 setMovieData(data);
                 setMovieCredits(data.credits);
                 setRecommendations(data.recommendations.results);
+                setWatchProviders(data['watch/providers']);
+                setKeywords(data.keywords);
+                setLinks(data.external_ids);
             });
         }
     }, [language, movieId, movieType]);
@@ -53,7 +68,16 @@ export const MovieDetailPage: React.FC = () => {
                     <Helmet>
                         <title>{title}- The Movie Data Base(TMDB)</title>
                     </Helmet>
-                    <Outlet context={{ movieData, movieCredits, recommendations }} />
+                    <Outlet
+                        context={{
+                            movieData,
+                            movieCredits,
+                            recommendations,
+                            watchProviders,
+                            keywords,
+                            links,
+                        }}
+                    />
                 </>
             ) : (
                 <div className='absolute top-1/2 right-1/2 translate-x-1/2'>

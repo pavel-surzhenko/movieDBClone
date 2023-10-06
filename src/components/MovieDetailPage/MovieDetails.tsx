@@ -20,7 +20,14 @@ const MovieDetailsPageRecommendations = React.lazy(
 );
 
 const MovieDetails = () => {
-    const { movieCredits, movieData, recommendations }: OutletContextType = useOutletContext();
+    const {
+        movieCredits,
+        movieData,
+        recommendations,
+        watchProviders,
+        keywords,
+        links,
+    }: OutletContextType = useOutletContext();
     const collections =
         'belongs_to_collection' in movieData ? movieData.belongs_to_collection : null;
     const seasons = 'seasons' in movieData ? movieData.seasons : null;
@@ -30,6 +37,7 @@ const MovieDetails = () => {
             <MovieDetailsPageHeader
                 movieDetails={movieData}
                 movieCredits={movieCredits}
+                watchProviders={watchProviders}
             />
             <Container>
                 <div className='flex flex-col lg:flex-row'>
@@ -40,7 +48,11 @@ const MovieDetails = () => {
                         <MovieDetailsPageRecommendations recommendations={recommendations} />
                     </div>
                     <div className='flex-none lg:w-[260px] pt-[30px] ml-8 lg:ml-0 mb-5 lg:mb-0'>
-                        <MovieDetailsPageSideBar {...movieData} />
+                        <MovieDetailsPageSideBar
+                            movieData={movieData}
+                            keywords={keywords}
+                            links={links}
+                        />
                     </div>
                 </div>
             </Container>

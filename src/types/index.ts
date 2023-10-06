@@ -7,3 +7,4 @@ export type { videoProps, videoPropsResponse, successVideoProps } from './videoP
 export type { genreListProps } from './genreListProps';
 export type { listsProps, typeOfLists } from './listsProps';
 export type { movieCollectionProps } from './movieCollectionProps';
+export type { linksProps } from './linksProps';

@@ -14,20 +14,20 @@ import { useGetCircleColor, useGetTrailColor } from '../../hooks';
 
 // Other
 import { baseUrlImg, Context } from '../../lib';
-import { api } from '../../api/api';
 
 // Types
-import { movieDetailsHeaderProps, movieProvidersProps } from '../../types/Movie';
+import { movieDetailsHeaderProps } from '../../types/Movie';
 import { ArrayRGB } from 'color-thief-react/lib/types';
 
 const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     movieDetails,
     movieCredits,
+    watchProviders,
 }) => {
     const { movieId } = useParams();
     const { language } = useContext(Context);
     const [showModal, setShowModal] = useState<boolean>(false);
-    const [movieProviders, setMovieProviders] = useState<movieProvidersProps | null>(null);
+    // const [movieProviders, setMovieProviders] = useState<movieProvidersProps | null>(null);
     const [dominantColor, setDominantColor] = useState<ArrayRGB>([0, 0, 0]);
     const director = movieCredits?.crew.find((person) => person.job === 'Director');
     const createdBy = 'created_by' in movieDetails ? movieDetails.created_by : [];
@@ -36,18 +36,6 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
 
     useEffect(() => {
-        if (movieType === 'movie') {
-            api.movies
-                .getProvider(Number(movieId))
-                .then((data) => setMovieProviders(data))
-                .catch(() => {});
-        } else {
-            api.tv
-                .getProvider(Number(movieId))
-                .then((data) => setMovieProviders(data))
-                .catch(() => {});
-        }
-
         getColor(
             `${baseUrlImg}/w1280${movieDetails?.poster_path}?api_key=${
                 import.meta.env.VITE_TMDB_KEY
@@ -201,8 +189,11 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                         {language === 'uk-UA' ? 'Опис' : 'Overview'}
                                     </h3>
                                     <p className='font-light'>
-                                        {movieDetails?.overview ||
-                                            'Немає опису до фільму українською :('}
+                                        {movieDetails?.overview
+                                            ? movieDetails.overview
+                                            : language === 'uk-UA'
+                                            ? 'Немає опису до фільму українською :('
+                                            : 'There is no description for the movie'}
                                     </p>
                                 </div>
                                 <div className='flex justify-between items-center animate-flip-down animate-once animate-duration-700 animate-delay-500 animate-ease-linear'>
@@ -231,12 +222,12 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             </div>
                                         </div>
                                     )}
-                                    {movieProviders?.results?.US?.flatrate && (
+                                    {watchProviders?.results?.US?.flatrate && (
                                         <div className='w-12 h-12'>
                                             <img
-                                                src={`${baseUrlImg}/original${movieProviders?.results.US.flatrate[0].logo_path}`}
+                                                src={`${baseUrlImg}/original${watchProviders?.results.US.flatrate[0].logo_path}`}
                                                 alt={
-                                                    movieProviders?.results.US.flatrate[0]
+                                                    watchProviders?.results.US.flatrate[0]
                                                         .provider_name
                                                 }
                                                 className='w-full object-contain'

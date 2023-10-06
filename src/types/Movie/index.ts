@@ -7,6 +7,6 @@ export type {
     genres,
 } from './movieDetailProps';
 export type { movieProps } from './movieProps';
-export type { movieProvidersProps } from './movieProvidersProps';
+export type { movieProvidersProps, results } from './movieProvidersProps';
 export type { movieResponseProps } from './movieResponseProps';
 export type { movieAllDetailsProps } from './movieAllDetailsProps';

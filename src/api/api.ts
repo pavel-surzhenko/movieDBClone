@@ -6,7 +6,7 @@ import { baseUrl } from '../lib';
 import { apiOptions } from './options';
 
 // Types
-import { videoPropsResponse, keywordsProps, typeOfLists } from '../types';
+import { videoPropsResponse, keywordsProps, typeOfLists, linksProps } from '../types';
 import {
     movieProps,
     movieDetailProps,
@@ -18,7 +18,6 @@ import {
     movieAllDetailsProps,
 } from '../types/Movie';
 import {
-    tvLinksProps,
     tvProps,
     tvDetailProps,
     tvSeasonDetailProps,
@@ -150,7 +149,7 @@ export const api = {
         async getAllDetails(id: number, language: string): Promise<movieAllDetailsProps> {
             try {
                 const { data } = await axios.get<movieAllDetailsProps>(
-                    `${baseUrl}movie/${id}?language=${language}&append_to_response=credits,recommendations`,
+                    `${baseUrl}movie/${id}?language=${language}&append_to_response=credits,recommendations,watch/providers,keywords,external_ids`,
                     apiOptions
                 );
 
@@ -223,9 +222,9 @@ export const api = {
             }
         },
 
-        async getLinks(id: number): Promise<tvLinksProps> {
+        async getLinks(id: number): Promise<linksProps> {
             try {
-                const { data } = await axios.get<tvLinksProps>(
+                const { data } = await axios.get<linksProps>(
                     `${baseUrl}movie/${id}/external_ids`,
                     apiOptions
                 );
@@ -289,7 +288,7 @@ export const api = {
         async getAllDetails(id: number, language: string): Promise<tvAllDetailsProps> {
             try {
                 const { data } = await axios.get<tvAllDetailsProps>(
-                    `${baseUrl}tv/${id}?language=${language}&append_to_response=credits,recommendations`,
+                    `${baseUrl}tv/${id}?language=${language}&append_to_response=credits,recommendations,watch/providers,keywords,external_ids`,
                     apiOptions
                 );
 
@@ -367,9 +366,9 @@ export const api = {
             }
         },
 
-        async getLinks(id: number): Promise<tvLinksProps> {
+        async getLinks(id: number): Promise<linksProps> {
             try {
-                const { data } = await axios.get<tvLinksProps>(
+                const { data } = await axios.get<linksProps>(
                     `${baseUrl}tv/${id}/external_ids`,
                     apiOptions
                 );

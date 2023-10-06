@@ -1,6 +1,7 @@
 export interface keywordsProps {
     id: 335977;
-    keywords: keywords[];
+    results?: keywords[];
+    keywords?: keywords[];
 }
 
 export type keywords = {

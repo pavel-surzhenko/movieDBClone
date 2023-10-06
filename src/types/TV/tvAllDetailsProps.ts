@@ -1,5 +1,6 @@
 import { tvDetailProps, tvProps } from '.';
-import { cast, crew } from '../Movie';
+import { keywordsProps, linksProps } from '..';
+import { cast, crew, movieProvidersProps } from '../Movie';
 
 export interface tvAllDetailsProps extends tvDetailProps {
     credits: { cast: cast[]; crew: crew[] };
@@ -9,4 +10,7 @@ export interface tvAllDetailsProps extends tvDetailProps {
         total_pages: number;
         total_results: number;
     };
+    'watch/providers': movieProvidersProps;
+    keywords: keywordsProps;
+    external_ids: linksProps;
 }

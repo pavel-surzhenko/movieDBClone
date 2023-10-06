@@ -1,4 +1,4 @@
-export interface tvLinksProps {
+export interface linksProps {
     id: number;
     imdb_id: string;
     freebase_mid: null | string;

@@ -9,7 +9,7 @@ interface countryData {
     link: string;
     flatrate: flatrateProvider[];
 }
-interface results {
+export interface results {
     [countryCode: string]: countryData;
 }
 

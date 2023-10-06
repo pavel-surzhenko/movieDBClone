@@ -24,7 +24,7 @@ const TabsContainer: React.FC<tabContainerProps> = ({ movies }) => {
                                     height={225}
                                 />
                             }
-                            key={movie.id + index}
+                            key={movie.id * index}
                         >
                             <MovieCard {...movie} />
                         </Suspense>

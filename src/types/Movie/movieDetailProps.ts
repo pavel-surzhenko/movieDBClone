@@ -1,3 +1,4 @@
+import { movieProvidersProps } from '.';
 import { tvDetailProps } from '../TV';
 import { movieCreditsProps } from '../movieCreditsProps';
 
@@ -32,6 +33,7 @@ export interface movieDetailProps {
 export interface movieDetailsHeaderProps {
     movieDetails: movieDetailProps | tvDetailProps;
     movieCredits: movieCreditsProps;
+    watchProviders: movieProvidersProps;
 }
 
 export type movieCollection = {
