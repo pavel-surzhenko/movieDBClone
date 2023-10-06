@@ -10,6 +10,7 @@ import { Context } from '../lib';
 
 // Assets
 import logoSvg from '../assets/logo.svg';
+import logoMobile from '../assets/logoMobile.svg';
 import { SearchIconMain } from '../assets/SearchIconMain';
 import Form from './Search/Form';
 import { CloseIcon } from '../assets';
@@ -43,15 +44,25 @@ const Header = () => {
     return (
         <div className='bg-darkBlue'>
             <Container>
-                <nav className='p-5 flex justify-between items-center text-white'>
+                <nav className='px-5 py-3 md:p-5 flex justify-between items-center text-white'>
                     <div className='order-2 md:order-1'>
-                        <Link to='/'>
-                            <img
-                                src={logoSvg}
-                                alt=''
-                                className='h-5 w-40'
-                            />
-                        </Link>
+                        {window.innerWidth > 768 ? (
+                            <Link to='/'>
+                                <img
+                                    src={logoSvg}
+                                    alt=''
+                                    className='h-5 w-40'
+                                />
+                            </Link>
+                        ) : (
+                            <Link to='/'>
+                                <img
+                                    src={logoMobile}
+                                    alt=''
+                                    className='h-auto w-[55px]'
+                                />
+                            </Link>
+                        )}
                     </div>
                     <div className='hidden md:flex flex-grow justify-end md:order-2'>
                         <Link
@@ -92,7 +103,7 @@ const Header = () => {
                         </div>
                     </div>
                     <div
-                        className='ml-5 w-7 h-7 order-3'
+                        className='md:ml-5 w-7 h-7 order-3'
                         onClick={(event) => {
                             event.stopPropagation();
                             setIsSearchOpen(!isSearchOpen);
