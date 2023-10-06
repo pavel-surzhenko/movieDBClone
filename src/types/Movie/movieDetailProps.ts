@@ -1,5 +1,5 @@
-import { tvDetailProps, tvCreditsProps } from '../TV';
-import { movieCreditsProps } from './movieCreditsProps';
+import { tvDetailProps } from '../TV';
+import { movieCreditsProps } from '../movieCreditsProps';
 
 export interface movieDetailProps {
     adult: boolean;
@@ -31,7 +31,7 @@ export interface movieDetailProps {
 
 export interface movieDetailsHeaderProps {
     movieDetails: movieDetailProps | tvDetailProps;
-    movieCredits: movieCreditsProps | tvCreditsProps;
+    movieCredits: movieCreditsProps;
 }
 
 export type movieCollection = {

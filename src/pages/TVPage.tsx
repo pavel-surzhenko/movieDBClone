@@ -102,7 +102,7 @@ export const TVPage = () => {
                                                 />
                                             ) : (
                                                 <MovieCollectionCard
-                                                    {...movie}
+                                                    movie={movie}
                                                     key={movie.id}
                                                 />
                                             )}

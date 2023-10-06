@@ -9,7 +9,7 @@ import Spinner from '../components/Spinner';
 
 // Types
 import { movieCreditsProps, movieDetailProps, movieProps } from '../types/Movie';
-import { tvCreditsProps, tvDetailProps, tvProps } from '../types/TV';
+import { tvDetailProps, tvProps } from '../types/TV';
 
 // Other
 import { api } from '../api/api';
@@ -25,38 +25,22 @@ export const MovieDetailPage: React.FC = () => {
 
     const { language } = useContext(Context);
     const [movieData, setMovieData] = useState<movieDetailProps | tvDetailProps | null>(null);
-    const [movieCredits, setMovieCredits] = useState<movieCreditsProps | tvCreditsProps | null>(
-        null
-    );
+    const [movieCredits, setMovieCredits] = useState<movieCreditsProps | null>(null);
     const [recommendations, setRecommendations] = useState<movieProps[] | tvProps[]>([]);
 
     useEffect(() => {
         if (movieType === 'movie') {
-            api.movies
-                .getDetails(Number(movieId), language)
-                .then((data) => setMovieData(data))
-                .catch(() => {});
-            api.movies
-                .getCredits(Number(movieId), language)
-                .then((data) => setMovieCredits(data))
-                .catch(() => {});
-            api.movies
-                .getRecommendations(Number(movieId), language)
-                .then((data) => setRecommendations(data))
-                .catch(() => {});
+            api.movies.getAllDetails(Number(movieId), language).then((data) => {
+                setMovieData(data);
+                setMovieCredits(data.credits);
+                setRecommendations(data.recommendations.results);
+            });
         } else {
-            api.tv
-                .getDetails(Number(movieId), language)
-                .then((data) => setMovieData(data))
-                .catch(() => {});
-            api.tv
-                .getCredits(Number(movieId), language)
-                .then((data) => setMovieCredits(data))
-                .catch(() => {});
-            api.tv
-                .getRecommendations(Number(movieId), language)
-                .then((data) => setRecommendations(data))
-                .catch(() => {});
+            api.tv.getAllDetails(Number(movieId), language).then((data) => {
+                setMovieData(data);
+                setMovieCredits(data.credits);
+                setRecommendations(data.recommendations.results);
+            });
         }
     }, [language, movieId, movieType]);
 

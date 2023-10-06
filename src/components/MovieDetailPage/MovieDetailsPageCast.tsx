@@ -8,14 +8,13 @@ import LoadingModel from '../LoadingModel';
 
 // Types
 import { movieCreditsProps } from '../../types/Movie';
-import { tvCreditsProps } from '../../types/TV';
 
 // Other
 import { Context } from '../../lib';
 
 const PersonCard = React.lazy(() => import('../PersonCard'));
 
-const MovieDetailsPageCast: React.FC<movieCreditsProps | tvCreditsProps> = ({ cast }) => {
+const MovieDetailsPageCast: React.FC<movieCreditsProps> = ({ cast }) => {
     const { language } = useContext(Context);
     return (
         <section>

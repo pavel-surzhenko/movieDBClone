@@ -148,8 +148,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                     </span>
                                     {'runtime' in movieDetails && (
                                         <span>
-                                            {' • ' +
-                                                movieDetails?.runtime +
+                                            {movieDetails?.runtime +
                                                 `${language === 'uk-UA' ? ' хв' : ' m'}`}
                                         </span>
                                     )}

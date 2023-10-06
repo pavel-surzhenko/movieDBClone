@@ -15,14 +15,15 @@ import {
     collectionProps,
     movieResponseProps,
     genres,
+    movieAllDetailsProps,
 } from '../types/Movie';
 import {
     tvLinksProps,
     tvProps,
     tvDetailProps,
-    tvCreditsProps,
     tvSeasonDetailProps,
     tvResponseProps,
+    tvAllDetailsProps,
 } from '../types/TV';
 import { peopleResponseProps } from '../types/People/peopleResponseProps';
 import { peopleDetailsProps } from '../types/People/peopleDetailsProps';
@@ -143,6 +144,19 @@ export const api = {
                 return data;
             } catch (error) {
                 throw new Error(`Failed to fetch movie list: ${error}`);
+            }
+        },
+
+        async getAllDetails(id: number, language: string): Promise<movieAllDetailsProps> {
+            try {
+                const { data } = await axios.get<movieAllDetailsProps>(
+                    `${baseUrl}movie/${id}?language=${language}&append_to_response=credits,recommendations`,
+                    apiOptions
+                );
+
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch movie details: ${error}`);
             }
         },
 
@@ -272,10 +286,22 @@ export const api = {
                 throw new Error(`Failed to fetch tv details: ${error}`);
             }
         },
-
-        async getCredits(id: number, language: string): Promise<tvCreditsProps> {
+        async getAllDetails(id: number, language: string): Promise<tvAllDetailsProps> {
             try {
-                const { data } = await axios.get<tvCreditsProps>(
+                const { data } = await axios.get<tvAllDetailsProps>(
+                    `${baseUrl}tv/${id}?language=${language}&append_to_response=credits,recommendations`,
+                    apiOptions
+                );
+
+                return data;
+            } catch (error) {
+                throw new Error(`Failed to fetch tv details: ${error}`);
+            }
+        },
+
+        async getCredits(id: number, language: string): Promise<movieCreditsProps> {
+            try {
+                const { data } = await axios.get<movieCreditsProps>(
                     `${baseUrl}tv/${id}/credits?language=${language}`,
                     apiOptions
                 );

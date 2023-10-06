@@ -1,5 +1,4 @@
 export interface movieCreditsProps {
-    id: number;
     cast: cast[];
     crew: crew[];
 }
