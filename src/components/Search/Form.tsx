@@ -1,29 +1,41 @@
 // React
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Assets
 import { SearchIcon } from '../../assets/SearchIcon';
 
-// Types
-import { formProps } from '../../types/Search';
+// Hooks
+import { useQuery } from '../../hooks';
 
-const Form: React.FC<formProps> = ({ search }) => {
-    const [value, setValue] = useState(search || '');
+const Form = ({ isOpen }: { isOpen: boolean }) => {
+    const query = useQuery().get('query');
+    const [value, setValue] = useState(query || '');
     const navigate = useNavigate();
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (value.length) {
-            const query = value.split(' ').join('+');
-            navigate(`/search/movie?query=${query}`);
+            const search = value.split(' ').join('+');
+            navigate(`/search/movie?query=${search}`);
         }
     };
 
+    useEffect(() => {
+        if (isOpen && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        setValue(query || '');
+    }, [query]);
     return (
         <form
-            className='border-b'
+            className='border-b border-lightGray '
             onSubmit={handleSubmit}
+            id='search-form'
         >
             <div className='relative'>
                 <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
@@ -36,7 +48,7 @@ const Form: React.FC<formProps> = ({ search }) => {
                     placeholder='Search...'
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
-                    required
+                    ref={inputRef}
                 />
                 <button
                     type='submit'

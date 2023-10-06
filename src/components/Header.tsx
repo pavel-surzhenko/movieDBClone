@@ -1,5 +1,5 @@
 // React & Libraries
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 // Components
@@ -10,10 +10,15 @@ import { Context } from '../lib';
 
 // Assets
 import logoSvg from '../assets/logo.svg';
+import { SearchIconMain } from '../assets/SearchIconMain';
+import Form from './Search/Form';
+import { CloseIcon } from '../assets';
 
 const Header = () => {
     const { language, setLanguage } = useContext(Context);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const searchFormRef = useRef<HTMLDivElement>(null);
 
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!isMobileMenuOpen);
@@ -24,11 +29,22 @@ const Header = () => {
         document.body.style.overflow = '';
     }
 
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (isSearchOpen && !searchFormRef.current?.contains(event.target as Node)) {
+                setIsSearchOpen(false);
+            }
+        };
+        window.addEventListener('click', handleOutsideClick);
+
+        return () => window.removeEventListener('click', handleOutsideClick);
+    }, [isSearchOpen]);
+
     return (
         <div className='bg-darkBlue'>
             <Container>
                 <nav className='p-5 flex justify-between items-center text-white'>
-                    <div className=''>
+                    <div className='order-2 md:order-1'>
                         <Link to='/'>
                             <img
                                 src={logoSvg}
@@ -37,7 +53,7 @@ const Header = () => {
                             />
                         </Link>
                     </div>
-                    <div className='hidden md:flex'>
+                    <div className='hidden md:flex flex-grow justify-end md:order-2'>
                         <Link
                             to={'/movie'}
                             className={` mr-10 hover:text-lightBlue transition-colors duration-300`}
@@ -75,13 +91,22 @@ const Header = () => {
                             </button>
                         </div>
                     </div>
-                    <div className='md:hidden'>
+                    <div
+                        className='ml-5 w-7 h-7 order-3'
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            setIsSearchOpen(!isSearchOpen);
+                        }}
+                    >
+                        {isSearchOpen ? <CloseIcon /> : <SearchIconMain />}
+                    </div>
+                    <div className='md:hidden order-1 w-7 h-7'>
                         <button
                             className=''
                             onClick={toggleMobileMenu}
                         >
                             <svg
-                                className='h-6 w-6'
+                                className='h-7 w-7'
                                 fill='none'
                                 stroke='currentColor'
                                 viewBox='0 0 24 24'
@@ -174,6 +199,14 @@ const Header = () => {
                     )}
                 </nav>
             </Container>
+            <div
+                className={`${
+                    isSearchOpen ? 'absolute' : 'hidden'
+                } right-0 left-0 z-10 bg-white animate-fade-down animate-once animate-duration-300 animate-delay-0 animate-ease-linear`}
+                ref={searchFormRef}
+            >
+                <Form isOpen={isSearchOpen} />
+            </div>
         </div>
     );
 };

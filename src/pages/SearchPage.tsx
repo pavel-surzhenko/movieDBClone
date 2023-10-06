@@ -22,9 +22,6 @@ import SearchBar from '../components/Search/SearchBar';
 import Container from '../components/Container';
 import Spinner from '../components/Spinner';
 import Results from '../components/Search/Results';
-import Form from '../components/Search/Form';
-
-// Assets
 
 export const SearchPage = () => {
     const query = useQuery().get('query');
@@ -37,7 +34,6 @@ export const SearchPage = () => {
     const [loading, setLoading] = useState(true);
     const { type } = useParams();
     const [currentPageType, setCurrentPageType] = useState<string | undefined>(type);
-    // const [search, setSearch] = useState(query);
 
     const handlePageChange = (newPage: number) => {
         setPage(newPage);
@@ -63,8 +59,7 @@ export const SearchPage = () => {
                 <title>{query} - The Movie Data Base (TMDB)</title>
             </Helmet>
             <Container>
-                <Form search={query} />
-                <div className='flex flex-col md:flex-row m-5 md:relative'>
+                <div className='flex flex-col md:flex-row m-5 mt-12 md:mt-16 md:relative'>
                     <SearchBar query={query} />
                     {!loading ? (
                         <Results
