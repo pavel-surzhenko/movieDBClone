@@ -19,7 +19,9 @@ const Welcome = () => {
 
     const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        navigate(`/search/movie?query=${search}`);
+        if (search.length) {
+            navigate(`/search/movie?query=${search}`);
+        }
     };
 
     useEffect(() => {
@@ -52,7 +54,7 @@ const Welcome = () => {
                 <div>
                     <form
                         action=''
-                        className='flex relative z-0'
+                        className='flex relative z-0 items-center'
                         onSubmit={handlerSubmit}
                     >
                         <input
@@ -71,8 +73,9 @@ const Welcome = () => {
                             onChange={(e) => setSearch(e.target.value)}
                         />
                         <button
-                            className='px-[26px] py-[12px] bg-gradient-to-r from-lightGreen to-lightBlue rounded-[30px] absolute right-0'
+                            className='px-[26px] py-[12px] bg-gradient-to-r from-lightGreen to-lightBlue rounded-[30px] absolute right-0 disabled:cursor-not-allowed disabled:opacity-60'
                             type='submit'
+                            disabled={!search.length}
                         >
                             {language === 'en-US' ? 'Search' : 'Пошук'}
                         </button>
