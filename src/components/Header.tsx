@@ -7,7 +7,7 @@ import Container from './Container';
 import Form from './Search/Form';
 
 // Other
-import { Context, baseUrlImg } from '../lib';
+import { Context } from '../lib';
 import { api } from '../api/api';
 
 // Assets
@@ -76,7 +76,7 @@ const Header = () => {
                             </Link>
                         )}
                     </div>
-                    <div className='hidden md:flex flex-grow justify-end md:order-2'>
+                    <div className='hidden md:flex flex-grow justify-start md:order-2 md:ml-10'>
                         <Link
                             to={'/movie'}
                             className={` mr-10 hover:text-lightBlue transition-colors duration-300`}
@@ -95,36 +95,42 @@ const Header = () => {
                         >
                             {language === 'en-US' ? 'People' : 'Персони'}
                         </Link>
-                        <div className='flex text-white'>
-                            <button
-                                className={`language-btn mr-2 ${
-                                    language === 'en-US' ? 'bg-white text-darkBlue ' : ''
-                                }`}
-                                onClick={() => setLanguage('en-US')}
-                            >
-                                EN
-                            </button>
-                            <button
-                                className={`language-btn ${
-                                    language === 'uk-UA' ? 'bg-white text-darkBlue ' : ''
-                                }`}
-                                onClick={() => setLanguage('uk-UA')}
-                            >
-                                UA
-                            </button>
+                    </div>
+                    <div className='md:flex text-white md:order-3 hidden'>
+                        <button
+                            className={`language-btn mr-2 ${
+                                language === 'en-US' ? 'bg-white text-darkBlue ' : ''
+                            }`}
+                            onClick={() => setLanguage('en-US')}
+                        >
+                            EN
+                        </button>
+                        <button
+                            className={`language-btn ${
+                                language === 'uk-UA' ? 'bg-white text-darkBlue ' : ''
+                            }`}
+                            onClick={() => setLanguage('uk-UA')}
+                        >
+                            UA
+                        </button>
+                    </div>
+                    <div className='order-3 flex items-center'>
+                        <div
+                            className='md:ml-5 w-7 h-7'
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                setIsSearchOpen(!isSearchOpen);
+                            }}
+                        >
+                            {isSearchOpen ? <CloseIcon /> : <SearchIconMain />}
                         </div>
-                    </div>
-                    <div
-                        className='md:ml-5 w-7 h-7 order-3'
-                        onClick={(event) => {
-                            event.stopPropagation();
-                            setIsSearchOpen(!isSearchOpen);
-                        }}
-                    >
-                        {isSearchOpen ? <CloseIcon /> : <SearchIconMain />}
-                    </div>
-                    <div className='md:ml-5 order-4 hover:text-lightBlue transition-colors duration-300'>
-                        {sessionId ? accountDetails?.username : <Link to={'/login'}>Login</Link>}
+                        <div className='md:ml-5 order-4 hover:text-lightBlue transition-colors duration-300 hidden md:block'>
+                            {sessionId ? (
+                                accountDetails?.username
+                            ) : (
+                                <Link to={'/login'}>Login</Link>
+                            )}
+                        </div>
                     </div>
                     <div className='md:hidden order-1 w-7 h-7'>
                         <button
@@ -150,7 +156,7 @@ const Header = () => {
                     {isMobileMenuOpen && (
                         <div className='md:hidden absolute top-0 left-0 w-full h-screen bg-darkBlue z-10'>
                             <button
-                                className='m-5 absolute right-0'
+                                className='m-5 absolute left-0'
                                 onClick={toggleMobileMenu}
                             >
                                 <svg
@@ -168,7 +174,7 @@ const Header = () => {
                                     />
                                 </svg>
                             </button>
-                            <div className='flex flex-col items-center pt-14 text-lg'>
+                            <div className='flex flex-col items-center pt-14 text-xl'>
                                 <Link
                                     to={'/movie'}
                                     className={`mb-10`}
@@ -196,6 +202,13 @@ const Header = () => {
                                 >
                                     {language === 'en-US' ? 'People' : 'Персони'}
                                 </Link>
+                                <div className=' hover:text-lightBlue transition-colors duration-300 mb-10'>
+                                    {sessionId ? (
+                                        accountDetails?.username
+                                    ) : (
+                                        <Link to={'/login'}>Login</Link>
+                                    )}
+                                </div>
                                 <div className='flex text-white'>
                                     <button
                                         className={`language-btn mr-5 text-xl ${
