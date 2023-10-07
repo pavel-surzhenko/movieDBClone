@@ -1,12 +1,22 @@
 // React & Libraries
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 // Other
 import { baseUrl } from '../lib';
 import { apiOptions } from './options';
 
 // Types
-import { videoPropsResponse, keywordsProps, typeOfLists, linksProps } from '../types';
+import {
+    videoPropsResponse,
+    keywordsProps,
+    typeOfLists,
+    linksProps,
+    tokenResponse,
+    loginResponse,
+    detailsResponse,
+    companyResponseProps,
+    keywordsResponseProps,
+} from '../types';
 import {
     movieProps,
     movieDetailProps,
@@ -26,19 +36,68 @@ import {
 } from '../types/TV';
 import { peopleResponseProps } from '../types/People/peopleResponseProps';
 import { peopleDetailsProps } from '../types/People/peopleDetailsProps';
-import { companyResponseProps } from '../types/Search';
-import { keywordsResponseProps } from '../types/keywordsResponseProps';
 
 export const api = {
-    async getTrendingAll(language: string): Promise<movieProps[]> {
-        const {
-            data: { results },
-        } = await axios.get<movieResponseProps>(
-            `${baseUrl}trending/all/day?language=${language}`,
-            apiOptions
-        );
+    async getToken(): Promise<AxiosResponse<tokenResponse>> {
+        try {
+            const response: AxiosResponse<tokenResponse> = await axios.get<tokenResponse>(
+                `${baseUrl}authentication/token/new`,
+                apiOptions
+            );
+            return response;
+        } catch (error) {
+            throw new Error(`Failed to get token: ${error}`);
+        }
+    },
 
-        return results;
+    async login(request_token: string): Promise<loginResponse> {
+        const body = { request_token: request_token };
+        try {
+            const { data } = await axios.post<loginResponse>(
+                `${baseUrl}authentication/session/new`,
+                body,
+                {
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${import.meta.env.VITE_TMDB_AUTH}`,
+                    },
+                }
+            );
+
+            return data;
+        } catch (error) {
+            throw new Error(`Failed to get token: ${error}`);
+        }
+    },
+
+    async details(request_token: string): Promise<detailsResponse> {
+        try {
+            const { data } = await axios.get<detailsResponse>(
+                `${baseUrl}account?api_key=${
+                    import.meta.env.VITE_TMDB_KEY
+                }&session_id=${request_token}`,
+                apiOptions
+            );
+
+            return data;
+        } catch (error) {
+            throw new Error(`Failed to get token: ${error}`);
+        }
+    },
+
+    async getTrendingAll(language: string): Promise<movieProps[]> {
+        try {
+            const {
+                data: { results },
+            } = await axios.get<movieResponseProps>(
+                `${baseUrl}trending/all/day?language=${language}`,
+                apiOptions
+            );
+
+            return results;
+        } catch (error) {
+            throw new Error(`Failed to fetch trending all: ${error}`);
+        }
     },
 
     async getGenres(type: 'movie' | 'tv', language: string): Promise<genres[]> {

@@ -4,21 +4,27 @@ import { Link } from 'react-router-dom';
 
 // Components
 import Container from './Container';
+import Form from './Search/Form';
 
 // Other
-import { Context } from '../lib';
+import { Context, baseUrlImg } from '../lib';
+import { api } from '../api/api';
 
 // Assets
 import logoSvg from '../assets/logo.svg';
 import logoMobile from '../assets/logoMobile.svg';
 import { SearchIconMain } from '../assets/SearchIconMain';
-import Form from './Search/Form';
 import { CloseIcon } from '../assets';
 
+// Types
+import { detailsResponse } from '../types';
+
 const Header = () => {
-    const { language, setLanguage } = useContext(Context);
+    const { language, setLanguage, sessionId } = useContext(Context);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [accountDetails, setAccountDetails] = useState<detailsResponse | null>(null);
+
     const searchFormRef = useRef<HTMLDivElement>(null);
 
     const toggleMobileMenu = () => {
@@ -40,6 +46,12 @@ const Header = () => {
 
         return () => window.removeEventListener('click', handleOutsideClick);
     }, [isSearchOpen]);
+
+    useEffect(() => {
+        if (sessionId) {
+            api.details(sessionId).then((res) => setAccountDetails(res));
+        }
+    }, [sessionId]);
 
     return (
         <div className='bg-darkBlue'>
@@ -110,6 +122,9 @@ const Header = () => {
                         }}
                     >
                         {isSearchOpen ? <CloseIcon /> : <SearchIconMain />}
+                    </div>
+                    <div className='md:ml-5 order-4 hover:text-lightBlue transition-colors duration-300'>
+                        {sessionId ? accountDetails?.username : <Link to={'/login'}>Login</Link>}
                     </div>
                     <div className='md:hidden order-1 w-7 h-7'>
                         <button

@@ -25,6 +25,7 @@ import {
     PeoplePage,
     PeopleDetailPage,
     SearchPage,
+    LoginPage,
 } from './pages';
 
 // CSS
@@ -97,6 +98,11 @@ const router = createBrowserRouter([
             {
                 path: '/collection/:id',
                 element: <MovieCollection />,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: '/login',
+                element: <LoginPage />,
                 errorElement: <ErrorPage />,
             },
             {

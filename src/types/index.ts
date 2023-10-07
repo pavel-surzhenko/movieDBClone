@@ -8,3 +8,8 @@ export type { genreListProps } from './genreListProps';
 export type { listsProps, typeOfLists } from './listsProps';
 export type { movieCollectionProps } from './movieCollectionProps';
 export type { linksProps } from './linksProps';
+export type { tokenResponse } from './Login/tokenResponse';
+export type { loginResponse } from './Login/loginResponse';
+export type { detailsResponse } from './Login/detailsResponse';
+export type { searchBarProps, companyProps, companyResponseProps, resultsProps } from './Search';
+export type { keywordsResponseProps } from './keywordsResponseProps';
