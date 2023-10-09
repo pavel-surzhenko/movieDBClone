@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 export const LoginPage = () => {
     const [userName, setUserName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const { setSessionId } = useContext(Context);
+    const { setSessionId, language } = useContext(Context);
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -46,11 +46,13 @@ export const LoginPage = () => {
                     <div className='w-full boxShadow rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0'>
                         <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
                             <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl '>
-                                Login to account
+                                {language === 'en-US' ? 'Login to account' : 'Увійти в аккаунт'}
                             </h1>
                             <div>
                                 <p className='mb-3'>
-                                    At first you need to get access from{' '}
+                                    {language === 'en-US'
+                                        ? 'At first you need to get access from '
+                                        : 'Спочатку потрібно отримати доступ від '}
                                     <span className='font-medium'>TMDB</span>
                                 </p>
                                 <div className='flex items-center space-x-3'>
@@ -60,7 +62,7 @@ export const LoginPage = () => {
                                         className='bg-lightBlue text-white hover:bg-darkBlue font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:bg-lightGreen'
                                         disabled={!!approved}
                                     >
-                                        Get access
+                                        {language === 'en-US' ? 'Get access' : 'Отримати доступ'}
                                     </button>
                                     {approved && <Check />}
                                 </div>
@@ -72,12 +74,18 @@ export const LoginPage = () => {
                                             htmlFor='email'
                                             className='block mb-2 text-sm font-medium text-gray-900 '
                                         >
-                                            Your email
+                                            {language === 'en-US'
+                                                ? 'Your username'
+                                                : `Ваше ім'я користувача`}
                                         </label>
                                         <input
                                             type='text'
                                             className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 '
-                                            placeholder='username'
+                                            placeholder={
+                                                language === 'en-US'
+                                                    ? 'username'
+                                                    : `ім'я користувача`
+                                            }
                                             value={userName}
                                             onChange={(e) => setUserName(e.target.value)}
                                         />
@@ -87,7 +95,7 @@ export const LoginPage = () => {
                                             htmlFor='password'
                                             className='block mb-2 text-sm font-medium text-gray-900 '
                                         >
-                                            Password
+                                            {language === 'en-US' ? 'Password' : 'Пароль'}
                                         </label>
                                         <input
                                             value={password}
@@ -105,7 +113,7 @@ export const LoginPage = () => {
                                         onClick={handleSubmit}
                                         className='w-full bg-lightBlue text-white hover:bg-darkBlue font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:bg-lightGray'
                                     >
-                                        Sign in
+                                        {language === 'en-US' ? 'Sign in' : 'Увійти'}
                                     </button>
                                 </form>
                             )}

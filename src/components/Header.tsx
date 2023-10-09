@@ -206,7 +206,12 @@ const Header = () => {
                                     {sessionId ? (
                                         accountDetails?.username
                                     ) : (
-                                        <Link to={'/login'}>Login</Link>
+                                        <Link
+                                            onClick={() => toggleMobileMenu()}
+                                            to={'/login'}
+                                        >
+                                            Login
+                                        </Link>
                                     )}
                                 </div>
                                 <div className='flex text-white'>
