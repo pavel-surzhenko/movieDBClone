@@ -16,6 +16,7 @@ import {
     detailsResponse,
     companyResponseProps,
     keywordsResponseProps,
+    listsResponse,
 } from '../types';
 import {
     movieProps,
@@ -70,18 +71,31 @@ export const api = {
         }
     },
 
-    async details(request_token: string): Promise<detailsResponse> {
+    async getDetails(sessionId: string): Promise<detailsResponse> {
         try {
             const { data } = await axios.get<detailsResponse>(
                 `${baseUrl}account?api_key=${
                     import.meta.env.VITE_TMDB_KEY
-                }&session_id=${request_token}`,
+                }&session_id=${sessionId}&append_to_response=favorite/tv`,
                 apiOptions
             );
 
             return data;
         } catch (error) {
-            throw new Error(`Failed to get token: ${error}`);
+            throw new Error(`Failed to get details: ${error}`);
+        }
+    },
+
+    async getLists(userId: number, sessionId: string, language: string): Promise<listsResponse> {
+        try {
+            const { data } = await axios.get<listsResponse>(
+                `${baseUrl}account/${userId}?language=${language}&session_id=${sessionId}&append_to_response=favorite/movies,favorite/tv`,
+                apiOptions
+            );
+
+            return data;
+        } catch (error) {
+            throw new Error(`Failed to get lists: ${error}`);
         }
     },
 

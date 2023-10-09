@@ -11,5 +11,7 @@ export type { linksProps } from './linksProps';
 export type { tokenResponse } from './Login/tokenResponse';
 export type { loginResponse } from './Login/loginResponse';
 export type { detailsResponse } from './Login/detailsResponse';
+export type { listsResponse } from './Login/listsResponse';
 export type { searchBarProps, companyProps, companyResponseProps, resultsProps } from './Search';
 export type { keywordsResponseProps } from './keywordsResponseProps';
+export type { favoriteList } from './favoriteList';

@@ -8,3 +8,4 @@ export { PeoplePage } from './PeoplePage';
 export { PeopleDetailPage } from './PeopleDetailPage';
 export { SearchPage } from './SearchPage';
 export { LoginPage } from './LoginPage';
+export { ProfilePage } from './ProfilePage';

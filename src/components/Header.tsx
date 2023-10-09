@@ -49,7 +49,7 @@ const Header = () => {
 
     useEffect(() => {
         if (sessionId) {
-            api.details(sessionId).then((res) => setAccountDetails(res));
+            api.getDetails(sessionId).then((res) => setAccountDetails(res));
         }
     }, [sessionId]);
 
@@ -126,9 +126,11 @@ const Header = () => {
                         </div>
                         <div className='md:ml-5 order-4 hover:text-lightBlue transition-colors duration-300 hidden md:block'>
                             {sessionId ? (
-                                accountDetails?.username
+                                <Link to={'/profile'}>{accountDetails?.username}</Link>
                             ) : (
-                                <Link to={'/login'}>Login</Link>
+                                <Link to={'/login'}>
+                                    {language === 'en-US' ? 'Login' : 'Увійти'}
+                                </Link>
                             )}
                         </div>
                     </div>
@@ -204,13 +206,20 @@ const Header = () => {
                                 </Link>
                                 <div className=' hover:text-lightBlue transition-colors duration-300 mb-10'>
                                     {sessionId ? (
-                                        accountDetails?.username
+                                        <Link
+                                            onClick={() => {
+                                                toggleMobileMenu();
+                                            }}
+                                            to={'/profile'}
+                                        >
+                                            {accountDetails?.username}
+                                        </Link>
                                     ) : (
                                         <Link
                                             onClick={() => toggleMobileMenu()}
                                             to={'/login'}
                                         >
-                                            Login
+                                            {language === 'en-US' ? 'Login' : 'Увійти'}
                                         </Link>
                                     )}
                                 </div>

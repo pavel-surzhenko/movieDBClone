@@ -26,6 +26,7 @@ import {
     PeopleDetailPage,
     SearchPage,
     LoginPage,
+    ProfilePage,
 } from './pages';
 
 // CSS
@@ -103,6 +104,11 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <LoginPage />,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: '/profile',
+                element: <ProfilePage />,
                 errorElement: <ErrorPage />,
             },
             {
