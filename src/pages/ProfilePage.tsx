@@ -28,6 +28,6 @@ export const ProfilePage = () => {
                 })
             );
         }
-    }, [userId]);
+    }, [userId, language, sessionId]);
     return <>{data && <ProfilePageHeader {...data} />}</>;
 };
