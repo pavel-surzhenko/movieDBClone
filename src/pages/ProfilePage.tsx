@@ -1,5 +1,6 @@
 // React
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 // Components
@@ -11,27 +12,24 @@ import { api } from '../api/api';
 import { Context } from '../lib';
 
 // Types
-import { detailsResponse } from '../types';
+import { listsResponse } from '../types';
 import { listsProps } from '../types/Login/listsProps';
 
 export const ProfilePage = () => {
-    const { language, sessionId } = useContext(Context);
-    const [data, setData] = useState<detailsResponse | null>(null);
+    const { language, sessionId, userId } = useContext(Context);
+    const [data, setData] = useState<listsResponse | null>(null);
     const [lists, setLists] = useState<listsProps | null>(null);
-    const [userId, setUserId] = useState<number | null>(null);
     const [page, setPage] = useState<number>(1);
+    const navigate = useNavigate();
 
     const handlePageChange = (newPage: number) => {
         setPage(newPage);
     };
 
     useEffect(() => {
-        api.getDetails(sessionId).then((res) => {
-            setData(res);
-            setUserId(res.id);
-        });
         if (userId) {
             api.getLists(userId, sessionId, language, page).then((res) => {
+                setData(res);
                 setLists({
                     'favorite/movies': res['favorite/movies'],
                     'favorite/tv': res['favorite/tv'],
@@ -39,8 +37,10 @@ export const ProfilePage = () => {
                     'watchlist/tv': res['watchlist/tv'],
                 });
             });
+        } else {
+            navigate('/login');
         }
-    }, [userId, language, sessionId, page]);
+    }, [userId, language, sessionId, page, navigate]);
 
     return (
         <>

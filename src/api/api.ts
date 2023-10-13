@@ -76,7 +76,7 @@ export const api = {
             const { data } = await axios.get<detailsResponse>(
                 `${baseUrl}account?api_key=${
                     import.meta.env.VITE_TMDB_KEY
-                }&session_id=${sessionId}&append_to_response=favorite/tv`,
+                }&session_id=${sessionId}`,
                 apiOptions
             );
 
@@ -87,7 +87,7 @@ export const api = {
     },
 
     async getLists(
-        userId: number,
+        userId: string,
         sessionId: string,
         language: string,
         page: number

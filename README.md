@@ -56,4 +56,4 @@ npm run build && npm run start
 
 додати функціонал додавання та прибирання з улюбленого та збереженего
 add spinner to profila page
-додати клік посилання по кейвордс
+add logout

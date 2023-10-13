@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 export const LoginPage = () => {
     const [userName, setUserName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const { setSessionId, language } = useContext(Context);
+    const { setSessionId, language, setUserId } = useContext(Context);
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -30,6 +30,7 @@ export const LoginPage = () => {
             api.login(requestToken).then((res) => {
                 if (res.success) {
                     setSessionId(res.session_id);
+                    api.getDetails(res.session_id).then((res) => setUserId(res.id));
                     navigate('/');
                 }
             });

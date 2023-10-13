@@ -7,7 +7,7 @@ export interface detailsResponse {
             avatar_path: string | null;
         };
     };
-    id: number;
+    id: string;
     iso_639_1: string;
     iso_3166_1: string;
     name: string;

@@ -6,4 +6,6 @@ export interface contextProps {
     movies: movieProps[];
     sessionId: string;
     setSessionId: (id: string) => void;
+    userId: string;
+    setUserId: (id: string) => void;
 }
