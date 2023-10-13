@@ -12,6 +12,8 @@ export default {
             white: '#fff',
             lightBlack: 'rgba(0,0,0, 0.4)',
             lightGray: 'rgb(227,227,227)',
+            pink: 'rgb(234,20,140)',
+            red: 'rgb(212,2,66)',
         },
         extend: {
             fontFamily: {

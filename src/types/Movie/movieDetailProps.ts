@@ -3,6 +3,7 @@ import { tvDetailProps } from '../TV';
 import { movieCreditsProps } from '../movieCreditsProps';
 
 export interface movieDetailProps {
+    account_states: { favorite: boolean; rated: boolean; watchlist: boolean };
     adult: boolean;
     backdrop_path: string;
     belongs_to_collection: movieCollection | null;

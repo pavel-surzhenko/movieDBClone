@@ -1,4 +1,5 @@
 export interface tvDetailProps {
+    account_states: { favorite: boolean; rated: boolean; watchlist: boolean };
     adult: boolean;
     backdrop_path: string;
     created_by: createdBy[];

@@ -12,3 +12,5 @@ export { Star } from './Star';
 export { Twitter } from './Twitter';
 export { RightArrow } from './RightArrow';
 export { Check } from './Check';
+export { Favorite } from './Favorite';
+export { Saved } from './Saved';

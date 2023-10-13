@@ -14,6 +14,7 @@ import { useGetCircleColor, useGetTrailColor } from '../../hooks';
 
 // Other
 import { baseUrlImg, Context } from '../../lib';
+import { Favorite, Saved } from '../../assets';
 
 // Types
 import { movieDetailsHeaderProps } from '../../types/Movie';
@@ -27,7 +28,6 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const { movieId } = useParams();
     const { language } = useContext(Context);
     const [showModal, setShowModal] = useState<boolean>(false);
-    // const [movieProviders, setMovieProviders] = useState<movieProvidersProps | null>(null);
     const [dominantColor, setDominantColor] = useState<ArrayRGB>([0, 0, 0]);
     const director = movieCredits?.crew.find((person) => person.job === 'Director');
     const createdBy = 'created_by' in movieDetails ? movieDetails.created_by : [];
@@ -181,6 +181,36 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                                 ? 'Дивитись трейлер'
                                                 : 'Play Trailer'}
                                         </p>
+                                    </div>
+                                    <div className='group w-10 md:w-12 h-10 md:h-12 bg-darkBlue rounded-full flex justify-center items-center ml-5 cursor-pointer'>
+                                        <div
+                                            className={` w-4 md:w-5 h-4 md:h-5 ${
+                                                movieDetails.account_states.favorite
+                                                    ? 'text-pink'
+                                                    : ''
+                                            }`}
+                                        >
+                                            <Favorite />
+                                            <span className='group-hover:opacity-100 bg-darkBlue p-2 text-sm rounded-md absolute left-1/2 opacity-0 mt-4 text-white'>
+                                                {language === 'uk-UA'
+                                                    ? 'додати до улюбленого'
+                                                    : 'add to favorite'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className='group w-10 md:w-12 h-10 md:h-12 bg-darkBlue rounded-full flex justify-center items-center ml-5 cursor-pointer relative'>
+                                        <div
+                                            className={`w-4 md:w-5 h-4 md:h-5 ${
+                                                movieDetails.account_states.watchlist
+                                                    ? 'text-red'
+                                                    : ''
+                                            }`}
+                                        >
+                                            <Saved />
+                                            <span className='group-hover:opacity-100 bg-darkBlue p-2 text-sm rounded-md absolute left-1/2 opacity-0 mt-4 text-white'>
+                                                {language === 'uk-UA' ? 'зберегти' : 'add to saved'}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='italic text-lg mb-2'>{movieDetails?.tagline}</div>
