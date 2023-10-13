@@ -19,6 +19,11 @@ export const ProfilePage = () => {
     const [data, setData] = useState<detailsResponse | null>(null);
     const [lists, setLists] = useState<listsProps | null>(null);
     const [userId, setUserId] = useState<number | null>(null);
+    const [page, setPage] = useState<number>(1);
+
+    const handlePageChange = (newPage: number) => {
+        setPage(newPage);
+    };
 
     useEffect(() => {
         api.getDetails(sessionId).then((res) => {
@@ -26,23 +31,30 @@ export const ProfilePage = () => {
             setUserId(res.id);
         });
         if (userId) {
-            api.getLists(userId, sessionId, language).then((res) =>
+            api.getLists(userId, sessionId, language, page).then((res) => {
                 setLists({
                     'favorite/movies': res['favorite/movies'],
                     'favorite/tv': res['favorite/tv'],
                     'watchlist/movies': res['watchlist/movies'],
                     'watchlist/tv': res['watchlist/tv'],
-                })
-            );
+                });
+            });
         }
-    }, [userId, language, sessionId]);
+    }, [userId, language, sessionId, page]);
+
     return (
         <>
             <Helmet>
                 <title>My profile - The Movie Data Base (TMDB)</title>
             </Helmet>
             {data && <ProfilePageHeader {...data} />}
-            {lists && <ProfileMain {...lists} />}
+            {lists && (
+                <ProfileMain
+                    lists={lists}
+                    page={page}
+                    pageChange={handlePageChange}
+                />
+            )}
         </>
     );
 };

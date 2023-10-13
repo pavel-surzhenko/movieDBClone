@@ -86,10 +86,15 @@ export const api = {
         }
     },
 
-    async getLists(userId: number, sessionId: string, language: string): Promise<listsResponse> {
+    async getLists(
+        userId: number,
+        sessionId: string,
+        language: string,
+        page: number
+    ): Promise<listsResponse> {
         try {
             const { data } = await axios.get<listsResponse>(
-                `${baseUrl}account/${userId}?language=${language}&session_id=${sessionId}&append_to_response=favorite/movies,favorite/tv,watchlist/movies,watchlist/tv`,
+                `${baseUrl}account/${userId}?language=${language}&session_id=${sessionId}&page=${page}&append_to_response=favorite/movies,favorite/tv,watchlist/movies,watchlist/tv`,
                 apiOptions
             );
 
