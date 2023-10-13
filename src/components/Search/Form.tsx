@@ -1,9 +1,10 @@
 // React
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Assets
+// Other
 import { SearchIcon } from '../../assets/SearchIcon';
+import { Context } from '../../lib';
 
 // Hooks
 import { useQuery } from '../../hooks';
@@ -13,6 +14,7 @@ const Form = ({ isOpen }: { isOpen: boolean }) => {
     const [value, setValue] = useState(query || '');
     const navigate = useNavigate();
     const inputRef = useRef<HTMLInputElement>(null);
+    const { language } = useContext(Context);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -45,7 +47,7 @@ const Form = ({ isOpen }: { isOpen: boolean }) => {
                     type='search'
                     id='default-search'
                     className='block w-full p-2 md:p-4 pl-10 md:pl-10 text-lg text-lightBlack outline-none'
-                    placeholder='Search...'
+                    placeholder={language === 'en-US' ? 'Search...' : 'Пошук...'}
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     ref={inputRef}
@@ -55,7 +57,7 @@ const Form = ({ isOpen }: { isOpen: boolean }) => {
                     className='absolute right-2 md:right-5 bottom-1 md:bottom-2.5 bg-lightBlue md:font-medium rounded-lg px-2 py-1 md:px-4 md:py-2 text-lg text-white disabled:opacity-60'
                     disabled={!value.length}
                 >
-                    Search
+                    {language === 'en-US' ? 'Search' : 'Пошук'}
                 </button>
             </div>
         </form>
