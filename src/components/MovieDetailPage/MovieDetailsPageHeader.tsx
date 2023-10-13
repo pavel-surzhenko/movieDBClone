@@ -182,7 +182,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                                 : 'Play Trailer'}
                                         </p>
                                     </div>
-                                    <div className='group w-10 md:w-12 h-10 md:h-12 bg-darkBlue rounded-full flex justify-center items-center ml-5 cursor-pointer'>
+                                    <div className='group w-10 md:w-12 h-10 md:h-12 bg-darkBlue rounded-full flex justify-center items-center ml-5 cursor-pointer relative'>
                                         <div
                                             className={` w-4 md:w-5 h-4 md:h-5 ${
                                                 movieDetails.account_states.favorite
@@ -191,7 +191,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             }`}
                                         >
                                             <Favorite />
-                                            <span className='group-hover:opacity-100 bg-darkBlue p-2 text-sm rounded-md absolute left-1/2 opacity-0 mt-4 text-white'>
+                                            <span className='group-hover:block bg-darkBlue p-2 text-sm rounded-md absolute left-0 hidden mt-4 text-white whitespace-nowrap'>
                                                 {language === 'uk-UA'
                                                     ? 'додати до улюбленого'
                                                     : 'add to favorite'}
@@ -207,7 +207,7 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                             }`}
                                         >
                                             <Saved />
-                                            <span className='group-hover:opacity-100 bg-darkBlue p-2 text-sm rounded-md absolute left-1/2 opacity-0 mt-4 text-white'>
+                                            <span className='group-hover:block bg-darkBlue p-2 text-sm rounded-md absolute left-0 hidden mt-4 text-white whitespace-nowrap'>
                                                 {language === 'uk-UA' ? 'зберегти' : 'add to saved'}
                                             </span>
                                         </div>

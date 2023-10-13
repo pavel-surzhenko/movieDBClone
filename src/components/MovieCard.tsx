@@ -7,9 +7,6 @@ import { Link } from 'react-router-dom';
 // Components
 import LoadingModel from './LoadingModel';
 
-// Assets
-import { MoreInfoIcon } from '../assets';
-
 // Types
 import { movieProps } from '../types/Movie';
 import { tvProps } from '../types/TV';
@@ -93,9 +90,6 @@ const MovieCard: React.FC<movieProps | tvProps> = (props) => {
                             textSize: '35px',
                         })}
                     />
-                </div>
-                <div className='absolute w-6 h-6 top-2 right-2 cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-300'>
-                    <MoreInfoIcon />
                 </div>
             </div>
             <div className='pt-6 px-2 '>
