@@ -1,8 +1,7 @@
-import { detailsResponse } from '..';
 import { movieResponseProps } from '../Movie';
 import { tvResponseProps } from '../TV';
 
-export interface listsResponse extends detailsResponse {
+export interface listsProps {
     'favorite/movies': movieResponseProps;
     'favorite/tv': tvResponseProps;
     'watchlist/movies': movieResponseProps;

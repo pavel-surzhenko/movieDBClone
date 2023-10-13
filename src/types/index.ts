@@ -14,4 +14,3 @@ export type { detailsResponse } from './Login/detailsResponse';
 export type { listsResponse } from './Login/listsResponse';
 export type { searchBarProps, companyProps, companyResponseProps, resultsProps } from './Search';
 export type { keywordsResponseProps } from './keywordsResponseProps';
-export type { favoriteList } from './favoriteList';

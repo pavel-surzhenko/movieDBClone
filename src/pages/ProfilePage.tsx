@@ -11,12 +11,13 @@ import { api } from '../api/api';
 import { Context } from '../lib';
 
 // Types
-import { detailsResponse, favoriteList } from '../types';
+import { detailsResponse } from '../types';
+import { listsProps } from '../types/Login/listsProps';
 
 export const ProfilePage = () => {
     const { language, sessionId } = useContext(Context);
     const [data, setData] = useState<detailsResponse | null>(null);
-    const [favorite, setFavorite] = useState<favoriteList | null>(null);
+    const [lists, setLists] = useState<listsProps | null>(null);
     const [userId, setUserId] = useState<number | null>(null);
 
     useEffect(() => {
@@ -26,9 +27,11 @@ export const ProfilePage = () => {
         });
         if (userId) {
             api.getLists(userId, sessionId, language).then((res) =>
-                setFavorite({
+                setLists({
                     'favorite/movies': res['favorite/movies'],
                     'favorite/tv': res['favorite/tv'],
+                    'watchlist/movies': res['watchlist/movies'],
+                    'watchlist/tv': res['watchlist/tv'],
                 })
             );
         }
@@ -39,7 +42,7 @@ export const ProfilePage = () => {
                 <title>My profile - The Movie Data Base (TMDB)</title>
             </Helmet>
             {data && <ProfilePageHeader {...data} />}
-            {favorite && <ProfileMain {...favorite} />}
+            {lists && <ProfileMain {...lists} />}
         </>
     );
 };

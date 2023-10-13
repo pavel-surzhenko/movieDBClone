@@ -27,8 +27,10 @@ const Footer = () => {
                             />
                         </Link>
                     </div>
-                    <div className='flex flex-col gap-2 items-center justify-around md:flex-row'>
-                        <div className=''>Created by Pavlo Surzhenko</div>
+                    <div className='flex flex-col gap-2 items-center justify-evenly md:flex-row'>
+                        <div className=''>
+                            Created by <span className='font-semibold'>Pavlo Surzhenko</span>
+                        </div>
                         <div className='flex items-center'>
                             Contact me:
                             <a
@@ -42,7 +44,7 @@ const Footer = () => {
                                 <Mail />
                             </a>
                         </div>
-                        <div className='flex items-center '>
+                        <div className='flex items-center'>
                             See my projects:
                             <a
                                 href='https://github.com/pavel-surzhenko'
@@ -52,7 +54,6 @@ const Footer = () => {
                                 <GitHub />
                             </a>
                         </div>
-                        <div></div>
                     </div>
                 </div>
             </Container>
