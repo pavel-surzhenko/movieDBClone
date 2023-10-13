@@ -10,7 +10,7 @@ const ProfilePageHeader: React.FC<detailsResponse> = ({ username, avatar }) => {
         <div className='bg-profile-bg bg-[#072e46] bg-cover bg-[center_top]'>
             <Container>
                 <div className='flex text-white py-5 md:py-10 px-5 items-center'>
-                    <div className='w-[75px] md:w-[150px] h-[75px] md:h-[150px] rounded-full bg-[rgb(1,119,210)] flex justify-center items-center'>
+                    <div className='w-[75px] md:w-[130px] h-[75px] md:h-[130px] rounded-full bg-[rgb(1,119,210)] flex justify-center items-center'>
                         {avatar.tmdb.avatar_path ? (
                             <img src={`${baseUrlImg}/w200${avatar.tmdb.avatar_path}`} />
                         ) : (

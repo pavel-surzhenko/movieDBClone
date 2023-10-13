@@ -1,5 +1,10 @@
 // React
 import { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+
+// Components
+import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader';
+import ProfileMain from '../components/ProfilePage/ProfileMain';
 
 // Other
 import { api } from '../api/api';
@@ -7,7 +12,6 @@ import { Context } from '../lib';
 
 // Types
 import { detailsResponse, favoriteList } from '../types';
-import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader';
 
 export const ProfilePage = () => {
     const { language, sessionId } = useContext(Context);
@@ -29,5 +33,13 @@ export const ProfilePage = () => {
             );
         }
     }, [userId, language, sessionId]);
-    return <>{data && <ProfilePageHeader {...data} />}</>;
+    return (
+        <>
+            <Helmet>
+                <title>My profile - The Movie Data Base (TMDB)</title>
+            </Helmet>
+            {data && <ProfilePageHeader {...data} />}
+            {favorite && <ProfileMain {...favorite} />}
+        </>
+    );
 };
