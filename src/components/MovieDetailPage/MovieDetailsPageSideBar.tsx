@@ -97,7 +97,7 @@ const MovieDetailsPageSideBar = ({
                         <div className='font-light'>{movieData.number_of_seasons}</div>
                     </div>
                 )}
-                {'budget' in movieData && (
+                {'budget' in movieData && movieData.budget > 0 && (
                     <div className='mb-3'>
                         <div className='font-semibold'>
                             {language === 'uk-UA' ? 'Бюджет' : 'Budget'}

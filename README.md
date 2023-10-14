@@ -54,6 +54,5 @@ npm run build && npm run start
 
 ### To do
 
-додати функціонал додавання та прибирання з улюбленого та збереженего
 add spinner to profila page
 add logout
