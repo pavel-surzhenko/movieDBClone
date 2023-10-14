@@ -38,11 +38,24 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
 
     const [isFavorite, setIsFavorite] = useState<boolean>(movieDetails.account_states.favorite);
+    const [isWatchlist, setIsWatchlist] = useState<boolean>(movieDetails.account_states.watchlist);
 
     const toggleFavorite = () => {
         if (movieId && userId && sessionId) {
             api.toggleFavorite(userId, sessionId, movieType, movieId, isFavorite)
                 .then((res) => res.success && setIsFavorite(!isFavorite))
+                .catch((error) => {
+                    throw new Error(`Error to add favorite: ${error}`);
+                });
+        } else {
+            navigate('/login');
+        }
+    };
+
+    const toggleSaved = () => {
+        if (movieId && userId && sessionId) {
+            api.toggleSaved(userId, sessionId, movieType, movieId, isWatchlist)
+                .then((res) => res.success && setIsWatchlist(!isWatchlist))
                 .catch((error) => {
                     throw new Error(`Error to add favorite: ${error}`);
                 });
@@ -216,10 +229,9 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                     <div className='group w-10 md:w-12 h-10 md:h-12 bg-darkBlue rounded-full flex justify-center items-center ml-5 cursor-pointer relative'>
                                         <div
                                             className={`w-4 md:w-5 h-4 md:h-5 ${
-                                                movieDetails.account_states.watchlist
-                                                    ? 'text-red'
-                                                    : ''
+                                                isWatchlist ? 'text-red' : ''
                                             }`}
+                                            onClick={toggleSaved}
                                         >
                                             <Saved />
                                             <span className='group-hover:block bg-darkBlue p-2 text-sm rounded-md absolute left-0 hidden mt-4 text-white whitespace-nowrap'>

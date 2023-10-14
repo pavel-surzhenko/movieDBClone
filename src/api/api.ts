@@ -126,7 +126,33 @@ export const api = {
 
             return data;
         } catch (error) {
-            throw new Error(`Failed to add Favorite: ${error}`);
+            throw new Error(`Failed to toggle favorite: ${error}`);
+        }
+    },
+
+    async toggleSaved(
+        userId: string,
+        sessionId: string,
+        type: string,
+        media_id: string,
+        isWatchlist: boolean
+    ): Promise<{ status_code: number; status_message: string; success: boolean }> {
+        const body = { media_type: type, media_id: media_id, watchlist: !isWatchlist };
+        try {
+            const { data } = await axios.post<{
+                status_code: number;
+                status_message: string;
+                success: boolean;
+            }>(`${baseUrl}account/${userId}/watchlist?session_id=${sessionId}`, body, {
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${import.meta.env.VITE_TMDB_AUTH}`,
+                },
+            });
+
+            return data;
+        } catch (error) {
+            throw new Error(`Failed to toggle watchList: ${error}`);
         }
     },
 
