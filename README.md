@@ -14,6 +14,8 @@ This is my study react ts tailwindcss project "TMDB clone"
 
 > Movie/tv lists, filters for genres
 
+> Login, favorite/watch list
+
 ---
 
 > All information is taken from the server using the TMDB API https://www.themoviedb.org/
@@ -54,5 +56,5 @@ npm run build && npm run start
 
 ### To do
 
-add spinner to profila page
 add logout
+change login link redirect

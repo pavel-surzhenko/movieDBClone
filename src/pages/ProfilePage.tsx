@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 // Components
 import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader';
 import ProfileMain from '../components/ProfilePage/ProfileMain';
+import Spinner from '../components/Spinner';
 
 // Other
 import { api } from '../api/api';
@@ -20,6 +21,7 @@ export const ProfilePage = () => {
     const [data, setData] = useState<listsResponse | null>(null);
     const [lists, setLists] = useState<listsProps | null>(null);
     const [page, setPage] = useState<number>(1);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     const handlePageChange = (newPage: number) => {
@@ -27,6 +29,7 @@ export const ProfilePage = () => {
     };
 
     useEffect(() => {
+        setLoading(true);
         if (userId) {
             api.getLists(userId, sessionId, language, page).then((res) => {
                 setData(res);
@@ -37,6 +40,7 @@ export const ProfilePage = () => {
                     'watchlist/tv': res['watchlist/tv'],
                 });
             });
+            setLoading(false);
         } else {
             navigate('/login');
         }
@@ -47,13 +51,21 @@ export const ProfilePage = () => {
             <Helmet>
                 <title>My profile - The Movie Data Base (TMDB)</title>
             </Helmet>
-            {data && <ProfilePageHeader {...data} />}
-            {lists && (
-                <ProfileMain
-                    lists={lists}
-                    page={page}
-                    pageChange={handlePageChange}
-                />
+            {!loading ? (
+                <>
+                    {data && <ProfilePageHeader {...data} />}
+                    {lists && (
+                        <ProfileMain
+                            lists={lists}
+                            page={page}
+                            pageChange={handlePageChange}
+                        />
+                    )}
+                </>
+            ) : (
+                <div className='absolute top-1/2 right-1/2 translate-x-1/2'>
+                    <Spinner />
+                </div>
             )}
         </>
     );

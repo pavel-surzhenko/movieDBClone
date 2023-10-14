@@ -32,13 +32,23 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
     };
 
     const handleSetSessionId = (id: string) => {
-        setSessionId(id);
-        ls.setItem('sessionId', id);
+        if (id) {
+            setSessionId(id);
+            ls.setItem('sessionId', id);
+        } else {
+            setSessionId('');
+            ls.removeItem('sessionId');
+        }
     };
 
     const handleSetUserId = (id: string) => {
-        setUserId(id);
-        ls.setItem('userId', id);
+        if (id) {
+            setUserId(id);
+            ls.setItem('userId', id);
+        } else {
+            setUserId('id');
+            ls.removeItem('userId');
+        }
     };
 
     useEffect(() => {

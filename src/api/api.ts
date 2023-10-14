@@ -71,6 +71,27 @@ export const api = {
         }
     },
 
+    async logout(session_id: string): Promise<{ success: boolean }> {
+        try {
+            const { data } = await axios.delete<{ success: boolean }>(
+                `${baseUrl}authentication/session`,
+                {
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${import.meta.env.VITE_TMDB_AUTH}`,
+                    },
+                    params: {
+                        session_id,
+                    },
+                }
+            );
+
+            return data;
+        } catch (error) {
+            throw new Error(`Failed to get token: ${error}`);
+        }
+    },
+
     async getDetails(sessionId: string): Promise<detailsResponse> {
         try {
             const { data } = await axios.get<detailsResponse>(
