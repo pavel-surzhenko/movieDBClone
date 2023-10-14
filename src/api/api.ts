@@ -104,6 +104,31 @@ export const api = {
         }
     },
 
+    async addFavorite(
+        userId: string,
+        sessionId: string,
+        type: string,
+        media_id: string
+    ): Promise<{ status_code: number; status_message: string; success: boolean }> {
+        const body = { media_type: type, media_id: media_id, favorite: true };
+        try {
+            const { data } = await axios.post<{
+                status_code: number;
+                status_message: string;
+                success: boolean;
+            }>(`${baseUrl}account/${userId}/favorite?session_id=${sessionId}`, body, {
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${import.meta.env.VITE_TMDB_AUTH}`,
+                },
+            });
+
+            return data;
+        } catch (error) {
+            throw new Error(`Failed to add Favorite: ${error}`);
+        }
+    },
+
     async getTrendingAll(language: string): Promise<movieProps[]> {
         try {
             const {

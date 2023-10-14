@@ -1,7 +1,7 @@
 // React & Libraries
 import Modal from 'react-modal';
 import { useContext, useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getColor } from 'color-thief-react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
@@ -19,6 +19,7 @@ import { Favorite, Saved } from '../../assets';
 // Types
 import { movieDetailsHeaderProps } from '../../types/Movie';
 import { ArrayRGB } from 'color-thief-react/lib/types';
+import { api } from '../../api/api';
 
 const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     movieDetails,
@@ -26,7 +27,8 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     watchProviders,
 }) => {
     const { movieId } = useParams();
-    const { language } = useContext(Context);
+    const { language, userId, sessionId } = useContext(Context);
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState<boolean>(false);
     const [dominantColor, setDominantColor] = useState<ArrayRGB>([0, 0, 0]);
     const director = movieCredits?.crew.find((person) => person.job === 'Director');
@@ -34,6 +36,20 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
 
     const { pathname } = useLocation();
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
+
+    const [isFavorite, setIsFavorite] = useState<boolean>(movieDetails.account_states.favorite);
+
+    const addToFavorite = () => {
+        if (movieId && userId && sessionId) {
+            api.addFavorite(userId, sessionId, movieType, movieId)
+                .then((res) => res.success && setIsFavorite(true))
+                .catch((error) => {
+                    throw new Error(`Error to add favorite: ${error}`);
+                });
+        } else {
+            navigate('/login');
+        }
+    };
 
     useEffect(() => {
         getColor(
@@ -185,10 +201,9 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
                                     <div className='group w-10 md:w-12 h-10 md:h-12 bg-darkBlue rounded-full flex justify-center items-center ml-5 cursor-pointer relative'>
                                         <div
                                             className={` w-4 md:w-5 h-4 md:h-5 ${
-                                                movieDetails.account_states.favorite
-                                                    ? 'text-pink'
-                                                    : ''
+                                                isFavorite ? 'text-pink' : ''
                                             }`}
+                                            onClick={addToFavorite}
                                         >
                                             <Favorite />
                                             <span className='group-hover:block bg-darkBlue p-2 text-sm rounded-md absolute left-0 hidden mt-4 text-white whitespace-nowrap'>
