@@ -104,13 +104,14 @@ export const api = {
         }
     },
 
-    async addFavorite(
+    async toggleFavorite(
         userId: string,
         sessionId: string,
         type: string,
-        media_id: string
+        media_id: string,
+        isFavorite: boolean
     ): Promise<{ status_code: number; status_message: string; success: boolean }> {
-        const body = { media_type: type, media_id: media_id, favorite: true };
+        const body = { media_type: type, media_id: media_id, favorite: !isFavorite };
         try {
             const { data } = await axios.post<{
                 status_code: number;
