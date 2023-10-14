@@ -56,5 +56,4 @@ npm run build && npm run start
 
 ### To do
 
-add logout
 change login link redirect

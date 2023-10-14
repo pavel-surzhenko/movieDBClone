@@ -31,6 +31,7 @@ import {
 
 // CSS
 import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
     {

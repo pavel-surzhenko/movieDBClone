@@ -3,6 +3,7 @@ import React from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { ToastContainer, Slide } from 'react-toastify';
 
 // Components
 import Spinner from '../components/Spinner';
@@ -68,6 +69,11 @@ export const MovieDetailPage: React.FC = () => {
                     <Helmet>
                         <title>{title}- The Movie Data Base(TMDB)</title>
                     </Helmet>
+                    <ToastContainer
+                        newestOnTop
+                        closeOnClick
+                        transition={Slide}
+                    />
                     <Outlet
                         context={{
                             movieData,

@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getColor } from 'color-thief-react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { toast } from 'react-toastify';
 
 // Components
 import ModalTrailer from '../Trailer/ModalTrailer';
@@ -13,7 +14,7 @@ import Container from '../Container';
 import { useGetCircleColor, useGetTrailColor } from '../../hooks';
 
 // Other
-import { baseUrlImg, Context } from '../../lib';
+import { baseUrlImg, Context, toastOptions } from '../../lib';
 import { Favorite, Saved } from '../../assets';
 
 // Types
@@ -31,8 +32,12 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState<boolean>(false);
     const [dominantColor, setDominantColor] = useState<ArrayRGB>([0, 0, 0]);
+
     const director = movieCredits?.crew.find((person) => person.job === 'Director');
     const createdBy = 'created_by' in movieDetails ? movieDetails.created_by : [];
+    const title = movieDetails && 'title' in movieDetails ? movieDetails.title : movieDetails?.name;
+    const release_date =
+        'release_date' in movieDetails ? movieDetails.release_date : movieDetails.first_air_date;
 
     const { pathname } = useLocation();
     const movieType = pathname.split('/')[1] as 'movie' | 'tv';
@@ -43,9 +48,26 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const toggleFavorite = () => {
         if (movieId && userId && sessionId) {
             api.toggleFavorite(userId, sessionId, movieType, movieId, isFavorite)
-                .then((res) => res.success && setIsFavorite(!isFavorite))
+                .then((res) => {
+                    res.success && setIsFavorite(!isFavorite);
+                    isFavorite
+                        ? toast.error(
+                              `${title} ${
+                                  language === 'uk-UA'
+                                      ? 'видалено з улюблених'
+                                      : 'removed from favorite'
+                              }`,
+                              toastOptions
+                          )
+                        : toast.success(
+                              `${title} ${
+                                  language === 'uk-UA' ? 'додано до улюблених' : 'add to favorite'
+                              }`,
+                              toastOptions
+                          );
+                })
                 .catch((error) => {
-                    throw new Error(`Error to add favorite: ${error}`);
+                    toast.error(error, toastOptions);
                 });
         } else {
             navigate('/login');
@@ -55,9 +77,26 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const toggleSaved = () => {
         if (movieId && userId && sessionId) {
             api.toggleSaved(userId, sessionId, movieType, movieId, isWatchlist)
-                .then((res) => res.success && setIsWatchlist(!isWatchlist))
+                .then((res) => {
+                    res.success && setIsWatchlist(!isWatchlist);
+                    isWatchlist
+                        ? toast.error(
+                              `${title} ${
+                                  language === 'uk-UA'
+                                      ? 'видалено зі збережених'
+                                      : 'removed from saved'
+                              }`,
+                              toastOptions
+                          )
+                        : toast.success(
+                              `${title} ${
+                                  language === 'uk-UA' ? 'додано до збережених' : 'add to saved'
+                              }`,
+                              toastOptions
+                          );
+                })
                 .catch((error) => {
-                    throw new Error(`Error to add favorite: ${error}`);
+                    toast.error(error, toastOptions);
                 });
         } else {
             navigate('/login');
@@ -77,11 +116,6 @@ const MovieDetailsPageHeader: React.FC<movieDetailsHeaderProps> = ({
     const handleClickClose = () => {
         setShowModal(false);
     };
-
-    const title = movieDetails && 'title' in movieDetails ? movieDetails.title : movieDetails?.name;
-
-    const release_date =
-        'release_date' in movieDetails ? movieDetails.release_date : movieDetails.first_air_date;
 
     return (
         <section className='relative'>

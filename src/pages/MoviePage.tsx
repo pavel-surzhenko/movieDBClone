@@ -67,6 +67,7 @@ export const MoviePage: React.FC = () => {
             <Helmet>
                 <title>Movie - The Movie Data Base (TMDB)</title>
             </Helmet>
+
             <Container>
                 <div className='flex my-10 mx-3 flex-col lg:flex-row'>
                     <aside className='w-full lg:w-[260px] lg:min-w-[260px] mr-5'>
