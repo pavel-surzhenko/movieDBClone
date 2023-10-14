@@ -2,7 +2,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { ToastContainer, Slide } from 'react-toastify';
 
 // Components
 import ProfilePageHeader from '../components/ProfilePage/ProfilePageHeader';
