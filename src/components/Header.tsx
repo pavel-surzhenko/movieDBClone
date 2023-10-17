@@ -93,7 +93,7 @@ const Header = () => {
                             to={'/people'}
                             className={`mr-10 hover:text-lightBlue transition-colors duration-300`}
                         >
-                            {language === 'en-US' ? 'People' : 'Персони'}
+                            {language === 'en-US' ? 'People' : 'Люди'}
                         </Link>
                     </div>
                     <div className='md:flex text-white md:order-3 hidden'>

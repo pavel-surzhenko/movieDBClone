@@ -53,7 +53,3 @@ yarn build && yarn start
 # or
 npm run build && npm run start
 ```
-
-### To do
-
-change login link redirect
