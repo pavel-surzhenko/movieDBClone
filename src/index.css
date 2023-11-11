@@ -6,6 +6,8 @@
     html {
         font-family: 'Source Sans 3', sans-serif;
         color: #000;
+        margin-right: calc(-1 * (100vw - 100%));
+        overflow-x: hidden;
     }
     #root {
         min-height: 100vh;
